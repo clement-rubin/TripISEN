@@ -182,11 +182,12 @@ body {
 
 .search-input-container input {
     width: 100%;
-    padding: 15px 15px 15px 50px;
+    padding: 15px 40px; 
     border: none;
     font-size: 16px;
     color: #333;
 }
+
 
 .search-input-container input:focus {
     outline: none;
@@ -194,27 +195,29 @@ body {
 
 .search-icon {
     position: absolute;
-    left: 20px;
+    left: 15px;
     top: 50%;
     transform: translateY(-50%);
     color: var(--primary);
+    font-size: 18px; 
 }
 
 .search-box button {
     background: var(--primary);
     color: white;
     border: none;
-    padding: 0 50px; /* Réduction du padding horizontal pour mieux centrer le texte */
-    text-align: center; /* Assurer que le texte est centré */
+    padding: 12px 100px;
+    text-align: center;
     font-size: 16px;
     font-weight: 600;
     cursor: pointer;
     transition: background 0.3s;
-    min-width: 160px; /* Augmentation de la largeur minimale pour assurer suffisamment d'espace */
-    white-space: nowrap; /* Empêche le texte de passer à la ligne */
-    display: flex; /* Utiliser flexbox pour un meilleur centrage */
-    align-items: center; /* Centrer verticalement */
-    justify-content: center; /* Centrer horizontalement */
+    min-width: 200px;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
 }
 
 .search-box button:hover {
