@@ -196,7 +196,7 @@ body {
 /* Section FAQ */
 .faq-section {
     background-color: var(--secondary);
-    padding: 60px 0;
+    padding: 20px 0;
 }
 
 .faq-grid {
