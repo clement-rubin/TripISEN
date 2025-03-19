@@ -20,41 +20,86 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Gestion du formulaire de connexion
     const loginForm = document.getElementById('form-login');
-    loginForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        const email = document.getElementById('login-email').value;
-        const password = document.getElementById('login-password').value;
-        const rememberMe = document.getElementById('remember-me').checked;
-        
-        const loginData = {
-            email: email,
-            password: password,
-            remember_me: rememberMe
-        };
-        
-        fetch('php/login.php', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(loginData)
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                // Redirection vers la page d'accueil
-                window.location.href = 'index.html';
-            } else {
-                // Afficher un message d'erreur
-                document.getElementById('login-error').textContent = data.message || 'Identifiants incorrects. Veuillez réessayer.';
-            }
-        })
-        .catch(error => {
-            console.error('Erreur lors de la connexion:', error);
-            document.getElementById('login-error').textContent = 'Une erreur est survenue. Veuillez réessayer plus tard.';
+    if (loginForm) {
+        loginForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+            const rememberMe = document.getElementById('remember-me') ? document.getElementById('remember-me').checked : false;
+            
+            // Afficher le message de chargement
+            const errorElem = document.getElementById('login-error');
+            errorElem.textContent = "Connexion en cours...";
+            errorElem.style.display = 'block';
+            
+            console.log("Tentative de connexion avec email:", email);
+            
+            const loginData = {
+                email: email,
+                password: password,
+                remember_me: rememberMe
+            };
+            
+            fetch('php/login.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(loginData)
+            })
+            .then(response => {
+                console.log("Statut de la réponse:", response.status);
+                // Vérifier la réponse brute pour le débogage
+                return response.text().then(text => {
+                    try {
+                        // Essayer de parser le JSON
+                        const data = JSON.parse(text);
+                        return data;
+                    } catch (e) {
+                        // En cas d'erreur de parsing, afficher le texte brut
+                        console.error("Réponse non-JSON reçue:", text);
+                        throw new Error("Réponse invalide du serveur: " + text);
+                    }
+                });
+            })
+            .then(data => {
+                console.log('Réponse de login:', data);
+                
+                if (data.success) {
+                    // Stocker l'email et le statut connecté dans localStorage
+                    localStorage.setItem('userEmail', email);
+                    localStorage.setItem('isLoggedIn', 'true');
+                    
+                    // Créer ou mettre à jour les données utilisateur dans localStorage
+                    if (data.user) {
+                        console.log('Sauvegarde des données utilisateur:', data.user);
+                        localStorage.setItem('userData', JSON.stringify(data.user));
+                    } else {
+                        // Si le serveur ne renvoie pas de données utilisateur, créer un objet minimal
+                        const username = email.split('@')[0];
+                        const userData = {
+                            name: username.charAt(0).toUpperCase() + username.slice(1),
+                            email: email
+                        };
+                        localStorage.setItem('userData', JSON.stringify(userData));
+                    }
+                    
+                    // Redirection vers la page d'accueil
+                    window.location.href = 'index.html';
+                } else {
+                    // Afficher un message d'erreur
+                    errorElem.textContent = data.message || 'Identifiants incorrects. Veuillez réessayer.';
+                    errorElem.style.display = 'block';
+                }
+            })
+            .catch(error => {
+                console.error('Erreur lors de la connexion:', error);
+                errorElem.textContent = 'Une erreur est survenue. Veuillez réessayer plus tard.';
+                errorElem.style.display = 'block';
+            });
         });
-    });
+    }
     
     // Gestion du formulaire d'inscription
     const registerForm = document.getElementById('form-register');

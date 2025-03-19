@@ -55,7 +55,20 @@ function initAuth() {
 // Vérifier le statut de connexion de l'utilisateur
 function checkLoginStatus() {
     fetch('php/check_login.php')
-        .then(response => response.json())
+        .then(response => {
+            // Vérifier la réponse brute pour le débogage
+            return response.text().then(text => {
+                try {
+                    // Essayer de parser le JSON
+                    const data = JSON.parse(text);
+                    return data;
+                } catch (e) {
+                    // En cas d'erreur de parsing, afficher le texte brut
+                    console.error("Réponse non-JSON reçue:", text);
+                    throw new Error("Réponse invalide du serveur: " + text);
+                }
+            });
+        })
         .then(data => {
             if (data.isLoggedIn) {
                 // L'utilisateur est connecté
@@ -86,6 +99,27 @@ function checkLoginStatus() {
         })
         .catch(error => {
             console.error('Erreur lors de la vérification du statut de connexion:', error);
+            
+            // En cas d'erreur, utiliser localStorage comme fallback
+            const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+            const userData = JSON.parse(localStorage.getItem('userData') || '{}');
+            
+            const guestActions = document.getElementById('guest-actions');
+            const userActions = document.getElementById('user-actions');
+            const username = document.getElementById('username');
+            
+            if (guestActions && userActions) {
+                if (isLoggedIn) {
+                    guestActions.style.display = 'none';
+                    userActions.style.display = 'block';
+                    if (username && userData.name) {
+                        username.textContent = userData.name;
+                    }
+                } else {
+                    guestActions.style.display = 'block';
+                    userActions.style.display = 'none';
+                }
+            }
         });
 }
 

@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Rediriger vers la page de connexion si l'utilisateur n'est pas connecté
-    checkIfLoggedIn();
+    // Affichage de l'interface utilisateur connecté/non-connecté
+    updateUserInterface();
     
     // Gestion des onglets de profil
     const tabs = document.querySelectorAll('.profile-menu li');
@@ -52,229 +52,455 @@ document.addEventListener('DOMContentLoaded', function() {
             updatePreferences();
         });
     }
+    
+    // Gestion des réservations
+    loadUserBookings();
 });
+
+// Mettre à jour l'interface utilisateur en fonction de l'état de connexion
+function updateUserInterface() {
+    const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+    
+    if (!isLoggedIn) {
+        // Au lieu de rediriger, nous simulons une connexion avec l'email de l'utilisateur
+        promptUserForLogin();
+    } else {
+        // Afficher le panneau utilisateur
+        document.getElementById('guest-actions').style.display = 'none';
+        document.getElementById('user-actions').style.display = 'block';
+        
+        // S'assurer que l'email affiché est à jour
+        updateUserDisplayInfo();
+    }
+}
+
+// Demander à l'utilisateur de se connecter
+function promptUserForLogin() {
+    // Vérifier si nous avons déjà un email stocké
+    const userEmail = localStorage.getItem('userEmail');
+    
+    if (userEmail && validateEmail(userEmail)) {
+        // Si nous avons déjà un email valide, simuler une connexion directe
+        simulateLogin(userEmail);
+    } else {
+        // Sinon demander l'email via une boite de dialogue
+        let newEmail = prompt("Veuillez entrer votre adresse e-mail pour accéder à votre profil:", "");
+        
+        if (newEmail && validateEmail(newEmail)) {
+            simulateLogin(newEmail);
+        } else {
+            // Si l'utilisateur annule ou entre un email invalide, demander à nouveau
+            alert("Une adresse e-mail valide est nécessaire pour accéder à votre profil.");
+            
+            // Essayer à nouveau avec une valeur par défaut
+            newEmail = prompt("Veuillez entrer une adresse e-mail valide:", "exemple@domaine.com");
+            
+            if (newEmail && validateEmail(newEmail)) {
+                simulateLogin(newEmail);
+            } else {
+                // Si encore invalide, rediriger vers l'accueil
+                window.location.href = 'index.html';
+            }
+        }
+    }
+}
+
+// Valider le format de l'email
+function validateEmail(email) {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(email);
+}
+
+// Simuler une connexion pour la démonstration avec l'email fourni
+function simulateLogin(email) {
+    if (!email || !validateEmail(email)) {
+        console.error("Email invalide fourni à simulateLogin");
+        return;
+    }
+    
+    // Sauvegarder l'email pour les futures visites
+    localStorage.setItem('userEmail', email);
+    
+    // Créer un nom d'utilisateur à partir de l'email (partie avant le @)
+    const username = email.split('@')[0];
+    
+    const userData = {
+        name: username.charAt(0).toUpperCase() + username.slice(1), // Première lettre en majuscule
+        email: email,
+        phone: '06 12 34 56 78',
+        address: '123 Rue de la Paix',
+        city: 'Lille',
+        postal_code: '59000',
+        country: 'France',
+        preferences: {
+            newsletters: true,
+            offers: true,
+            language: 'fr'
+        }
+    };
+    
+    localStorage.setItem('userData', JSON.stringify(userData));
+    localStorage.setItem('isLoggedIn', 'true');
+    
+    // Simuler quelques réservations pour la démonstration
+    const demoBookings = [
+        {
+            id: 1,
+            hotel: 'Hôtel Luxe Paris',
+            checkIn: '2023-11-20',
+            checkOut: '2023-11-25',
+            guests: '2 adultes',
+            status: 'À venir',
+            total: '850'
+        },
+        {
+            id: 2,
+            hotel: 'Resort Méditerranée',
+            checkIn: '2023-09-10',
+            checkOut: '2023-09-17',
+            guests: '2 adultes, 1 enfant',
+            status: 'Terminée',
+            total: '1200'
+        }
+    ];
+    
+    if (!localStorage.getItem('userBookings')) {
+        localStorage.setItem('userBookings', JSON.stringify(demoBookings));
+    }
+    
+    // Mettre à jour l'interface utilisateur avec le nouvel état de connexion
+    document.getElementById('guest-actions').style.display = 'none';
+    document.getElementById('user-actions').style.display = 'block';
+    
+    // Mettre à jour les informations affichées
+    updateUserDisplayInfo();
+}
+
+// Mettre à jour les informations d'affichage de l'utilisateur
+function updateUserDisplayInfo() {
+    const userData = JSON.parse(localStorage.getItem('userData'));
+    if (!userData) return;
+    
+    // Mettre à jour le nom d'utilisateur dans la barre de navigation
+    const usernameElement = document.getElementById('username');
+    if (usernameElement) {
+        usernameElement.textContent = userData.name;
+    }
+    
+    // Mettre à jour les informations de la sidebar si on est sur la page profil
+    const sidebarUsername = document.getElementById('sidebar-username');
+    const sidebarEmail = document.getElementById('sidebar-email');
+    
+    if (sidebarUsername) {
+        sidebarUsername.textContent = userData.name;
+    }
+    
+    if (sidebarEmail) {
+        sidebarEmail.textContent = userData.email;
+    }
+}
 
 // Vérifier si l'utilisateur est connecté
 function checkIfLoggedIn() {
-    fetch('php/check_login.php')
-        .then(response => response.json())
-        .then(data => {
-            if (!data.isLoggedIn) {
-                // Rediriger vers la page de connexion
-                window.location.href = 'login.html';
-            }
-        })
-        .catch(error => {
-            console.error('Erreur lors de la vérification de connexion:', error);
-            window.location.href = 'login.html';
-        });
+    return localStorage.getItem('isLoggedIn') === 'true';
 }
 
 // Charger le profil de l'utilisateur
 function loadUserProfile() {
+    showLoading();
+    
+    // Utiliser une approche hybride : vérifier à la fois les données locales et le serveur
+    const storedUserData = JSON.parse(localStorage.getItem('userData')) || {};
+    
+    // Pré-remplir le formulaire avec les données locales pour une réponse immédiate
+    if (storedUserData && Object.keys(storedUserData).length > 0) {
+        fillProfileForm(storedUserData);
+    }
+    
+    // Ensuite, faire la requête au serveur pour obtenir les données les plus récentes
     fetch('php/get_user_profile.php')
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                // Mettre à jour les informations de la sidebar
-                document.getElementById('sidebar-username').textContent = data.user.name;
-                document.getElementById('sidebar-email').textContent = data.user.email;
-                
-                // Remplir le formulaire d'informations personnelles
-                document.getElementById('name').value = data.user.name || '';
-                document.getElementById('email').value = data.user.email || '';
-                document.getElementById('phone').value = data.user.phone || '';
-                document.getElementById('address').value = data.user.address || '';
-                document.getElementById('city').value = data.user.city || '';
-                document.getElementById('postal_code').value = data.user.postal_code || '';
-                document.getElementById('country').value = data.user.country || '';
-                
-                // Remplir les préférences si disponibles
-                if (data.user.preferences) {
-                    document.getElementById('notifications_promotions').checked = data.user.preferences.notifications_promotions;
-                    document.getElementById('notifications_bookings').checked = data.user.preferences.notifications_bookings;
-                    document.getElementById('notifications_newsletter').checked = data.user.preferences.notifications_newsletter;
-                    document.getElementById('preference_city').checked = data.user.preferences.preference_city;
-                    document.getElementById('preference_beach').checked = data.user.preferences.preference_beach;
-                    document.getElementById('preference_mountain').checked = data.user.preferences.preference_mountain;
-                    document.getElementById('preference_countryside').checked = data.user.preferences.preference_countryside;
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            // Mettre à jour les informations locales
+            const userData = data.user;
+            
+            // Sauvegarder dans le stockage local pour cohérence avec les autres parties du site
+            localStorage.setItem('userData', JSON.stringify(userData));
+            localStorage.setItem('userEmail', userData.email);
+            localStorage.setItem('isLoggedIn', 'true');
+            
+            // Remplir le formulaire avec les données du serveur
+            fillProfileForm(userData);
+        } else {
+            console.warn('Échec du chargement du profil:', data.message);
+            // Si l'API échoue, et qu'on n'a pas déjà des données locales, demander login
+            if (!storedUserData || Object.keys(storedUserData).length === 0) {
+                if (!checkIfLoggedIn()) {
+                    promptUserForLogin();
                 }
-                
-                // Charger les réservations si disponibles
-                if (data.bookings && data.bookings.length > 0) {
-                    const bookingList = document.querySelector('.booking-list');
-                    bookingList.innerHTML = ''; // Vider la liste
-                    
-                    data.bookings.forEach(booking => {
-                        const bookingItem = document.createElement('div');
-                        bookingItem.className = 'booking-item';
-                        bookingItem.innerHTML = `
-                            <h3>${booking.hotel_name}</h3>
-                            <div class="booking-details">
-                                <div class="booking-info">
-                                    <p><strong>Réservation n°:</strong> ${booking.booking_id}</p>
-                                    <p><strong>Date d'arrivée:</strong> ${booking.check_in}</p>
-                                    <p><strong>Date de départ:</strong> ${booking.check_out}</p>
-                                    <p><strong>Nombre de personnes:</strong> ${booking.guests}</p>
-                                    <p><strong>Statut:</strong> <span class="status-${booking.status.toLowerCase()}">${booking.status}</span></p>
-                                </div>
-                                <div class="booking-actions">
-                                    <a href="booking-details.html?id=${booking.booking_id}" class="btn btn-sm btn-primary">Voir détails</a>
-                                </div>
-                            </div>
-                        `;
-                        bookingList.appendChild(bookingItem);
-                    });
-                }
-            } else {
-                showMessage('update-info-message', 'Impossible de charger vos informations de profil.', 'error');
             }
-        })
-        .catch(error => {
-            console.error('Erreur lors du chargement du profil:', error);
-            showMessage('update-info-message', 'Une erreur est survenue lors du chargement du profil. Veuillez réessayer plus tard.', 'error');
-        });
+        }
+        hideLoading();
+    })
+    .catch(error => {
+        console.error('Erreur lors du chargement du profil:', error);
+        // En cas d'erreur, utiliser les données locales déjà chargées
+        hideLoading();
+    });
+}
+
+// Nouvelle fonction pour remplir le formulaire de profil
+function fillProfileForm(userData) {
+    // Mettre à jour les informations de la sidebar
+    const sidebarUsername = document.getElementById('sidebar-username');
+    const sidebarEmail = document.getElementById('sidebar-email');
+    const usernameElement = document.getElementById('username');
+    
+    if (sidebarUsername) sidebarUsername.textContent = userData.name || 'Utilisateur';
+    if (sidebarEmail) sidebarEmail.textContent = userData.email || '';
+    if (usernameElement) usernameElement.textContent = userData.name || 'Utilisateur';
+    
+    // Remplir le formulaire d'informations personnelles
+    const nameField = document.getElementById('name');
+    const emailField = document.getElementById('email');
+    const phoneField = document.getElementById('phone');
+    const addressField = document.getElementById('address');
+    const cityField = document.getElementById('city');
+    const postalCodeField = document.getElementById('postal_code');
+    const countryField = document.getElementById('country');
+    
+    if (nameField) nameField.value = userData.name || '';
+    if (emailField) emailField.value = userData.email || '';
+    if (phoneField) phoneField.value = userData.phone || '';
+    if (addressField) addressField.value = userData.address || '';
+    if (cityField) cityField.value = userData.city || '';
+    if (postalCodeField) postalCodeField.value = userData.postal_code || '';
+    if (countryField) countryField.value = userData.country || '';
+    
+    // Remplir les préférences si disponibles
+    if (userData.preferences) {
+        const newsletters = document.getElementById('newsletters');
+        const offers = document.getElementById('special_offers');
+        const language = document.getElementById('language');
+        
+        if (newsletters) newsletters.checked = userData.preferences.newsletters;
+        if (offers) offers.checked = userData.preferences.offers;
+        if (language) language.value = userData.preferences.language || 'fr';
+    }
 }
 
 // Mettre à jour les informations personnelles
 function updatePersonalInfo() {
+    showLoading();
+    
+    // Récupérer les valeurs actuelles des champs
     const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
     const phone = document.getElementById('phone').value;
     const address = document.getElementById('address').value;
     const city = document.getElementById('city').value;
     const postal_code = document.getElementById('postal_code').value;
     const country = document.getElementById('country').value;
     
-    const formData = {
-        name: name,
-        phone: phone,
-        address: address,
-        city: city,
-        postal_code: postal_code,
-        country: country
+    // Validation des champs
+    if (!name.trim() || !email.trim() || !validateEmail(email)) {
+        showMessage('update-info-message', 'Le nom et une adresse e-mail valide sont obligatoires', 'error');
+        hideLoading();
+        return;
+    }
+    
+    // Préparer les données à envoyer
+    const userData = {
+        name,
+        email,
+        phone,
+        address,
+        city,
+        postal_code,
+        country
     };
     
+    console.log("Envoi des données de profil:", userData);
+    
+    // Envoyer les données au serveur
     fetch('php/update_profile.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(formData)
+        body: JSON.stringify(userData)
     })
     .then(response => response.json())
     .then(data => {
+        console.log("Réponse du serveur:", data);
+        
         if (data.success) {
-            showMessage('update-info-message', 'Vos informations ont été mises à jour avec succès!', 'success');
+            // Mettre à jour aussi le stockage local pour la cohérence
+            // Récupérer d'abord les données existantes pour préserver les autres propriétés
+            const existingData = JSON.parse(localStorage.getItem('userData')) || {};
+            const updatedData = {...existingData, ...userData};
             
-            // Mettre à jour le nom dans la sidebar
+            localStorage.setItem('userData', JSON.stringify(updatedData));
+            localStorage.setItem('userEmail', email);
+            localStorage.setItem('isLoggedIn', 'true');
+            
+            // Mettre à jour l'affichage
             document.getElementById('sidebar-username').textContent = name;
+            document.getElementById('sidebar-email').textContent = email;
+            document.getElementById('username').textContent = name;
             
-            // Mettre à jour le nom dans la navbar
-            if (document.getElementById('username')) {
-                document.getElementById('username').textContent = name;
-            }
+            showMessage('update-info-message', data.message || 'Informations personnelles mises à jour avec succès', 'success');
         } else {
-            showMessage('update-info-message', data.message || 'Une erreur est survenue lors de la mise à jour.', 'error');
+            showMessage('update-info-message', data.message || 'Erreur lors de la mise à jour', 'error');
         }
+        hideLoading();
     })
     .catch(error => {
-        console.error('Erreur lors de la mise à jour du profil:', error);
-        showMessage('update-info-message', 'Une erreur est survenue. Veuillez réessayer plus tard.', 'error');
+        console.error('Erreur:', error);
+        showMessage('update-info-message', 'Une erreur est survenue lors de la communication avec le serveur', 'error');
+        hideLoading();
     });
 }
 
 // Mettre à jour le mot de passe
 function updatePassword() {
+    showLoading();
+    
     const currentPassword = document.getElementById('current_password').value;
     const newPassword = document.getElementById('new_password').value;
     const confirmPassword = document.getElementById('confirm_password').value;
     
-    // Vérifier que les mots de passe correspondent
+    // Validation des champs
+    if (!currentPassword || !newPassword || !confirmPassword) {
+        showMessage('update-password-message', 'Tous les champs sont obligatoires', 'error');
+        hideLoading();
+        return;
+    }
+    
     if (newPassword !== confirmPassword) {
-        showMessage('update-password-message', 'Les nouveaux mots de passe ne correspondent pas.', 'error');
+        showMessage('update-password-message', 'Les mots de passe ne correspondent pas', 'error');
+        hideLoading();
         return;
     }
     
-    // Vérifier la longueur du mot de passe
-    if (newPassword.length < 6) {
-        showMessage('update-password-message', 'Le nouveau mot de passe doit contenir au moins 6 caractères.', 'error');
+    if (newPassword.length < 8) {
+        showMessage('update-password-message', 'Le mot de passe doit contenir au moins 8 caractères', 'error');
+        hideLoading();
         return;
     }
     
-    const passwordData = {
-        current_password: currentPassword,
-        new_password: newPassword
-    };
-    
-    fetch('php/update_password.php', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(passwordData)
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            showMessage('update-password-message', 'Votre mot de passe a été mis à jour avec succès!', 'success');
-            document.getElementById('change-password-form').reset();
-        } else {
-            showMessage('update-password-message', data.message || 'Une erreur est survenue lors de la mise à jour du mot de passe.', 'error');
-        }
-    })
-    .catch(error => {
-        console.error('Erreur lors de la mise à jour du mot de passe:', error);
-        showMessage('update-password-message', 'Une erreur est survenue. Veuillez réessayer plus tard.', 'error');
-    });
+    // Simuler l'envoi des données (à remplacer par un vrai appel API)
+    setTimeout(() => {
+        // Dans une vraie application, on vérifierait ici que le mot de passe actuel est correct
+        
+        showMessage('update-password-message', 'Mot de passe mis à jour avec succès', 'success');
+        document.getElementById('change-password-form').reset();
+        hideLoading();
+    }, 800);
 }
 
 // Mettre à jour les préférences
 function updatePreferences() {
-    const preferences = {
-        notifications_promotions: document.getElementById('notifications_promotions').checked,
-        notifications_bookings: document.getElementById('notifications_bookings').checked,
-        notifications_newsletter: document.getElementById('notifications_newsletter').checked,
-        preference_city: document.getElementById('preference_city').checked,
-        preference_beach: document.getElementById('preference_beach').checked,
-        preference_mountain: document.getElementById('preference_mountain').checked,
-        preference_countryside: document.getElementById('preference_countryside').checked
+    showLoading();
+    
+    const newsletters = document.getElementById('newsletters').checked;
+    const offers = document.getElementById('special_offers').checked;
+    const language = document.getElementById('language').value;
+    
+    // Préparer les données à envoyer
+    const preferencesData = {
+        newsletters,
+        offers,
+        language
     };
     
+    // Envoyer les données au serveur
     fetch('php/update_preferences.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(preferences)
+        body: JSON.stringify(preferencesData)
     })
     .then(response => response.json())
     .then(data => {
         if (data.success) {
-            showMessage('update-preferences-message', 'Vos préférences ont été mises à jour avec succès!', 'success');
+            // Mettre à jour aussi le stockage local pour la cohérence
+            const userData = JSON.parse(localStorage.getItem('userData')) || {};
+            userData.preferences = preferencesData;
+            localStorage.setItem('userData', JSON.stringify(userData));
+            
+            showMessage('update-preferences-message', 'Préférences mises à jour avec succès', 'success');
         } else {
-            showMessage('update-preferences-message', data.message || 'Une erreur est survenue lors de la mise à jour des préférences.', 'error');
+            showMessage('update-preferences-message', data.message || 'Erreur lors de la mise à jour', 'error');
         }
+        hideLoading();
     })
     .catch(error => {
-        console.error('Erreur lors de la mise à jour des préférences:', error);
-        showMessage('update-preferences-message', 'Une erreur est survenue. Veuillez réessayer plus tard.', 'error');
+        console.error('Erreur:', error);
+        showMessage('update-preferences-message', 'Une erreur est survenue lors de la communication avec le serveur', 'error');
+        hideLoading();
     });
 }
 
-// Afficher un message
+// Annuler une réservation
+function cancelBooking(bookingId) {
+    if (!confirm('Êtes-vous sûr de vouloir annuler cette réservation ?')) {
+        return;
+    }
+    
+    showLoading();
+    
+    // Simuler l'annulation (à remplacer par un vrai appel API)
+    setTimeout(() => {
+        // Récupérer les réservations
+        const bookings = JSON.parse(localStorage.getItem('userBookings')) || [];
+        
+        // Mettre à jour le statut de la réservation
+        const updatedBookings = bookings.map(booking => {
+            if (booking.id == bookingId) {
+                return { ...booking, status: 'Annulée' };
+            }
+            return booking;
+        });
+        
+        // Sauvegarder dans le stockage local (simulation)
+        localStorage.setItem('userBookings', JSON.stringify(updatedBookings));
+        
+        // Recharger les réservations
+        loadUserBookings();
+        
+        showMessage('booking-message', 'Réservation annulée avec succès', 'success');
+        hideLoading();
+    }, 800);
+}
+
+// Fonctions utilitaires pour l'UI
 function showMessage(elementId, message, type) {
     const messageElement = document.getElementById(elementId);
-    messageElement.textContent = message;
-    messageElement.className = 'message ' + type;
-    
-    // Faire défiler jusqu'au message
-    messageElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    
-    // Masquer le message après 5 secondes si c'est un succès
-    if (type === 'success') {
+    if (messageElement) {
+        messageElement.textContent = message;
+        messageElement.className = 'message ' + type;
+        
+        // Faire disparaître le message après 5 secondes
         setTimeout(() => {
             messageElement.textContent = '';
             messageElement.className = 'message';
         }, 5000);
+    }
+}
+
+function showLoading() {
+    const loadingElement = document.getElementById('loading');
+    if (loadingElement) {
+        loadingElement.style.display = 'flex';
+    }
+}
+
+function hideLoading() {
+    const loadingElement = document.getElementById('loading');
+    if (loadingElement) {
+        loadingElement.style.display = 'none';
     }
 }

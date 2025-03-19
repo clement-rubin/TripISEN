@@ -1,5 +1,5 @@
 <?php
-require_once 'config.php';
+require_once 'db_connect.php';
 
 header('Content-Type: application/json');
 
@@ -25,8 +25,12 @@ if (isset($_COOKIE['remember_token'])) {
 }
 
 // Détruire la session
-session_unset();
+session_start();
+$_SESSION = array();
 session_destroy();
 
 echo json_encode(['success' => true]);
+
+// Fermer la connexion
+mysqli_close($conn);
 ?>
