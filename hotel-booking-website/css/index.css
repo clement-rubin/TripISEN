@@ -171,8 +171,6 @@ body {
     border-radius: 50px;
     overflow: hidden;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-    animation: fadeInUp 0.8s ease 0.4s;
-    animation-fill-mode: both;
 }
 
 .search-input-container {
@@ -182,11 +180,12 @@ body {
 
 .search-input-container input {
     width: 100%;
-    padding: 15px 15px 15px 50px;
+    padding: 15px 40px; /* Ajuster le padding gauche pour laisser de la place à l'icône */
     border: none;
     font-size: 16px;
     color: #333;
 }
+
 
 .search-input-container input:focus {
     outline: none;
@@ -194,27 +193,29 @@ body {
 
 .search-icon {
     position: absolute;
-    left: 20px;
+    left: 15px; /* Positionner l'icône à gauche */
     top: 50%;
     transform: translateY(-50%);
     color: var(--primary);
+    font-size: 18px; /* Ajuster la taille de l'icône si nécessaire */
 }
 
 .search-box button {
     background: var(--primary);
     color: white;
     border: none;
-    padding: 0 50px; /* Réduction du padding horizontal pour mieux centrer le texte */
-    text-align: center; /* Assurer que le texte est centré */
+    padding: 12px 100px; /* Augmenter le padding pour plus d'espace autour du texte */
+    text-align: center;
     font-size: 16px;
     font-weight: 600;
     cursor: pointer;
     transition: background 0.3s;
-    min-width: 160px; /* Augmentation de la largeur minimale pour assurer suffisamment d'espace */
-    white-space: nowrap; /* Empêche le texte de passer à la ligne */
-    display: flex; /* Utiliser flexbox pour un meilleur centrage */
-    align-items: center; /* Centrer verticalement */
-    justify-content: center; /* Centrer horizontalement */
+    min-width: 200px; /* Augmenter la largeur minimale pour garantir que tout le texte est visible */
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden; /* Empêcher tout débordement */
 }
 
 .search-box button:hover {
