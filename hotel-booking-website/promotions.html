@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promotions - Trip'ISEN</title>
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/promotions.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="index.html">
+                    <span class="logo-text">Trip'<span class="logo-highlight">ISEN</span></span>
+                </a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html"><i class="fas fa-home"></i> Accueil</a></li>
+                <li><a href="hotels.html"><i class="fas fa-hotel"></i> Hôtels</a></li>
+                <li><a href="reservations.html"><i class="fas fa-calendar-check"></i> Réservations</a></li>
+                <li class="active"><a href="promotions.html"><i class="fas fa-percent"></i> Promotions</a></li>
+                <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+            </ul>
+            <div class="nav-actions">
+                <!-- Cette partie sera modifiée dynamiquement par JavaScript -->
+                <div id="guest-actions">
+                    <a href="login.html" class="login-btn"><i class="fas fa-user"></i> Connexion</a>
+                </div>
+                <div id="user-actions" style="display: none;">
+                    <div class="user-dropdown">
+                        <button class="user-dropdown-btn">
+                            <i class="fas fa-user-circle"></i> <span id="username">Utilisateur</span> <i class="fas fa-caret-down"></i>
+                        </button>
+                        <div class="user-dropdown-content">
+                            <a href="profile.html"><i class="fas fa-id-card"></i> Mon profil</a>
+                            <a href="reservations.html"><i class="fas fa-list"></i> Mes réservations</a>
+                            <a href="#" id="logout-btn"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="promotions-section">
+        <div class="section-header">
+            <h2>Nos Promotions Spéciales</h2>
+            <p class="section-description">Découvrez nos meilleures offres et économisez sur votre prochain séjour</p>
+        </div>
+        
+        <div class="promotions-filter">
+            <div class="filter-container">
+                <span class="filter-label">Filtrer par:</span>
+                <button class="filter-btn active" data-filter="all">Toutes</button>
+                <button class="filter-btn" data-filter="summer">Été</button>
+                <button class="filter-btn" data-filter="weekend">Week-end</button>
+                <button class="filter-btn" data-filter="family">Famille</button>
+            </div>
+        </div>
+
+        <div class="promotions-grid">
+            <div class="promotion" data-category="summer">
+                <div class="promotion-image-container">
+                    <img src="assets/images/promotions/promo1.jpg" class="promotion-img" alt="Promotion séjour d'été">
+                    <div class="promotion-overlay">
+                        <div class="promotion-details">
+                            <p>25% de réduction sur tous nos hôtels premium</p>
+                            <button class="view-details-btn">Voir détails</button>
+                        </div>
+                    </div>
+                </div>
+                <span class="promo-badge pulse">-25%</span>
+                <h3>Offre d'Été</h3>
+                <p class="promotion-date">Valable du 1er juin au 31 août 2023</p>
+                <div class="countdown" data-date="2023-08-31">
+                    <div class="countdown-item">
+                        <span class="countdown-num days">00</span>
+                        <span class="countdown-text">Jours</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-num hours">00</span>
+                        <span class="countdown-text">Heures</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-num minutes">00</span>
+                        <span class="countdown-text">Minutes</span>
+                    </div>
+                </div>
+                <p>Profitez d'une réduction de 25% sur tous nos hôtels pour vos vacances d'été.</p>
+                <div class="call-to-action">
+                    <button class="animated-btn">Réserver maintenant</button>
+                </div>
+            </div>
+            
+            <!-- Promotion été 2 -->
+            <div class="promotion" data-category="summer">
+                <div class="promotion-image-container">
+                    <img src="assets/images/promotions/promo2.jpg" class="promotion-img" alt="Promo bord de mer">
+                    <div class="promotion-overlay">
+                        <div class="promotion-details">
+                            <p>Séjour bord de mer avec petit-déjeuner offert</p>
+                            <button class="view-details-btn">Voir détails</button>
+                        </div>
+                    </div>
+                </div>
+                <span class="promo-badge pulse">OFFERT</span>
+                <h3>Escapade Côtière</h3>
+                <p class="promotion-date">Valable du 15 juin au 15 septembre 2023</p>
+                <div class="countdown" data-date="2023-09-15">
+                    <div class="countdown-item">
+                        <span class="countdown-num days">00</span>
+                        <span class="countdown-text">Jours</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-num hours">00</span>
+                        <span class="countdown-text">Heures</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-num minutes">00</span>
+                        <span class="countdown-text">Minutes</span>
+                    </div>
+                </div>
+                <p>Profitez d'un séjour en bord de mer avec petit-déjeuner offert pour deux personnes.</p>
+                <div class="call-to-action">
+                    <button class="animated-btn">Réserver maintenant</button>
+                </div>
+            </div>
+            
+            <!-- Promotion été 3 -->
+            <div class="promotion" data-category="summer">
+                <div class="promotion-image-container">
+                    <img src="assets/images/promotions/promo3.jpg" class="promotion-img" alt="Festival d'été">
+                    <div class="promotion-overlay">
+                        <div class="promotion-details">
+                            <p>Accès VIP aux festivals d'été locaux inclus</p>
+                            <button class="view-details-btn">Voir détails</button>
+                        </div>
+                    </div>
+                </div>
+                <span class="promo-badge pulse">VIP</span>
+                <h3>Séjour Festival</h3>
+                <p class="promotion-date">Valable du 1er juillet au 15 août 2023</p>
+                <div class="countdown" data-date="2023-08-15">
+                    <div class="countdown-item">
+                        <span class="countdown-num days">00</span>
+                        <span class="countdown-text">Jours</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-num hours">00</span>
+                        <span class="countdown-text">Heures</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-num minutes">00</span>
+                        <span class="countdown-text">Minutes</span>
+                    </div>
+                </div>
+                <p>Séjournez dans nos hôtels partenaires et bénéficiez d'un accès VIP aux festivals locaux.</p>
+                <div class="call-to-action">
+                    <button class="animated-btn">Réserver maintenant</button>
+                </div>
+            </div>
+            
+            <!-- Promotion weekend 1 -->
+            <div class="promotion" data-category="weekend">
+                <div class="promotion-image-container">
+                    <img src="assets/images/promotions/promo4.jpg" class="promotion-img" alt="Weekend romantique">
+                    <div class="promotion-overlay">
+                        <div class="promotion-details">
+                            <p>Champagne et dîner aux chandelles inclus</p>
+                            <button class="view-details-btn">Voir détails</button>
+                        </div>
+                    </div>
+                </div>
+                <span class="promo-badge pulse">-30%</span>
+                <h3>Weekend Romantique</h3>
+                <p class="promotion-date">Tous les weekends jusqu'au 31 octobre 2023</p>
+                <div class="countdown" data-date="2023-10-31">
+                    <div class="countdown-item">
+                        <span class="countdown-num days">00</span>
+                        <span class="countdown-text">Jours</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-num hours">00</span>
+                        <span class="countdown-text">Heures</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-num minutes">00</span>
+                        <span class="countdown-text">Minutes</span>
+                    </div>
+                </div>
+                <p>Offrez-vous un weekend romantique avec 30% de réduction, champagne et dîner inclus.</p>
+                <div class="call-to-action">
+                    <button class="animated-btn">Réserver maintenant</button>
+                </div>
+            </div>
+            
+            <!-- Répétez ce format pour les autres promotions avec data-category="weekend" et data-category="family" -->
+            <!-- Les autres promotions seraient ajoutées ici avec la même structure -->
+        </div>
+    </div>
+
+    <!-- Ajouter avant le footer -->
+    <section class="testimonial-section">
+        <div class="section-header">
+            <h2>Ce que nos clients disent</h2>
+            <p class="section-description">Découvrez les expériences de nos clients avec nos promotions</p>
+        </div>
+        
+        <div class="testimonial-slider">
+            <div class="testimonial-container">
+                <div class="testimonial active">
+                    <div class="testimonial-content">
+                        <i class="fas fa-quote-left quote-icon"></i>
+                        <p>J'ai profité de l'offre d'été et j'ai économisé 25% sur mon séjour de luxe. Un rapport qualité-prix exceptionnel!</p>
+                        <div class="testimonial-author">
+                            <img src="assets/images/testimonials/user1.jpg" alt="Julie M.">
+                            <div>
+                                <h4>Julie M.</h4>
+                                <div class="rating">
+                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Ajoutez plus de témoignages ici -->
+            </div>
+            <div class="slider-controls">
+                <button class="prev-btn"><i class="fas fa-chevron-left"></i></button>
+                <button class="next-btn"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <footer class="modern-footer">
+        <div class="footer-content">
+            <div class="footer-main">
+                <div class="footer-section footer-about">
+                    <h3>Trip'ISEN</h3>
+                    <p>Votre partenaire pour des séjours inoubliables partout dans le monde. Nous vous aidons à trouver l'hébergement parfait depuis plus de 10 ans.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section footer-links">
+                    <h3>Liens utiles</h3>
+                    <ul>
+                        <li><a href="hotels.html">Hôtels</a></li>
+                        <li><a href="reservations.html">Réservations</a></li>
+                        <li><a href="promotions.html">Promotions</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section footer-contact">
+                    <h3>Contactez-nous</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Rue de Paris, 75000 Paris</p>
+                    <p><i class="fas fa-phone"></i> +33 1 23 45 67 89</p>
+                    <p><i class="fas fa-envelope"></i> contact@tripisen.fr</p>
+                </div>
+                <div class="footer-section footer-newsletter">
+                    <h3>Newsletter</h3>
+                    <p>Inscrivez-vous pour recevoir nos offres exclusives</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Votre email">
+                        <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Trip'ISEN. Tous droits réservés.</p>
+                <div class="footer-bottom-links">
+                    <a href="#">Mentions légales</a>
+                    <a href="#">Politique de confidentialité</a>
+                    <a href="#">CGU</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/promotions.js"></script>
+</body>
+</html>

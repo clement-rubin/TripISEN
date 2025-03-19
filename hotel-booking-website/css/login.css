@@ -1,0 +1,186 @@
+@import 'variables.css';
+
+.container {
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    margin-top: 120px; /* Augmentation de la marge supérieure à 120px pour être sûr que le formulaire est bien en dessous de la navbar */
+}
+
+.auth-container {
+    max-width: 500px;
+    width: 100%;
+    background-color: var(--white);
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+}
+
+.auth-tabs {
+    display: flex;
+    border-bottom: 1px solid #eee;
+}
+
+.auth-tab {
+    flex: 1;
+    padding: 15px;
+    text-align: center;
+    font-weight: 600;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s;
+    color: #666;
+}
+
+.auth-tab.active {
+    color: var(--dark);
+    border-bottom: 3px solid var(--primary); /* Changé pour utiliser la couleur primaire verte pastel */
+}
+
+.auth-content {
+    padding: 30px;
+}
+
+.auth-form {
+    display: none;
+}
+
+.auth-form.active {
+    display: block;
+}
+
+.auth-form h2 {
+    margin-bottom: 20px;
+    color: var(--dark);
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: var(--text);
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 15px;
+    transition: border 0.3s;
+}
+
+.form-group input:focus {
+    border-color: var(--primary); /* Changé pour utiliser la couleur primaire verte pastel */
+    outline: none;
+}
+
+.remember-me, .terms {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+}
+
+.remember-me input, .terms input {
+    width: auto;
+    margin-right: 10px;
+}
+
+.btn {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--primary); /* Changé pour utiliser la couleur primaire verte pastel */
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.btn:hover {
+    background-color: var(--primary-dark); /* Changé pour utiliser la couleur primaire foncée verte pastel */
+}
+
+.auth-links {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.auth-links a {
+    color: var(--primary); /* Changé pour utiliser la couleur primaire verte pastel */
+    text-decoration: none;
+}
+
+.auth-links a:hover {
+    text-decoration: underline;
+}
+
+.error-message {
+    color: var(--danger); /* Utilisez la variable de danger */
+    background-color: #fdedec; /* Fond légèrement rose pour les erreurs */
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    font-size: 14px;
+    display: none;
+}
+
+.error-message:not(:empty) {
+    display: block;
+}
+
+/* Styles pour le menu utilisateur */
+.user-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.user-dropdown-btn {
+    background-color: transparent;
+    border: none;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.user-dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: var(--white);
+    min-width: 200px;
+    box-shadow: var(--shadow);
+    z-index: 1;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.user-dropdown-content a {
+    color: var(--text);
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    transition: background 0.3s;
+}
+
+.user-dropdown-content a:hover {
+    background-color: var(--secondary);
+}
+
+.user-dropdown:hover .user-dropdown-content {
+    display: block;
+}
