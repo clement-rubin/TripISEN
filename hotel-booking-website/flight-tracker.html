@@ -73,6 +73,34 @@
                 </div>
             </div>
             
+            <div class="time-range-controls">
+                <div class="time-selection">
+                    <label for="custom-time-toggle">
+                        <input type="checkbox" id="custom-time-toggle">
+                        Définir une période personnalisée
+                    </label>
+                </div>
+                
+                <div id="custom-time-controls" class="custom-time-controls" style="display: none;">
+                    <div class="time-input-group">
+                        <label for="start-time">Du:</label>
+                        <input type="datetime-local" id="start-time" class="time-input">
+                    </div>
+                    
+                    <div class="time-input-group">
+                        <label for="end-time">Au:</label>
+                        <input type="datetime-local" id="end-time" class="time-input">
+                    </div>
+                    
+                    <div class="preset-buttons">
+                        <button type="button" class="preset-btn" data-hours="-2">Dernières 2h</button>
+                        <button type="button" class="preset-btn" data-hours="-6">Dernières 6h</button>
+                        <button type="button" class="preset-btn" data-hours="-12">Dernières 12h</button>
+                        <button type="button" class="preset-btn" data-hours="-24">Dernières 24h</button>
+                    </div>
+                </div>
+            </div>
+            
             <div id="map-container"></div>
             
             <div class="flights-container">
@@ -98,6 +126,7 @@
                                 </tr>
                             </tbody>
                         </table>
+                        <div id="arrivals-pagination" class="pagination-container"></div>
                     </div>
                     
                     <div id="departures-tab" class="tab-pane">
@@ -116,8 +145,26 @@
                                 </tr>
                             </tbody>
                         </table>
+                        <div id="departures-pagination" class="pagination-container"></div>
                     </div>
                 </div>
+            </div>
+        </div>
+        
+        <div class="api-info-box">
+            <div class="api-info-title">
+                <i class="fas fa-info-circle"></i> Informations sur l'API
+                <button type="button" class="info-toggle" aria-label="Afficher/masquer les informations">
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+            </div>
+            <div class="api-info-content">
+                <ul>
+                    <li><strong>Période maximale</strong>: L'API OpenSky limite les requêtes à 7 jours maximum</li>
+                    <li><strong>Limites de requêtes</strong>: 400 requêtes par jour, 4000 par mois (sans compte)</li>
+                    <li><strong>Délai</strong>: Les données peuvent avoir un délai de 5 à 10 secondes</li>
+                    <li><strong>Vols actifs</strong>: Les positions des avions ne sont affichées que pour les vols récents</li>
+                </ul>
             </div>
         </div>
     </div>

@@ -23,6 +23,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const departuresTabBtn = document.querySelector('.tab-btn[data-tab="departures"]');
     const arrivalsListEl = document.getElementById('arrivals-list');
     const departuresListEl = document.getElementById('departures-list');
+    const customTimeToggle = document.getElementById('custom-time-toggle');
+    const customTimeControls = document.getElementById('custom-time-controls');
+    const startTimeInput = document.getElementById('start-time');
+    const endTimeInput = document.getElementById('end-time');
+    const presetButtons = document.querySelectorAll('.preset-btn');
     
     // Créer une instance de l'API OpenSky
     const openSkyApi = new OpenSkyAPI(config.opensky.username, config.opensky.password);
@@ -108,6 +113,53 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
+    // Initialisation des dates avec des valeurs par défaut
+    function initializeDateTimeInputs() {
+        const now = new Date();
+        const twoHoursAgo = new Date(now.getTime() - (2 * 60 * 60 * 1000));
+        
+        // Format ISO date-time pour les inputs
+        endTimeInput.value = formatDateTimeForInput(now);
+        startTimeInput.value = formatDateTimeForInput(twoHoursAgo);
+    }
+
+    // Formater la date pour l'input datetime-local
+    function formatDateTimeForInput(date) {
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+        const hours = String(date.getHours()).padStart(2, '0');
+        const minutes = String(date.getMinutes()).padStart(2, '0');
+        
+        return `${year}-${month}-${day}T${hours}:${minutes}`;
+    }
+
+    // Gestionnaire d'événements pour la case à cocher d'activation de la période personnalisée
+    customTimeToggle.addEventListener('change', function() {
+        if (this.checked) {
+            customTimeControls.style.display = 'flex';
+            initializeDateTimeInputs();
+        } else {
+            customTimeControls.style.display = 'none';
+        }
+    });
+
+    // Gestionnaire pour les boutons de préréglage de période
+    presetButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const hours = parseInt(this.dataset.hours);
+            const now = new Date();
+            const startTime = new Date(now.getTime() + (hours * 60 * 60 * 1000));
+            
+            startTimeInput.value = formatDateTimeForInput(startTime);
+            endTimeInput.value = formatDateTimeForInput(now);
+            
+            // Mise en évidence du bouton actif
+            presetButtons.forEach(btn => btn.classList.remove('active'));
+            this.classList.add('active');
+        });
+    });
+
     // Fonction pour récupérer les données de vol
     async function fetchFlightData(airportCode) {
         // Nettoyer les listes actuelles
@@ -118,8 +170,31 @@ document.addEventListener('DOMContentLoaded', function() {
         clearFlightMarkers();
         
         try {
-            const begin = Math.floor(Date.now()/1000) - 7200; // 2 heures
-            const end = Math.floor(Date.now()/1000);
+            // Déterminer la période en fonction du choix de l'utilisateur
+            let begin, end;
+            
+            if (customTimeToggle.checked) {
+                // Utiliser la période personnalisée
+                begin = Math.floor(new Date(startTimeInput.value).getTime() / 1000);
+                end = Math.floor(new Date(endTimeInput.value).getTime() / 1000);
+                
+                // Vérifier que la période est valide
+                if (isNaN(begin) || isNaN(end) || begin >= end) {
+                    alert("Veuillez sélectionner une période valide (date de début avant date de fin)");
+                    return;
+                }
+                
+                // Limiter la période à 7 jours maximum (limitation de l'API OpenSky)
+                const maxPeriod = 7 * 24 * 3600; // 7 jours en secondes
+                if (end - begin > maxPeriod) {
+                    alert("La période ne peut pas dépasser 7 jours. Veuillez réduire l'intervalle.");
+                    return;
+                }
+            } else {
+                // Période par défaut : dernières 2 heures
+                end = Math.floor(Date.now() / 1000);
+                begin = end - 7200; // 2 heures
+            }
             
             // Récupérer arrivées et départs en parallèle
             const promises = [];
@@ -136,14 +211,26 @@ document.addEventListener('DOMContentLoaded', function() {
                 promises.push(Promise.resolve([]));
             }
             
+            // Ajout d'un message d'attente plus explicite pour les périodes plus longues
+            if (end - begin > 86400) { // Plus d'un jour
+                arrivalsListEl.innerHTML = '<tr class="loading-message"><td colspan="4">Chargement des données sur une période étendue, veuillez patienter...</td></tr>';
+                departuresListEl.innerHTML = '<tr class="loading-message"><td colspan="4">Chargement des données sur une période étendue, veuillez patienter...</td></tr>';
+            }
+            
             const [arrivals, departures] = await Promise.all(promises);
             
             // Afficher les résultats
             displayArrivals(arrivals);
             displayDepartures(departures);
             
-            // Récupérer les positions actuelles des vols
-            await fetchLivePositions([...arrivals, ...departures]);
+            // Récupérer les positions actuelles des vols (uniquement pour les vols récents)
+            const currentTime = Math.floor(Date.now() / 1000);
+            const recentFlights = [...arrivals, ...departures].filter(flight => {
+                const lastSeenTime = flight.lastSeen || flight.firstSeen || 0;
+                return currentTime - lastSeenTime < 3600; // Vols vus dans la dernière heure
+            });
+            
+            await fetchLivePositions(recentFlights);
             
             // Centrer la carte sur l'aéroport
             centreMapOnAirport(airportCode);
@@ -155,20 +242,52 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    // Afficher les arrivées
+    // Ajoutez ces variables globales
+    let currentArrivalsPage = 1;
+    let currentDeparturesPage = 1;
+    const itemsPerPage = 20;
+    let allArrivals = [];
+    let allDepartures = [];
+
+    // Remplacer le contenu de displayArrivals par:
     function displayArrivals(arrivals) {
-        if (!arrivals || arrivals.length === 0) {
-            arrivalsListEl.innerHTML = `<tr><td colspan="4" class="no-data-message">Aucune arrivée récente trouvée pour cet aéroport.</td></tr>`;
+        // Stocker toutes les arrivées
+        allArrivals = arrivals || [];
+        currentArrivalsPage = 1;
+        
+        displayArrivalsPage();
+    }
+
+    // Nouvelle fonction pour afficher une page spécifique
+    function displayArrivalsPage() {
+        if (allArrivals.length === 0) {
+            arrivalsListEl.innerHTML = `<tr><td colspan="4" class="no-data-message">Aucune arrivée trouvée pour cet aéroport dans la période sélectionnée.</td></tr>`;
+            document.getElementById('arrivals-pagination').innerHTML = '';
             return;
         }
         
         // Trier les vols par heure d'arrivée
-        arrivals.sort((a, b) => (b.lastSeen || 0) - (a.lastSeen || 0));
+        allArrivals.sort((a, b) => (b.lastSeen || 0) - (a.lastSeen || 0));
         
+        // Calculer les indices pour la pagination
+        const startIndex = (currentArrivalsPage - 1) * itemsPerPage;
+        const endIndex = Math.min(startIndex + itemsPerPage, allArrivals.length);
+        const pageCount = Math.ceil(allArrivals.length / itemsPerPage);
+        
+        // Générer le HTML pour les vols de la page actuelle
         let html = '';
-        arrivals.slice(0, 20).forEach(flight => {
+        for (let i = startIndex; i < endIndex; i++) {
+            const flight = allArrivals[i];
             const arrivalTime = flight.lastSeen ? new Date(flight.lastSeen * 1000) : null;
-            const formattedTime = arrivalTime ? arrivalTime.toLocaleTimeString() : 'N/A';
+            
+            let formattedTime = 'N/A';
+            if (arrivalTime) {
+                if (customTimeToggle.checked) {
+                    formattedTime = arrivalTime.toLocaleDateString() + ' ' + arrivalTime.toLocaleTimeString();
+                } else {
+                    formattedTime = arrivalTime.toLocaleTimeString();
+                }
+            }
             
             html += `
             <tr data-icao="${flight.icao24}">
@@ -179,25 +298,54 @@ document.addEventListener('DOMContentLoaded', function() {
                     ${getFlightStatus(flight)}
                 </span></td>
             </tr>`;
-        });
+        }
         
         arrivalsListEl.innerHTML = html;
+        
+        // Générer la pagination
+        updatePagination('arrivals-pagination', pageCount, currentArrivalsPage, (page) => {
+            currentArrivalsPage = page;
+            displayArrivalsPage();
+        });
     }
-    
-    // Afficher les départs
+
+    // Faire de même pour les départs
     function displayDepartures(departures) {
-        if (!departures || departures.length === 0) {
-            departuresListEl.innerHTML = `<tr><td colspan="4" class="no-data-message">Aucun départ récent trouvé pour cet aéroport.</td></tr>`;
+        allDepartures = departures || [];
+        currentDeparturesPage = 1;
+        
+        displayDeparturesPage();
+    }
+
+    function displayDeparturesPage() {
+        if (allDepartures.length === 0) {
+            departuresListEl.innerHTML = `<tr><td colspan="4" class="no-data-message">Aucun départ trouvé pour cet aéroport dans la période sélectionnée.</td></tr>`;
+            document.getElementById('departures-pagination').innerHTML = '';
             return;
         }
         
         // Trier les vols par heure de départ
-        departures.sort((a, b) => (b.firstSeen || 0) - (a.firstSeen || 0));
+        allDepartures.sort((a, b) => (b.firstSeen || 0) - (a.firstSeen || 0));
         
+        // Calculer les indices pour la pagination
+        const startIndex = (currentDeparturesPage - 1) * itemsPerPage;
+        const endIndex = Math.min(startIndex + itemsPerPage, allDepartures.length);
+        const pageCount = Math.ceil(allDepartures.length / itemsPerPage);
+        
+        // Générer le HTML pour les vols de la page actuelle
         let html = '';
-        departures.slice(0, 20).forEach(flight => {
+        for (let i = startIndex; i < endIndex; i++) {
+            const flight = allDepartures[i];
             const departureTime = flight.firstSeen ? new Date(flight.firstSeen * 1000) : null;
-            const formattedTime = departureTime ? departureTime.toLocaleTimeString() : 'N/A';
+            
+            let formattedTime = 'N/A';
+            if (departureTime) {
+                if (customTimeToggle.checked) {
+                    formattedTime = departureTime.toLocaleDateString() + ' ' + departureTime.toLocaleTimeString();
+                } else {
+                    formattedTime = departureTime.toLocaleTimeString();
+                }
+            }
             
             html += `
             <tr data-icao="${flight.icao24}">
@@ -208,11 +356,93 @@ document.addEventListener('DOMContentLoaded', function() {
                     ${getFlightStatus(flight)}
                 </span></td>
             </tr>`;
-        });
+        }
         
         departuresListEl.innerHTML = html;
+        
+        // Générer la pagination
+        updatePagination('departures-pagination', pageCount, currentDeparturesPage, (page) => {
+            currentDeparturesPage = page;
+            displayDeparturesPage();
+        });
     }
-    
+
+    // Fonction pour générer la pagination
+    function updatePagination(containerId, pageCount, currentPage, pageChangeCallback) {
+        const container = document.getElementById(containerId);
+        if (!container) return;
+        
+        if (pageCount <= 1) {
+            container.innerHTML = '';
+            return;
+        }
+        
+        let html = `
+            <button class="pagination-btn" ${currentPage === 1 ? 'disabled' : ''} data-page="prev">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+        `;
+        
+        // Limiter le nombre de boutons affichés
+        const maxButtons = 5;
+        let startPage = Math.max(1, currentPage - Math.floor(maxButtons / 2));
+        let endPage = Math.min(pageCount, startPage + maxButtons - 1);
+        
+        if (endPage - startPage < maxButtons - 1) {
+            startPage = Math.max(1, endPage - maxButtons + 1);
+        }
+        
+        if (startPage > 1) {
+            html += `
+                <button class="pagination-btn" data-page="1">1</button>
+                ${startPage > 2 ? '<span class="pagination-ellipsis">...</span>' : ''}
+            `;
+        }
+        
+        for (let i = startPage; i <= endPage; i++) {
+            html += `
+                <button class="pagination-btn ${i === currentPage ? 'active' : ''}" data-page="${i}">
+                    ${i}
+                </button>
+            `;
+        }
+        
+        if (endPage < pageCount) {
+            html += `
+                ${endPage < pageCount - 1 ? '<span class="pagination-ellipsis">...</span>' : ''}
+                <button class="pagination-btn" data-page="${pageCount}">${pageCount}</button>
+            `;
+        }
+        
+        html += `
+            <button class="pagination-btn" ${currentPage === pageCount ? 'disabled' : ''} data-page="next">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        `;
+        
+        container.innerHTML = html;
+        
+        // Ajouter les gestionnaires d'événements
+        container.querySelectorAll('.pagination-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                if (this.hasAttribute('disabled')) return;
+                
+                let newPage = this.dataset.page;
+                if (newPage === 'prev') {
+                    newPage = currentPage - 1;
+                } else if (newPage === 'next') {
+                    newPage = currentPage + 1;
+                } else {
+                    newPage = parseInt(newPage);
+                }
+                
+                if (newPage >= 1 && newPage <= pageCount) {
+                    pageChangeCallback(newPage);
+                }
+            });
+        });
+    }
+
     // Récupérer les positions en direct des avions
     async function fetchLivePositions(flights) {
         const icao24Set = new Set(flights.map(f => f.icao24));
@@ -327,6 +557,30 @@ document.addEventListener('DOMContentLoaded', function() {
         flightMarkers = [];
     }
     
+    // Ajoutez ces gestionnaires d'événements pour les inputs de date
+    startTimeInput.addEventListener('change', function() {
+        // Si l'utilisateur sélectionne une date de début après la date de fin
+        if (new Date(startTimeInput.value) > new Date(endTimeInput.value)) {
+            endTimeInput.value = startTimeInput.value; // Synchroniser la date de fin
+        }
+    });
+
+    endTimeInput.addEventListener('change', function() {
+        // Si l'utilisateur sélectionne une date de fin avant la date de début
+        if (new Date(endTimeInput.value) < new Date(startTimeInput.value)) {
+            startTimeInput.value = endTimeInput.value; // Synchroniser la date de début
+        }
+    });
+
+    // Pour la boîte d'information
+    document.querySelector('.api-info-title').addEventListener('click', function() {
+        const content = document.querySelector('.api-info-content');
+        const toggle = document.querySelector('.info-toggle');
+        
+        content.classList.toggle('active');
+        toggle.classList.toggle('active');
+    });
+
     // Initialisation
     setupAirportAutocomplete();
     fetchFlightData(currentAirport);

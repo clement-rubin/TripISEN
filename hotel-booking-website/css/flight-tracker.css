@@ -176,6 +176,184 @@
     font-style: italic;
 }
 
+/* Contrôles de sélection temporelle */
+.time-range-controls {
+    margin: 15px 0;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 12px;
+    border: 1px solid #e0e0e0;
+}
+
+.time-selection {
+    margin-bottom: 12px;
+}
+
+.time-selection label {
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.time-selection input[type="checkbox"] {
+    margin-right: 8px;
+}
+
+.custom-time-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #e0e0e0;
+}
+
+.time-input-group {
+    flex: 1;
+    min-width: 200px;
+}
+
+.time-input-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+.time-input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.preset-buttons {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.preset-btn {
+    background-color: #e9ecef;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    padding: 6px 10px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    flex-grow: 1;
+    text-align: center;
+}
+
+.preset-btn:hover {
+    background-color: #dee2e6;
+}
+
+.preset-btn.active {
+    background-color: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
+.api-info-box {
+    margin: 15px 0;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.api-info-title {
+    background-color: #f5f5f5;
+    padding: 10px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.info-toggle {
+    background: none;
+    border: none;
+    color: #666;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.info-toggle.active i {
+    transform: rotate(180deg);
+}
+
+.api-info-content {
+    padding: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, padding 0.3s ease;
+}
+
+.api-info-content.active {
+    padding: 15px;
+    max-height: 300px;
+}
+
+.api-info-content ul {
+    margin: 0;
+    padding-left: 20px;
+}
+
+.api-info-content li {
+    margin-bottom: 6px;
+    font-size: 14px;
+}
+
+/* Styles de pagination */
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.pagination-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 32px;
+    height: 32px;
+    padding: 0 6px;
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.pagination-btn:hover:not([disabled]) {
+    background-color: #e0e0e0;
+}
+
+.pagination-btn.active {
+    background-color: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
+.pagination-btn[disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.pagination-ellipsis {
+    margin: 0 5px;
+    color: #666;
+}
+
 /* Responsive Design */
 @media screen and (max-width: 768px) {
     .search-controls {
@@ -199,6 +377,10 @@
     .flights-table th, 
     .flights-table td {
         padding: 10px 8px;
+    }
+
+    .custom-time-controls {
+        flex-direction: column;
     }
 }
 
