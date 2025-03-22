@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suivi des Vols - Trip'ISEN</title>
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/flight-tracker.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="index.html">
+                    <span class="logo-text">Trip'<span class="logo-highlight">ISEN</span></span>
+                </a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html"><i class="fas fa-home"></i> Accueil</a></li>
+                <li><a href="hotels.html"><i class="fas fa-hotel"></i> Hôtels</a></li>
+                <li><a href="reservations.html"><i class="fas fa-calendar-check"></i> Réservations</a></li>
+                <li><a href="promotions.html"><i class="fas fa-percent"></i> Promotions</a></li>
+                <li class="active"><a href="flight-tracker.html"><i class="fas fa-plane"></i> Suivi des Vols</a></li>
+                <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+            </ul>
+            <div class="nav-actions">
+                <div id="guest-actions">
+                    <a href="login.html" class="login-btn"><i class="fas fa-user"></i> Connexion</a>
+                </div>
+                <div id="user-actions" style="display: none;">
+                    <div class="user-dropdown">
+                        <button class="user-dropdown-btn">
+                            <i class="fas fa-user-circle"></i> <span id="username">Utilisateur</span> <i class="fas fa-caret-down"></i>
+                        </button>
+                        <div class="user-dropdown-content">
+                            <a href="profile.html"><i class="fas fa-id-card"></i> Mon profil</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="flight-tracker-section">
+        <div class="section-header">
+            <h2>Suivi des Vols en Temps Réel</h2>
+            <p class="section-description">Consultez les vols actuels et planifiez votre voyage</p>
+        </div>
+        
+        <div class="flight-search-container">
+            <div class="search-controls">
+                <div class="search-box">
+                    <input type="text" id="airport-search" placeholder="Rechercher par code ICAO (ex: LFPG pour Paris CDG)">
+                    <button id="search-btn"><i class="fas fa-search"></i> Rechercher</button>
+                </div>
+                <div class="filter-options">
+                    <label>
+                        <input type="checkbox" id="show-arrivals" checked>
+                        Arrivées
+                    </label>
+                    <label>
+                        <input type="checkbox" id="show-departures" checked>
+                        Départs
+                    </label>
+                </div>
+            </div>
+            
+            <div id="map-container"></div>
+            
+            <div class="flights-container">
+                <div class="flights-tabs">
+                    <button class="tab-btn active" data-tab="arrivals">Arrivées</button>
+                    <button class="tab-btn" data-tab="departures">Départs</button>
+                </div>
+                
+                <div class="tab-content">
+                    <div id="arrivals-tab" class="tab-pane active">
+                        <table class="flights-table">
+                            <thead>
+                                <tr>
+                                    <th>Vol</th>
+                                    <th>De</th>
+                                    <th>Heure prévue</th>
+                                    <th>Statut</th>
+                                </tr>
+                            </thead>
+                            <tbody id="arrivals-list">
+                                <tr class="loading-message">
+                                    <td colspan="4">Chargement des données...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div id="departures-tab" class="tab-pane">
+                        <table class="flights-table">
+                            <thead>
+                                <tr>
+                                    <th>Vol</th>
+                                    <th>Vers</th>
+                                    <th>Heure prévue</th>
+                                    <th>Statut</th>
+                                </tr>
+                            </thead>
+                            <tbody id="departures-list">
+                                <tr class="loading-message">
+                                    <td colspan="4">Chargement des données...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="modern-footer">
+        <div class="footer-content">
+            <div class="footer-main">
+                <div class="footer-section footer-about">
+                    <h3>Trip'ISEN</h3>
+                    <p>Votre partenaire pour des séjours inoubliables partout dans le monde.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section footer-links">
+                    <h3>Liens utiles</h3>
+                    <ul>
+                        <li><a href="hotels.html">Hôtels</a></li>
+                        <li><a href="reservations.html">Réservations</a></li>
+                        <li><a href="promotions.html">Promotions</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section footer-contact">
+                    <h3>Contactez-nous</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Rue de Paris, 75000 Paris</p>
+                    <p><i class="fas fa-phone"></i> +33 1 23 45 67 89</p>
+                    <p><i class="fas fa-envelope"></i> contact@tripisen.fr</p>
+                </div>
+                <div class="footer-section footer-newsletter">
+                    <h3>Newsletter</h3>
+                    <p>Inscrivez-vous pour recevoir nos offres exclusives</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Votre email">
+                        <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Trip'ISEN. Tous droits réservés.</p>
+                <div class="footer-bottom-links">
+                    <a href="#">Mentions légales</a>
+                    <a href="#">Politique de confidentialité</a>
+                    <a href="#">CGU</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script src="js/config.js" type="module"></script>
+    <script src="js/main.js" type="module"></script>
+    <script src="js/auth.js" type="module"></script>
+    <script src="js/flight-tracker.js" type="module"></script>
+    
+
+</body>
+</html>
