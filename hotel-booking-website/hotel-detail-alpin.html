@@ -542,6 +542,41 @@
         </div>
     </div>
 
+    <div class="section nearby-flights">
+        <h2>Vols à proximité</h2>
+        <div class="flights-info">
+            <div class="airport-selection">
+                <div class="airport-header">
+                    <i class="fas fa-plane-departure"></i>
+                    <h3>Aéroports à proximité</h3>
+                </div>
+                <div class="airports-list">
+                    <div class="airport-item" data-code="LFLP">
+                        <div class="airport-item-header">
+                            <div class="airport-name">Annecy Mont Blanc</div>
+                            <div class="airport-distance"><i class="fas fa-road"></i> 15 km</div>
+                        </div>
+                        <button class="btn btn-outline view-flights-btn" data-airport="LFLP">
+                            <i class="fas fa-eye"></i> Voir les vols
+                        </button>
+                    </div>
+                    <div class="airport-item" data-code="LFLL">
+                        <div class="airport-item-header">
+                            <div class="airport-name">Lyon Saint-Exupéry</div>
+                            <div class="airport-distance"><i class="fas fa-road"></i> 95 km</div>
+                        </div>
+                        <button class="btn btn-outline view-flights-btn" data-airport="LFLL">
+                            <i class="fas fa-eye"></i> Voir les vols
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div id="flights-preview" class="flights-preview">
+                <!-- Même contenu que pour hotel-detail.html -->
+            </div>
+        </div>
+    </div>
+
     <footer class="modern-footer">
         <div class="footer-content">
             <div class="footer-main">
@@ -632,5 +667,8 @@
             });
         });
     </script>
+    <!-- Ajouter à la fin de chaque page de détail d'hôtel, avant </body> -->
+<script src="js/opensky-api.js"></script>
+<script src="js/hotel-flights.js"></script>
 </body>
 </html>

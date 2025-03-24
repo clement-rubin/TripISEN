@@ -375,3 +375,116 @@ document.addEventListener('DOMContentLoaded', function() {
         localStorage.setItem('reservation_data', JSON.stringify(reservationData));
     }
 });
+
+class FlightIntegration {
+    constructor() {
+        this.hotelAirports = {
+            'hotel1': [
+                { code: 'LFPG', name: 'Paris Charles de Gaulle', distance: '23km' },
+                { code: 'LFPO', name: 'Paris Orly', distance: '35km' }
+            ],
+            'hotel2': [
+                { code: 'LFMN', name: 'Nice Côte d\'Azur', distance: '6km' }
+            ],
+            'hotel3': [
+                { code: 'LFLP', name: 'Annecy Mont Blanc', distance: '15km' },
+                { code: 'LFLL', name: 'Lyon Saint-Exupéry', distance: '95km' }
+            ]
+        };
+
+        this.initializeElements();
+        this.bindEvents();
+    }
+
+    initializeElements() {
+        this.hotelSelect = document.getElementById('hotel-select');
+        this.airportSelect = document.getElementById('nearby-airports');
+        this.checkFlightsBtn = document.getElementById('check-flights');
+        this.flightSummary = document.getElementById('flight-summary');
+        
+        // Initialiser l'API OpenSky
+        this.openSkyApi = new OpenSkyAPI();
+    }
+
+    bindEvents() {
+        this.hotelSelect?.addEventListener('change', () => this.updateNearbyAirports());
+        this.checkFlightsBtn?.addEventListener('click', () => this.checkFlights());
+    }
+
+    updateNearbyAirports() {
+        const hotelId = this.hotelSelect.value;
+        const airports = this.hotelAirports[hotelId] || [];
+        
+        this.airportSelect.innerHTML = airports.map(airport => 
+            `<option value="${airport.code}">${airport.name} (${airport.distance})</option>`
+        ).join('');
+
+        this.airportSelect.disabled = airports.length === 0;
+        this.checkFlightsBtn.disabled = airports.length === 0;
+    }
+
+    async checkFlights() {
+        const airportCode = this.airportSelect.value;
+        if (!airportCode) return;
+
+        this.flightSummary.innerHTML = '<div class="loading">Chargement des vols...</div>';
+        this.flightSummary.style.display = 'block';
+
+        try {
+            // Calculer la période (prochaines 24h à partir de la date de check-in)
+            const checkInInput = document.getElementById('check-in');
+            const checkIn = new Date(checkInInput.value);
+            const begin = Math.floor(checkIn.getTime() / 1000);
+            const end = begin + (24 * 3600); // +24h
+
+            // Récupérer les vols
+            const [arrivals, departures] = await Promise.all([
+                this.openSkyApi.getAirportArrivals(airportCode, begin, end),
+                this.openSkyApi.getAirportDepartures(airportCode, begin, end)
+            ]);
+
+            this.displayFlightSummary(arrivals, departures);
+        } catch (error) {
+            console.error('Erreur lors de la récupération des vols:', error);
+            this.flightSummary.innerHTML = `
+                <div class="error-message">
+                    Impossible de récupérer les informations de vol pour le moment.
+                    Veuillez réessayer plus tard.
+                </div>
+            `;
+        }
+    }
+
+    displayFlightSummary(arrivals, departures) {
+        const totalFlights = arrivals.length + departures.length;
+        const formattedDate = new Date().toLocaleDateString();
+
+        this.flightSummary.innerHTML = `
+            <div class="flight-summary-header">
+                <h4>Activité aéroportuaire pour ${this.airportSelect.options[this.airportSelect.selectedIndex].text}</h4>
+                <p>${totalFlights} vols prévus pour ${formattedDate}</p>
+            </div>
+            <div class="flight-stats">
+                <div class="stat-item">
+                    <i class="fas fa-plane-arrival"></i>
+                    <span>${arrivals.length} Arrivées</span>
+                </div>
+                <div class="stat-item">
+                    <i class="fas fa-plane-departure"></i>
+                    <span>${departures.length} Départs</span>
+                </div>
+            </div>
+            <div class="view-more">
+                <a href="flight-tracker.html?airport=${this.airportSelect.value}" class="btn btn-link">
+                    <i class="fas fa-external-link-alt"></i> 
+                    Voir tous les vols
+                </a>
+            </div>
+        `;
+    }
+}
+
+// Initialiser l'intégration une fois le DOM chargé
+document.addEventListener('DOMContentLoaded', () => {
+    new FlightIntegration();
+});

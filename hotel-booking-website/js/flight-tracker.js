@@ -2,6 +2,19 @@
 import OpenSkyAPI from './opensky-api.js';
 
 document.addEventListener('DOMContentLoaded', function() {
+    // Vérifier les paramètres d'URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const airportParam = urlParams.get('airport');
+    
+    if (airportParam) {
+        // Pré-remplir le champ de recherche
+        searchInput.value = airportParam;
+        // Déclencher la recherche
+        fetchFlightData(airportParam);
+        // Mettre à jour l'aéroport actuel
+        currentAirport = airportParam;
+    }
+    
     // Initialisation de la carte
     const map = L.map('map-container').setView([48.8566, 2.3522], 5); // Centré sur Paris par défaut
     

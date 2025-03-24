@@ -1207,3 +1207,74 @@ input:focus, select:focus, textarea:focus {
     cursor: pointer;
     transition: all 0.3s ease;
 }
+
+/* Flight Integration */
+.flight-integration {
+    margin: 20px 0;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+}
+
+.nearby-airports {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.airport-selector {
+    flex: 1;
+}
+
+.airport-selector select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.flight-summary {
+    background: white;
+    padding: 15px;
+    border-radius: 6px;
+    border: 1px solid #e0e0e0;
+    margin-top: 15px;
+}
+
+.flight-list {
+    margin-top: 10px;
+}
+
+.flight-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.flight-item:last-child {
+    border-bottom: none;
+}
+
+.flight-details {
+    display: flex;
+    gap: 20px;
+}
+
+.flight-time {
+    font-weight: 500;
+    color: #1565c0;
+}
+
+.flight-destination {
+    color: #666;
+}
+
+.flight-status {
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+}

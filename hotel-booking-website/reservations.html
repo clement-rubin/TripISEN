@@ -133,6 +133,25 @@
                         </div>
                     </div>
                     
+                    <!-- Ajouter après la section de sélection d'hôtel -->
+                    <div class="flight-integration">
+                        <h3>Vols disponibles près de cet hôtel</h3>
+                        <div class="nearby-airports">
+                            <div class="airport-selector">
+                                <label for="nearby-airports">Aéroports à proximité:</label>
+                                <select id="nearby-airports" name="nearby-airports">
+                                    <!-- Sera rempli dynamiquement -->
+                                </select>
+                            </div>
+                            <button id="check-flights" class="btn btn-secondary">
+                                <i class="fas fa-plane"></i> Voir les vols
+                            </button>
+                        </div>
+                        <div id="flight-summary" class="flight-summary" style="display:none;">
+                            <!-- Les données de vol seront affichées ici -->
+                        </div>
+                    </div>
+
                     <div class="form-navigation">
                         <button type="button" class="btn btn-next">Continuer <i class="fas fa-arrow-right"></i></button>
                     </div>
@@ -446,5 +465,7 @@
     <script src="js/main.js"></script>
     <script src="js/auth.js"></script>
     <script src="js/reservations.js"></script>
+    <script src="js/opensky-api.js" type="module"></script>
+    <script src="js/reservation-flight-integration.js" type="module"></script>
 </body>
 </html>

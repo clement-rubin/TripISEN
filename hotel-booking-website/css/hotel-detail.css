@@ -1200,3 +1200,360 @@ body {
     display: table;
     clear: both;
 }
+
+/* Styles pour la section de vols */
+.nearby-flights {
+    margin-bottom: 40px;
+}
+
+.flights-info {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 25px;
+}
+
+.airport-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.airport-header i {
+    font-size: 1.5rem;
+    color: var(--primary);
+    margin-right: 10px;
+}
+
+.airport-header h3 {
+    font-size: 1.2rem;
+    margin: 0;
+}
+
+.airports-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.airport-item {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.3s ease;
+    border: 1px solid #e9ecef;
+}
+
+.airport-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.airport-name {
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+.airport-distance {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.airport-distance i {
+    color: var(--primary);
+    margin-right: 5px;
+}
+
+.view-flights-btn {
+    padding: 8px 15px;
+    font-size: 0.9rem;
+}
+
+.flights-preview {
+    background-color: #fff;
+    border-radius: 8px;
+    border: 1px solid #e9ecef;
+    overflow: hidden;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.flights-loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid var(--primary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 15px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.flights-tabs {
+    display: flex;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.flights-tab {
+    flex: 1;
+    background: none;
+    border: none;
+    padding: 12px;
+    font-weight: 500;
+    color: #666;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.flights-tab.active {
+    color: var(--primary);
+    border-bottom: 2px solid var(--primary);
+}
+
+.flights-table-container {
+    overflow-x: auto;
+    padding: 15px;
+}
+
+.flights-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.flights-table th {
+    text-align: left;
+    padding: 12px;
+    border-bottom: 1px solid #e9ecef;
+    font-weight: 600;
+    color: #333;
+}
+
+.flights-table td {
+    padding: 12px;
+    border-bottom: 1px solid #f2f2f2;
+    color: #555;
+}
+
+.flights-table tr:last-child td {
+    border-bottom: none;
+}
+
+.flight-status {
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    text-align: center;
+    display: inline-block;
+}
+
+.status-ontime {
+    background-color: #e0f5ea;
+    color: #2e844a;
+}
+
+.status-delayed {
+    background-color: #fef1ed;
+    color: #ea5635;
+}
+
+.status-landed {
+    background-color: #e8f1fd;
+    color: #2670e8;
+}
+
+.status-boarding {
+    background-color: #fff4cf;
+    color: #e3a200;
+}
+
+.view-all-flights {
+    padding: 15px;
+    text-align: center;
+    margin-top: auto;
+    border-top: 1px solid #e9ecef;
+}
+
+.flights-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+    color: #777;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .flights-info {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Styles améliorés pour la section vols */
+.airport-item {
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.airport-item.selected {
+    background-color: #e8f4fd;
+    border-color: #2670e8;
+}
+
+.airport-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+}
+
+.flight-count-badge {
+    position: absolute;
+    top: 10px;
+    right: 80px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    font-size: 12px;
+    color: #666;
+}
+
+.flight-count-badge div {
+    background-color: #f0f0f0;
+    border-radius: 12px;
+    padding: 2px 8px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.flight-count-badge i {
+    color: #1565c0;
+    font-size: 10px;
+}
+
+.airport-title {
+    display: flex;
+    align-items: center;
+    padding: 12px 15px;
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.airport-title i {
+    font-size: 18px;
+    color: #1565c0;
+    margin-right: 10px;
+}
+
+.airport-title h4 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 500;
+    flex-grow: 1;
+}
+
+.flight-stats-badge {
+    background-color: #e8f1fd;
+    color: #1565c0;
+    border-radius: 12px;
+    padding: 3px 12px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+/* Animation pour le chargement des vols */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.flights-content {
+    animation: fadeInUp 0.4s ease-out;
+}
+
+/* Style pour améliorer l'aperçu compact */
+.flights-table-container {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.flights-table th, .flights-table td {
+    padding: 8px 12px;
+    font-size: 13px;
+}
+
+.view-all-flights {
+    padding: 12px;
+}
+
+.view-all-flights a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Ajouter ces styles pour le mini aperçu */
+
+.airport-item {
+    display: block;
+    padding-bottom: 10px;
+}
+
+.airport-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.mini-preview {
+    display: flex;
+    gap: 15px;
+    font-size: 13px;
+    color: #555;
+}
+
+.mini-preview-stat {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.mini-preview-stat i {
+    color: #1565c0;
+    font-size: 12px;
+}
+
+/* Animation pour le chargement des compteurs */
+@keyframes pulse {
+    0% { opacity: 0.6; }
+    50% { opacity: 1; }
+    100% { opacity: 0.6; }
+}
+
+.mini-preview span:empty::after,
+.mini-preview span:contains("Chargement...") {
+    content: "...";
+    animation: pulse 1.5s infinite;
+}
