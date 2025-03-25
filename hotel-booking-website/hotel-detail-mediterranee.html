@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="css/hotel-detail.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/hotel-flights.css">
 </head>
 <body>
     <nav class="navbar">
@@ -444,20 +445,91 @@
                         Aéroports à proximité
                     </h2>
                     
-                    <div class="airports-cards">
-                        <div class="airport-card" data-code="LFMN">
+                    <div class="airport-cards">
+                        <!-- Aéroport principal -->
+                        <div class="airport-card main-airport">
+                            <div class="airport-header">
+                                <h3>Nice Côte d'Azur (LFMN)</h3>
+                                <span class="distance">7 km de l'hôtel</span>
+                            </div>
                             <div class="airport-info">
-                                <h3>Nice Côte d'Azur</h3>
-                                <div class="airport-meta">
-                                    <span><i class="fas fa-road"></i> 6 km</span>
-                                    <span class="flight-count"><i class="fas fa-plane-departure"></i> 32 vols aujourd'hui</span>
+                                <div class="info-item">
+                                    <i class="fas fa-plane-arrival"></i>
+                                    <span>Aéroport international</span>
+                                </div>
+                                <div class="info-item">
+                                    <i class="fas fa-car"></i>
+                                    <span>15 min en voiture</span>
+                                </div>
+                                <div class="info-item">
+                                    <i class="fas fa-bus"></i>
+                                    <span>Navette disponible</span>
                                 </div>
                             </div>
-                            <a href="flight-tracker.html?airport=LFMN" class="track-flights-btn">
-                                <span>Suivre les vols</span>
-                                <i class="fas fa-chevron-right"></i>
-                            </a>
+                            <div class="airport-actions">
+                                <a href="flight-tracker.html?airport=LFMN" class="btn btn-primary">
+                                    <i class="fas fa-plane"></i> Voir les vols
+                                </a>
+                            </div>
                         </div>
+                        
+                        <!-- Aéroports secondaires -->
+                        <div class="airport-card">
+                            <div class="airport-header">
+                                <h3>Cannes Mandelieu (LFMD)</h3>
+                                <span class="distance">30 km de l'hôtel</span>
+                            </div>
+                            <div class="airport-info">
+                                <div class="info-item">
+                                    <i class="fas fa-plane"></i>
+                                    <span>Aéroport d'affaires</span>
+                                </div>
+                                <div class="info-item">
+                                    <i class="fas fa-car"></i>
+                                    <span>35 min en voiture</span>
+                                </div>
+                            </div>
+                            <div class="airport-actions">
+                                <a href="flight-tracker.html?airport=LFMD" class="btn btn-outline-primary">
+                                    <i class="fas fa-plane"></i> Voir les vols
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="airport-card">
+                            <div class="airport-header">
+                                <h3>Marseille Provence (LFML)</h3>
+                                <span class="distance">180 km de l'hôtel</span>
+                            </div>
+                            <div class="airport-info">
+                                <div class="info-item">
+                                    <i class="fas fa-plane-arrival"></i>
+                                    <span>Aéroport international</span>
+                                </div>
+                                <div class="info-item">
+                                    <i class="fas fa-car"></i>
+                                    <span>2h en voiture</span>
+                                </div>
+                                <div class="info-item">
+                                    <i class="fas fa-train"></i>
+                                    <span>TGV disponible</span>
+                                </div>
+                            </div>
+                            <div class="airport-actions">
+                                <a href="flight-tracker.html?airport=LFML" class="btn btn-outline-primary">
+                                    <i class="fas fa-plane"></i> Voir les vols
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flight-tracker-info">
+                        <p>
+                            <i class="fas fa-info-circle"></i> Notre outil de suivi des vols vous permet de consulter les horaires en temps réel.
+                        </p>
+                        <a href="flight-tracker.html" class="btn btn-secondary btn-sm">
+                            <i class="fas fa-external-link-alt"></i> Suivi des vols complet
+                        </a>
                     </div>
                 </div>
 
@@ -471,6 +543,8 @@
             </div>
         </div>
     </div>
+
+  
 
     <footer class="modern-footer">
         <div class="footer-content">
@@ -528,5 +602,8 @@
 <script src="js/hotel-flights.js"></script>
 <link rel="stylesheet" href="css/hotel-weather.css">
 <script src="js/hotel-weather.js"></script>
+<link rel="stylesheet" href="css/hotel-flights.css">
+<script src="js/opensky-api.js"></script>
+<script src="js/hotel-flights.js"></script>
 </body>
 </html>
