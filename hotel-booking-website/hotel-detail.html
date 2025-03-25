@@ -419,98 +419,42 @@
                     </form>
                 </div>
                 
-                <div class="section nearby-flights">
-                    <h2>Vols à proximité</h2>
-                    <div class="flights-info">
-                        <div class="airport-selection">
-                            <div class="airport-header">
-                                <i class="fas fa-plane-departure"></i>
-                                <h3>Aéroports à proximité</h3>
-                            </div>
-                            <div class="airports-list">
-                                <div class="airport-item" data-code="LFPG">
-                                    <div class="airport-item-header">
-                                        <div class="airport-name">Paris Charles de Gaulle</div>
-                                        <div class="airport-distance"><i class="fas fa-road"></i> 23 km</div>
-                                    </div>
-                                    <div class="airport-actions">
-                                        <button class="btn btn-outline view-flights-btn" data-airport="LFPG">
-                                            <i class="fas fa-eye"></i> Voir les vols
-                                        </button>
-                                        <div class="mini-preview">
-                                            <div class="mini-preview-stat">
-                                                <i class="fas fa-plane-arrival"></i>
-                                                <span class="arrival-count">Chargement...</span>
-                                            </div>
-                                            <div class="mini-preview-stat">
-                                                <i class="fas fa-plane-departure"></i>
-                                                <span class="departure-count">Chargement...</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="airport-item" data-code="LFPO">
-                                    <div class="airport-item-header">
-                                        <div class="airport-name">Paris Orly</div>
-                                        <div class="airport-distance"><i class="fas fa-road"></i> 35 km</div>
-                                    </div>
-                                    <button class="btn btn-outline view-flights-btn" data-airport="LFPO">
-                                        <i class="fas fa-eye"></i> Voir les vols
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                        <div id="flights-preview" class="flights-preview">
-                            <div class="flights-loading" style="display: none;">
-                                <div class="spinner"></div>
-                                <p>Chargement des données de vol...</p>
-                            </div>
-                            <div class="flights-content" style="display: none;">
-                                <div class="flights-tabs">
-                                    <button class="flights-tab active" data-tab="arrivals">Arrivées</button>
-                                    <button class="flights-tab" data-tab="departures">Départs</button>
-                                </div>
-                                <div class="flights-table-container">
-                                    <table class="flights-table" id="arrivals-table">
-                                        <thead>
-                                            <tr>
-                                                <th>Vol</th>
-                                                <th>En provenance de</th>
-                                                <th>Heure</th>
-                                                <th>Statut</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <!-- Sera rempli dynamiquement -->
-                                        </tbody>
-                                    </table>
-                                    <table class="flights-table" id="departures-table" style="display: none;">
-                                        <thead>
-                                            <tr>
-                                                <th>Vol</th>
-                                                <th>Destination</th>
-                                                <th>Heure</th>
-                                                <th>Statut</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <!-- Sera rempli dynamiquement -->
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div class="view-all-flights">
-                                    <a href="#" id="view-all-flights-link" class="btn btn-primary">
-                                        <i class="fas fa-plane"></i> Voir tous les vols
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="flights-empty" style="text-align: center;">
-                                <i class="fas fa-plane" style="font-size: 48px; color: #ccc; margin-bottom: 15px;"></i>
-                                <p>Sélectionnez un aéroport pour consulter les vols</p>
-                            </div>
-                        </div>
-                    </div>
+                <div class="section flight-summary">
+    <h2>
+        <i class="fas fa-plane"></i>
+        Aéroports à proximité
+    </h2>
+    
+    <div class="airports-cards">
+        <div class="airport-card" data-code="LFPG">
+            <div class="airport-info">
+                <h3>Paris Charles de Gaulle</h3>
+                <div class="airport-meta">
+                    <span><i class="fas fa-road"></i> 23 km</span>
+                    <span class="flight-count"><i class="fas fa-plane-departure"></i> 27 vols aujourd'hui</span>
                 </div>
+            </div>
+            <a href="flight-tracker.html?airport=LFPG" class="track-flights-btn">
+                <span>Suivre les vols</span>
+                <i class="fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+        <div class="airport-card" data-code="LFPO">
+            <div class="airport-info">
+                <h3>Paris Orly</h3>
+                <div class="airport-meta">
+                    <span><i class="fas fa-road"></i> 35 km</span>
+                    <span class="flight-count"><i class="fas fa-plane-departure"></i> 25 vols aujourd'hui</span>
+                </div>
+            </div>
+            <a href="flight-tracker.html?airport=LFPO" class="track-flights-btn">
+                <span>Suivre les vols</span>
+                <i class="fas fa-chevron-right"></i>
+            </a>
+        </div>
+    </div>
+</div>
 
                 <div class="hotel-map">
                     <h3>Emplacement</h3>
