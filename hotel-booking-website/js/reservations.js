@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
         '1': {
             name: 'Hôtel Luxe Paris',
             location: 'Paris, France',
-            image: 'img/hotel-paris.jpg',
+            image: 'assets/images/hotels/hotel-paris.jpg',
             description: 'Élégance parisienne au cœur de la ville lumière.',
             prices: {
                 'standard': 120,
@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function() {
         '2': {
             name: 'Resort Méditerranée',
             location: 'Nice, France',
-            image: 'img/hotel-nice.jpg',
+            image: 'assets/images/nice/nice_ext.jpg',
             description: 'Séjour enchanteur avec vue sur la Méditerranée.',
             prices: {
                 'standard': 150,
@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function() {
         '3': {
             name: 'Chalet Alpin',
             location: 'Chamonix, France',
-            image: 'img/hotel-chamonix.jpg',
+            image: 'assets/images/hotels/chaletalpin.jpg',
             description: 'Refuge de montagne avec vue imprenable sur le Mont-Blanc.',
             prices: {
                 'standard': 180,

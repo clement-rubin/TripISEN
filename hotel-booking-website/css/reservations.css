@@ -487,10 +487,50 @@ input:focus, select:focus, textarea:focus {
     box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
 }
 
+
 /* Sélecteur d'hôtel */
 .hotel-selector {
     margin-bottom: 30px;
 }
+
+/* Styles pour la carte de prévisualisation de l'hôtel */
+.hotel-card {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+    background-color: #f9f9f9;
+}
+
+.hotel-image img {
+    width: 150px;
+    height: auto;
+    border-radius: 5px;
+}
+
+.hotel-info {
+    flex: 1;
+}
+
+.hotel-info h3 {
+    margin: 0 0 10px;
+    font-size: 18px;
+    color: #333;
+}
+
+.hotel-info .hotel-location {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.hotel-info .hotel-description {
+    font-size: 14px;
+    color: #555;
+}
+
 
 /* Sélecteur de dates */
 .date-picker-container {
@@ -1156,15 +1196,39 @@ input:focus, select:focus, textarea:focus {
 
 .select-wrapper {
     position: relative;
+    display: inline-block;
+    width: 100%;
+    margin-bottom: 20px;
 }
 
 .select-wrapper select {
     width: 100%;
     padding: 15px 15px;
-    appearance: none;
     border: 1px solid #ddd;
     border-radius: 8px;
     font-size: 1rem;
+    appearance: none;
+    -webkit-appearance: none; /* Pour Safari */
+    -moz-appearance: none; /* Pour Firefox */
     cursor: pointer;
     transition: all 0.3s ease;
 }
+
+.select-wrapper::after {
+    content: '\f078'; /* Code Unicode pour une flèche vers le bas (Font Awesome) */
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: #888;
+}
+
+.select-wrapper select:focus {
+    border-color:  #a3d9a5;
+    outline: none;
+    box-shadow: 0 0 5px rgba(9, 249, 145, 0.5);
+}
+
