@@ -9,7 +9,7 @@ const db = mysql.createConnection({
   host: 'localhost',
   user: 'root',
   password: 'root',
-  database: 'hotel', // Nom de la base de données selon votre SQL
+  database: 'tripisen', // Nom de la base de données selon votre SQL
   port: 3306 // Port MySQL de MAMP
 });
 
