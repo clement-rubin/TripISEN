@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="css/variables.css">
     <link rel="stylesheet" href="css/common.css">
     <link rel="stylesheet" href="css/hotel-detail.css">
+    <link rel="stylesheet" href="css/lightbox.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/hotel-flights.css">
@@ -74,7 +75,7 @@
                 <div class="thumbnail-images">
                     <img src="assets/images/chalet/chalet_ext.jpg" alt="Chalet Alpin - Vue extérieure" class="thumb active" data-src="assets/images/chalet/chalet_ext.jpg" data-caption="Vue extérieure du Chalet Alpin">
                     <img src="assets/images/chalet/chambre_chalet.webp" alt="Chambre du Chalet Alpin" class="thumb" data-src="assets/images/chalet/chambre_chalet.webp" data-caption="Chambre Confort avec vue montagne">
-                    <img src="assets/images/chalet/chalet_salon.jpg" alt="Salon du Chalet Alpin" class="thumb" data-src="assets/images/chalet/chalet_salon.jpg" data-caption="Salon avec cheminée">
+                    <img src="assets/images/chalet/chalet_salon.webp" alt="Salon du Chalet Alpin" class="thumb" data-src="assets/images/chalet/chalet_salon.webp" data-caption="Salon avec cheminée">
                     <img src="assets/images/chalet/chalet_spa.jpg" alt="Spa du Chalet Alpin" class="thumb" data-src="assets/images/chalet/chalet_spa.jpg" data-caption="Spa et sauna privatif">
                     <img src="assets/images/chalet/chalet_terasse.jpg" alt="Terrasse du Chalet Alpin" class="thumb" data-src="assets/images/chalet/chalet_terasse.jpg" data-caption="Terrasse panoramique avec vue sur le Mont-Blanc">
                 </div>
@@ -203,7 +204,24 @@
                     <div id="individual-rooms" class="booking-option-content active">
                         <div class="rooms-grid">
                             <div class="room-card">
-                                <img src="assets/images/hotels/chambre_alpin.jpg" alt="Chambre Confort">
+                                <img src="assets/images/chalet/chambre_conviviale.jpg" alt="Chambre Conviviale">
+                                <div class="room-info">
+                                    <h3>Chambre Conviviale</h3>
+                                    <p>Chambre simple avec deux lits simples et tout le confort pour passer un moment chaleureux en duo.</p>
+                                    <div class="room-features">
+                                        <span><i class="fas fa-user"></i> 2 personnes</span>
+                                        <span><i class="fas fa-bed"></i> 2 lits simples</span>
+                                        <span><i class="fas fa-arrows-alt-h"></i> 25m²</span>
+                                    </div>
+                                    <div class="room-price">
+                                        <span class="price">145€</span>
+                                        <span class="per-night">/ nuit</span>
+                                    </div>
+                                    <a href="reservation.html?hotel=alpin&room=conviviale" class="btn btn-primary">Réserver</a>
+                                </div>
+                            </div>
+                            <div class="room-card">
+                                <img src="assets/images/chalet/chambre_confort.webp" alt="Chambre Confort">
                                 <div class="room-info">
                                     <h3>Chambre Confort</h3>
                                     <p>Chambre chaleureuse de 30m² avec lit queen-size, balcon et vue sur la vallée de Chamonix.</p>
@@ -220,7 +238,7 @@
                                 </div>
                             </div>
                             <div class="room-card">
-                                <img src="assets/images/hotels/suite_alpine.jpg" alt="Suite Alpine">
+                                <img src="assets/images/chalet/suite_chalet.jpg" alt="Suite Alpine">
                                 <div class="room-info">
                                     <h3>Suite Alpine</h3>
                                     <p>Suite spacieuse de 50m² avec lit king-size, salon avec cheminée et vue panoramique sur le Mont-Blanc.</p>
@@ -236,34 +254,36 @@
                                     <a href="reservation.html?hotel=alpin&room=suite" class="btn btn-primary">Réserver</a>
                                 </div>
                             </div>
-                            <div class="room-card">
-                                <img src="assets/images/hotels/appartement_alpin.jpg" alt="Appartement Familial">
-                                <div class="room-info">
-                                    <h3>Appartement Familial</h3>
-                                    <p>Appartement de 80m² avec 2 chambres, cuisine équipée, salon avec cheminée et terrasse privative.</p>
-                                    <div class="room-features">
-                                        <span><i class="fas fa-user"></i> 6 personnes</span>
-                                        <span><i class="fas fa-bed"></i> 2 lits doubles + 2 lits simples</span>
-                                        <span><i class="fas fa-arrows-alt-h"></i> 80m²</span>
-                                    </div>
-                                    <div class="room-price">
-                                        <span class="price">520€</span>
-                                        <span class="per-night">/ nuit</span>
-                                    </div>
-                                    <a href="reservation.html?hotel=alpin&room=appartement" class="btn btn-primary">Réserver</a>
-                                </div>
-                            </div>
                         </div>
                     </div>
                     
                     <div id="entire-chalet" class="booking-option-content">
                         <div class="entire-chalet-card">
-                            <div class="chalet-images">
-                                <img src="assets/images/hotels/chalet_complet.jpg" alt="Chalet Alpin Complet">
+                            <div class="chalet-images gallery-container">
+                                <div class="main-chalet-image">
+                                    <img src="assets/images/chalet/chalet_complet.jpeg" alt="Chalet Alpin Complet" class="gallery-image" id="main-chalet-image">
+                                    <div class="image-counter">
+                                        <span id="current-chalet-image">1</span>/<span id="total-chalet-images">9</span>
+                                    </div>
+                                    <div class="navigation-arrows">
+                                        <div class="nav-arrow prev" id="prev-chalet-image">
+                                            <i class="fas fa-chevron-left"></i>
+                                        </div>
+                                        <div class="nav-arrow next" id="next-chalet-image">
+                                            <i class="fas fa-chevron-right"></i>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="chalet-thumbnails">
-                                    <img src="assets/images/hotels/chalet_salon.jpg" alt="Grand salon">
-                                    <img src="assets/images/hotels/chalet_cuisine.jpg" alt="Cuisine équipée">
-                                    <img src="assets/images/hotels/chalet_terrasse.jpg" alt="Terrasse panoramique">
+                                    <img src="assets/images/chalet/chalet_complet.jpeg" alt="Chalet Alpin Complet" class="gallery-image thumb active" data-index="0">
+                                    <img src="assets/images/chalet/salon_chalet_complet.jpeg" alt="Grand salon" class="gallery-image thumb" data-index="1">
+                                    <img src="assets/images/chalet/cuisine_chalet_complet.jpeg" alt="Cuisine équipée" class="gallery-image thumb" data-index="2">
+                                    <img src="assets/images/chalet/chambre_chalet_complet.jpeg" alt="Chambre" class="gallery-image thumb" data-index="3">
+                                    <img src="assets/images/chalet/chambre2_chalet_complet.jpeg" alt="Seconde chambre" class="gallery-image thumb" data-index="4">
+                                    <img src="assets/images/chalet/casier_chalet_complet.jpeg" alt="Casier à ski" class="gallery-image thumb" data-index="5">
+                                    <img src="assets/images/chalet/spa_chalet_complet.jpeg" alt="Sauna" class="gallery-image thumb" data-index="6">
+                                    <img src="assets/images/chalet/table_manger_chalet_complet.jpeg" alt="Table à manger" class="gallery-image thumb" data-index="7">
+                                    <img src="assets/images/chalet/terrasse_chalet_complet.jpeg" alt="Terrasse panoramique" class="gallery-image thumb" data-index="8">
                                 </div>
                             </div>
                             <div class="chalet-info">
@@ -531,59 +551,61 @@
                         <p class="booking-note">Vous ne serez pas débité aujourd'hui</p>
                     </form>
                 </div>
-                <!-- Ajouter la section flight-summary juste après -->
+                
+                <!-- Section vols -->
                 <div class="section flight-summary">
-    <h3>
-        <i class="fas fa-plane"></i>
-        Aéroports à proximité
-    </h3>
-    
-    <!-- Aéroport principal -->
-    <div class="airport-card main-airport">
-        <div class="airport-header">
-            <h4>Annecy Mont-Blanc (LFLP)</h4>
-            <div class="airport-badge">Principal</div>
-        </div>
-        <div class="airport-meta">
-            <div><i class="fas fa-road"></i> <span>45 km du chalet</span></div>
-            <div><i class="fas fa-car"></i> <span>50 min en voiture</span></div>
-            <div><i class="fas fa-shuttle-van"></i> <span>Navette disponible</span></div>
-        </div>
-        <a href="flight-tracker.html?airport=LFLP" class="btn btn-primary btn-sm btn-block">
-            <i class="fas fa-plane"></i> Voir les vols
-        </a>
-    </div>
-    
-    <!-- Aéroports alternatifs -->
-    <div class="alt-airports">
-        <h4>Autres aéroports</h4>
-        <div class="alt-airport-item">
-            <div class="alt-airport-info">
-                <div class="alt-airport-name">Genève (LSGG)</div>
-                <div class="alt-airport-distance"><i class="fas fa-road"></i> 88 km</div>
-            </div>
-            <a href="flight-tracker.html?airport=LSGG" class="alt-airport-link">
-                <i class="fas fa-plane"></i>
-            </a>
-        </div>
-        
-        <div class="alt-airport-item">
-            <div class="alt-airport-info">
-                <div class="alt-airport-name">Lyon Saint-Exupéry (LFLL)</div>
-                <div class="alt-airport-distance"><i class="fas fa-road"></i> 160 km</div>
-            </div>
-            <a href="flight-tracker.html?airport=LFLL" class="alt-airport-link">
-                <i class="fas fa-plane"></i>
-            </a>
-        </div>
-    </div>
-    
-    <div class="flight-tracker-link">
-        <a href="flight-tracker.html" class="btn btn-outline-secondary btn-sm btn-block">
-            <i class="fas fa-search"></i> Outil complet de suivi des vols
-        </a>
-    </div>
-</div>
+                    <h3>
+                        <i class="fas fa-plane"></i>
+                        Aéroports à proximité
+                    </h3>
+                    
+                    <!-- Aéroport principal -->
+                    <div class="airport-card main-airport">
+                        <div class="airport-header">
+                            <h4>Annecy Mont-Blanc (LFLP)</h4>
+                            <div class="airport-badge">Principal</div>
+                        </div>
+                        <div class="airport-meta">
+                            <div><i class="fas fa-road"></i> <span>45 km du chalet</span></div>
+                            <div><i class="fas fa-car"></i> <span>50 min en voiture</span></div>
+                            <div><i class="fas fa-shuttle-van"></i> <span>Navette disponible</span></div>
+                        </div>
+                        <a href="flight-tracker.html?airport=LFLP" class="btn btn-primary btn-sm btn-block">
+                            <i class="fas fa-plane"></i> Voir les vols
+                        </a>
+                    </div>
+                    
+                    <!-- Aéroports alternatifs -->
+                    <div class="alt-airports">
+                        <h4>Autres aéroports</h4>
+                        <div class="alt-airport-item">
+                            <div class="alt-airport-info">
+                                <div class="alt-airport-name">Genève (LSGG)</div>
+                                <div class="alt-airport-distance"><i class="fas fa-road"></i> 88 km</div>
+                            </div>
+                            <a href="flight-tracker.html?airport=LSGG" class="alt-airport-link">
+                                <i class="fas fa-plane"></i>
+                            </a>
+                        </div>
+                        
+                        <div class="alt-airport-item">
+                            <div class="alt-airport-info">
+                                <div class="alt-airport-name">Lyon Saint-Exupéry (LFLL)</div>
+                                <div class="alt-airport-distance"><i class="fas fa-road"></i> 160 km</div>
+                            </div>
+                            <a href="flight-tracker.html?airport=LFLL" class="alt-airport-link">
+                                <i class="fas fa-plane"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="flight-tracker-link">
+                        <a href="flight-tracker.html" class="btn btn-outline-secondary btn-sm btn-block">
+                            <i class="fas fa-search"></i> Outil complet de suivi des vols
+                        </a>
+                    </div>
+                </div>
+                
                 <div class="hotel-map">
                     <h3>Emplacement</h3>
                     <div class="map-container">
@@ -594,7 +616,6 @@
             </div>
         </div>
     </div>
-
 
     <footer class="modern-footer">
         <div class="footer-content">
@@ -644,9 +665,15 @@
         </div>
     </footer>
 
+    <!-- Scripts JavaScript -->
     <script src="js/script.js"></script>
     <script src="js/auth.js"></script>
     <script src="js/hotel-detail.js"></script>
+    <script src="js/lightbox.js"></script>
+    <script src="js/chalet-gallery.js"></script>
+    <script src="js/opensky-api.js"></script>
+    <script src="js/hotel-flights.js"></script>
+    
     <script>
         // Script pour gérer les onglets de réservation
         document.addEventListener('DOMContentLoaded', function() {
@@ -686,8 +713,5 @@
             });
         });
     </script>
-    <!-- Ajouter à la fin de chaque page de détail d'hôtel, avant </body> -->
-<script src="js/opensky-api.js"></script>
-<script src="js/hotel-flights.js"></script>
 </body>
 </html>
