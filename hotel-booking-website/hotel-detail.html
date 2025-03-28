@@ -104,6 +104,8 @@
         </div>
     </div>
 
+    <div id="hotel-info" data-hotel-id="paris" data-hotel-coordinates='{"lat": 48.8566, "lon": 2.3522, "name": "Paris"}' style="display:none;"></div>
+
     <div class="container">
         <div class="hotel-detail-wrapper">
             <div class="hotel-main">
@@ -524,5 +526,58 @@
 <script src="js/opensky-api.js"></script>
 <script src="js/hotel-flights.js"></script>
 <script src="js/hotel-weather.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Forcer les coordonnées spécifiques à cette page
+    let hotelCoordinates;
+    
+    // Déterminer l'hôtel actuel à partir de l'URL
+    if (window.location.href.includes('hotel-detail-mediterranee')) {
+        hotelCoordinates = { lat: 43.7102, lon: 7.2620, name: "Nice" };
+    } else if (window.location.href.includes('hotel-detail-alpin')) {
+        hotelCoordinates = { lat: 45.9237, lon: 6.8694, name: "Chamonix" };
+    } else if (window.location.href.includes('london')) {
+        hotelCoordinates = { lat: 51.5074, lon: -0.1278, name: "Londres" };
+    } else {
+        // Paris par défaut
+        hotelCoordinates = { lat: 48.8566, lon: 2.3522, name: "Paris" };
+    }
+    
+    console.log("Utilisation des coordonnées forcées:", hotelCoordinates);
+    
+    // Charger directement la météo pour ces coordonnées
+    fetch(`php/meteoblue-api.php?lat=${hotelCoordinates.lat}&lon=${hotelCoordinates.lon}`)
+        .then(response => response.json())
+        .then(data => {
+            console.log("Météo chargée avec succès:", data);
+            
+            const container = document.querySelector('.hotel-weather-container');
+            if (container) {
+                container.innerHTML = `
+                    <div class="section weather-section">
+                        <h2><i class="fas fa-cloud-sun"></i> Météo à ${hotelCoordinates.name}</h2>
+                        <div class="weather-content">
+                            <!-- Le reste du contenu météo ici -->
+                            <div class="weather-current">
+                                <div class="weather-header">
+                                    <div class="weather-icon">
+                                        <i class="fas fa-${data.current.icon}"></i>
+                                    </div>
+                                    <div class="weather-info">
+                                        <div class="weather-temp">${Math.round(data.current.temperature)}°C</div>
+                                        <div class="weather-desc">${data.current.description}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+        })
+        .catch(error => {
+            console.error("Erreur de chargement météo:", error);
+        });
+});
+</script>
 </body>
 </html>
