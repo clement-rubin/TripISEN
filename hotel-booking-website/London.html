@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="assets/images/logo.png">
+    <title>Royal Westminster | Trip'ISEN</title>
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/hotel-detail.css">
+    <link rel="stylesheet" href="css/lightbox.css">
+    <link rel="stylesheet" href="css/hotel-weather.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/hotel-flights.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="index.html">
+                    <span class="logo-text">Trip'<span class="logo-highlight">ISEN</span></span>
+                </a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html"><i class="fas fa-home"></i> Accueil</a></li>
+                <li class="active"><a href="hotels.html"><i class="fas fa-hotel"></i> Hôtels</a></li>
+                <li><a href="reservations.html"><i class="fas fa-calendar-check"></i> Réservations</a></li>
+                <li><a href="promotions.html"><i class="fas fa-percent"></i> Promotions</a></li>
+                <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+            </ul>
+            <div class="nav-actions">
+                <!-- Cette partie sera modifiée dynamiquement par JavaScript -->
+                <div id="guest-actions">
+                    <a href="login.html" class="login-btn"><i class="fas fa-user"></i> Connexion</a>
+                </div>
+                <div id="user-actions" style="display: none;">
+                    <div class="user-dropdown">
+                        <button class="user-dropdown-btn">
+                            <i class="fas fa-user-circle"></i> <span id="username">Utilisateur</span> <i class="fas fa-caret-down"></i>
+                        </button>
+                        <div class="user-dropdown-content">
+                            <a href="profile.html"><i class="fas fa-id-card"></i> Mon profil</a>
+                            <a href="my-reservations.html"><i class="fas fa-list"></i> Mes réservations</a>
+                            <a href="#" id="logout-btn"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="hero-detail">
+        <div class="hero-images">
+            <div class="main-image">
+                <img src="assets/images/london/london_exterior.jpg" alt="Royal Westminster" id="main-gallery-image">
+                <div class="zoom-icon" id="zoom-image">
+                    <i class="fas fa-search-plus"></i>
+                </div>
+                <div class="image-counter"><span id="current-image">1</span>/<span id="total-images">5</span></div>
+                <div class="navigation-arrows">
+                    <div class="nav-arrow prev" id="prev-image">
+                        <i class="fas fa-chevron-left"></i>
+                    </div>
+                    <div class="nav-arrow next" id="next-image">
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="thumbnail-container">
+                <div class="thumbnail-images">
+                    <img src="assets/images/london/london_exterior.jpg" alt="Royal Westminster - Vue extérieure" class="thumb active" data-src="assets/images/london/london_exterior.jpg" data-caption="Vue extérieure du Royal Westminster">
+                    <img src="assets/images/london/london_room.jpg" alt="Chambre du Royal Westminster" class="thumb" data-src="assets/images/london/london_room.jpg" data-caption="Chambre Premium avec vue sur la Tamise">
+                    <img src="assets/images/london/london_restaurant.jpg" alt="Restaurant du Royal Westminster" class="thumb" data-src="assets/images/london/london_restaurant.jpg" data-caption="Restaurant gastronomique 'The Royal Dining'">
+                    <img src="assets/images/london/london_spa.jpg" alt="Spa du Royal Westminster" class="thumb" data-src="assets/images/london/london_spa.jpg" data-caption="Espace bien-être et spa">
+                    <img src="assets/images/london/london_lounge.jpg" alt="Salon du Royal Westminster" class="thumb" data-src="assets/images/london/london_lounge.jpg" data-caption="Le salon anglais avec vue panoramique">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Lightbox pour les images en plein écran -->
+    <div class="lightbox" id="image-lightbox">
+        <div class="lightbox-content">
+            <img src="" alt="" class="lightbox-image" id="lightbox-img">
+            <div class="lightbox-caption" id="lightbox-caption"></div>
+            <div class="lightbox-nav">
+                <div class="lightbox-arrow" id="lightbox-prev">
+                    <i class="fas fa-chevron-left"></i>
+                </div>
+                <div class="lightbox-arrow" id="lightbox-next">
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+            </div>
+        </div>
+        <div class="lightbox-close" id="lightbox-close">
+            <i class="fas fa-times"></i>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="hotel-detail-wrapper">
+            <div class="hotel-main">
+                <div class="hotel-header">
+                    <div>
+                        <h1>Royal Westminster</h1>
+                        <div class="hotel-location">
+                            <i class="fas fa-map-marker-alt"></i> 28 Westminster Bridge Road, London SE1 7RW, Royaume-Uni
+                        </div>
+                        <div class="hotel-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span>(96 avis)</span>
+                        </div>
+                    </div>
+                    <div class="hotel-price-badge">
+                        <span class="current-price">260€</span>
+                        <span class="original-price">325€</span>
+                        <span class="discount-badge">-20%</span>
+                        <div class="price-per-night">par nuit</div>
+                    </div>
+                </div>
+
+                <div class="section description">
+                    <h2>À propos de l'hôtel</h2>
+                    <p>Situé au cœur de Londres, en face du célèbre Big Ben et du Palais de Westminster, le Royal Westminster offre une expérience britannique authentique dans un cadre luxueux et raffiné. Notre établissement 5 étoiles combine l'élégance anglaise traditionnelle avec des services modernes haut de gamme.</p>
+                    
+                    <p>L'hôtel dispose de 140 chambres et suites somptueuses, décorées dans un style britannique classique rehaussé de touches contemporaines. Chaque espace est conçu pour vous offrir un confort exceptionnel durant votre séjour dans la capitale anglaise.</p>
+                    
+                    <p>Profitez de notre restaurant étoilé "The Royal Dining", de notre salon de thé traditionnel anglais, de notre bar à cocktails créatifs et d'un spa d'inspiration romaine avec piscine intérieure. Notre emplacement privilégié vous permet d'accéder facilement à toutes les attractions londoniennes majeures comme Westminster Abbey, le London Eye et Buckingham Palace.</p>
+                </div>
+
+                <div class="section amenities">
+                    <h2>Équipements et services</h2>
+                    <div class="amenities-grid">
+                        <div class="amenity-item">
+                            <i class="fas fa-wifi"></i>
+                            <span>WiFi gratuit</span>
+                        </div>
+                        <div class="amenity-item">
+                            <i class="fas fa-swimming-pool"></i>
+                            <span>Piscine intérieure</span>
+                        </div>
+                        <div class="amenity-item">
+                            <i class="fas fa-spa"></i>
+                            <span>Spa & Bien-être</span>
+                        </div>
+                        <div class="amenity-item">
+                            <i class="fas fa-utensils"></i>
+                            <span>Restaurant étoilé</span>
+                        </div>
+                        <div class="amenity-item">
+                            <i class="fas fa-coffee"></i>
+                            <span>Salon de thé anglais</span>
+                        </div>
+                        <div class="amenity-item">
+                            <i class="fas fa-glass-martini-alt"></i>
+                            <span>Bar à cocktails</span>
+                        </div>
+                        <div class="amenity-item">
+                            <i class="fas fa-concierge-bell"></i>
+                            <span>Service de concierge</span>
+                        </div>
+                        <div class="amenity-item">
+                            <i class="fas fa-parking"></i>
+                            <span>Parking privé</span>
+                        </div>
+                        <div class="amenity-item">
+                            <i class="fas fa-dumbbell"></i>
+                            <span>Salle de fitness</span>
+                        </div>
+                        <div class="amenity-item">
+                            <i class="fas fa-business-time"></i>
+                            <span>Centre d'affaires</span>
+                        </div>
+                        <div class="amenity-item">
+                            <i class="fas fa-umbrella"></i>
+                            <span>Prêt de parapluies</span>
+                        </div>
+                        <div class="amenity-item">
+                            <i class="fas fa-baby"></i>
+                            <span>Service de garde d'enfants</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section rooms">
+                    <h2>Types de chambres</h2>
+                    <div class="rooms-grid">
+                        <div class="room-card">
+                            <img src="assets/images/london/london_classic.jpg" alt="Chambre Classic">
+                            <div class="room-info">
+                                <h3>Chambre Classic</h3>
+                                <p>Chambre élégante de 25m² avec lit queen-size, décoration traditionnelle anglaise et vue sur la ville.</p>
+                                <div class="room-features">
+                                    <span><i class="fas fa-user"></i> 2 personnes</span>
+                                    <span><i class="fas fa-bed"></i> 1 lit queen-size</span>
+                                    <span><i class="fas fa-arrows-alt-h"></i> 25m²</span>
+                                </div>
+                                <div class="room-price">
+                                    <span class="price">260€</span>
+                                    <span class="per-night">/ nuit</span>
+                                </div>
+                                <a href="reservation.html?hotel=london&room=classic" class="btn btn-primary">Réserver</a>
+                            </div>
+                        </div>
+                        <div class="room-card">
+                            <img src="assets/images/london/london_premium.jpg" alt="Chambre Premium">
+                            <div class="room-info">
+                                <h3>Chambre Premium</h3>
+                                <p>Chambre spacieuse de 35m² avec lit king-size, salon séparé et vue imprenable sur la Tamise et le Big Ben.</p>
+                                <div class="room-features">
+                                    <span><i class="fas fa-user"></i> 2 personnes</span>
+                                    <span><i class="fas fa-bed"></i> 1 lit king-size</span>
+                                    <span><i class="fas fa-arrows-alt-h"></i> 35m²</span>
+                                </div>
+                                <div class="room-price">
+                                    <span class="price">320€</span>
+                                    <span class="per-night">/ nuit</span>
+                                </div>
+                                <a href="reservation.html?hotel=london&room=premium" class="btn btn-primary">Réserver</a>
+                            </div>
+                        </div>
+                        <div class="room-card">
+                            <img src="assets/images/london/london_royal_suite.jpg" alt="Suite Royale">
+                            <div class="room-info">
+                                <h3>Suite Royale</h3>
+                                <p>Suite luxueuse de 60m² avec chambre séparée, salon élégant, salle à manger privée et balcon avec vue panoramique sur Londres.</p>
+                                <div class="room-features">
+                                    <span><i class="fas fa-user"></i> 4 personnes</span>
+                                    <span><i class="fas fa-bed"></i> 1 lit king-size + 1 canapé-lit</span>
+                                    <span><i class="fas fa-arrows-alt-h"></i> 60m²</span>
+                                </div>
+                                <div class="room-price">
+                                    <span class="price">480€</span>
+                                    <span class="per-night">/ nuit</span>
+                                </div>
+                                <a href="reservation.html?hotel=london&room=royal" class="btn btn-primary">Réserver</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section reviews">
+                    <h2>Avis des clients</h2>
+                    <div class="review-summary">
+                        <div class="review-score">
+                            <span class="score">4.7</span>
+                            <div class="score-text">
+                                <div class="score-stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <p>Basé sur 96 avis</p>
+                            </div>
+                        </div>
+                        <div class="review-categories">
+                            <div class="review-category">
+                                <span class="category-name">Propreté</span>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 96%"></div>
+                                </div>
+                                <span class="category-score">4.8</span>
+                            </div>
+                            <div class="review-category">
+                                <span class="category-name">Confort</span>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 94%"></div>
+                                </div>
+                                <span class="category-score">4.7</span>
+                            </div>
+                            <div class="review-category">
+                                <span class="category-name">Emplacement</span>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 98%"></div>
+                                </div>
+                                <span class="category-score">4.9</span>
+                            </div>
+                            <div class="review-category">
+                                <span class="category-name">Service</span>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 96%"></div>
+                                </div>
+                                <span class="category-score">4.8</span>
+                            </div>
+                            <div class="review-category">
+                                <span class="category-name">Rapport qualité-prix</span>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 88%"></div>
+                                </div>
+                                <span class="category-score">4.4</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="review-list">
+                        <div class="review-item">
+                            <div class="reviewer">
+                                <img src="https://randomuser.me/api/portraits/women/22.jpg" alt="Clara M.">
+                                <div>
+                                    <h4>Clara M.</h4>
+                                    <span class="review-date">Séjour en février 2023</span>
+                                </div>
+                            </div>
+                            <div class="review-content">
+                                <div class="review-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <p class="review-text">"Un hôtel exceptionnel avec un emplacement parfait ! Notre chambre Premium offrait une vue spectaculaire sur la Tamise et le Big Ben. Le service était impeccable et le petit-déjeuner anglais était délicieux. Le salon de thé de l'après-midi est une expérience à ne pas manquer. Je recommande vivement cet établissement pour un séjour à Londres."</p>
+                            </div>
+                        </div>
+                        <div class="review-item">
+                            <div class="reviewer">
+                                <img src="https://randomuser.me/api/portraits/men/56.jpg" alt="Alexandre D.">
+                                <div>
+                                    <h4>Alexandre D.</h4>
+                                    <span class="review-date">Séjour en janvier 2023</span>
+                                </div>
+                            </div>
+                            <div class="review-content">
+                                <div class="review-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <p class="review-text">"Séjour business parfait au Royal Westminster. La chambre était spacieuse et bien équipée, le WiFi rapide et le centre d'affaires très pratique pour mes réunions. J'ai particulièrement apprécié le bar à cocktails en fin de journée et le service de conciergerie qui a su répondre à toutes mes demandes. Le seul bémol est le prix du parking, un peu élevé même pour Londres."</p>
+                            </div>
+                        </div>
+                        <div class="review-item">
+                            <div class="reviewer">
+                                <img src="https://randomuser.me/api/portraits/women/89.jpg" alt="Isabelle L.">
+                                <div>
+                                    <h4>Isabelle L.</h4>
+                                    <span class="review-date">Séjour en décembre 2022</span>
+                                </div>
+                            </div>
+                            <div class="review-content">
+                                <div class="review-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </div>
+                                <p class="review-text">"Notre séjour au Royal Westminster pour les fêtes de fin d'année était presque parfait. Les décorations de Noël étaient magnifiques et l'ambiance très chaleureuse. La Suite Royale était somptueuse avec une vue imprenable sur le feu d'artifice du Nouvel An. Le restaurant étoilé propose une cuisine excellente, mais les prix sont très élevés, même pour ce niveau de qualité. Le spa est un vrai havre de paix après une journée de shopping."</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="view-more-reviews">
+                        <a href="#" class="btn btn-secondary">Voir tous les avis</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hotel-sidebar">
+                <div class="booking-form">
+                    <h3>Réserver votre séjour</h3>
+                    <form>
+                        <div class="form-group">
+                            <label for="check-in">Arrivée</label>
+                            <input type="date" id="check-in" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="check-out">Départ</label>
+                            <input type="date" id="check-out" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="guests">Voyageurs</label>
+                            <div class="guests-select">
+                                <select id="guests">
+                                    <option value="1">1 adulte</option>
+                                    <option value="2" selected>2 adultes</option>
+                                    <option value="3">3 adultes</option>
+                                    <option value="4">4 adultes</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="room-type">Type de chambre</label>
+                            <select id="room-type">
+                                <option value="classic">Chambre Classic</option>
+                                <option value="premium">Chambre Premium</option>
+                                <option value="royal">Suite Royale</option>
+                            </select>
+                        </div>
+                        <div class="price-summary">
+                            <div class="price-row">
+                                <span>260€ x 3 nuits</span>
+                                <span>780€</span>
+                            </div>
+                            <div class="price-row">
+                                <span>Réduction</span>
+                                <span>-156€</span>
+                            </div>
+                            <div class="price-row total">
+                                <span>Total</span>
+                                <span>624€</span>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Réserver maintenant</button>
+                        <p class="booking-note">Vous ne serez pas débité aujourd'hui</p>
+                    </form>
+                </div>
+                
+                <div class="section flight-summary">
+                    <h2>
+                        <i class="fas fa-plane"></i>
+                        Aéroports à proximité
+                    </h2>
+                    
+                    <div class="airports-cards">
+                        <div class="airport-card" data-code="EGLL">
+                            <div class="airport-info">
+                                <h3>London Heathrow</h3>
+                                <div class="airport-meta">
+                                    <span><i class="fas fa-road"></i> 28 km</span>
+                                    <span class="flight-count"><i class="fas fa-plane-departure"></i> 32 vols aujourd'hui</span>
+                                </div>
+                            </div>
+                            <a href="flight-tracker.html?airport=EGLL" class="track-flights-btn">
+                                <span>Suivre les vols</span>
+                                <i class="fas fa-chevron-right"></i>
+                            </a>
+                        </div>
+                        
+                        <div class="airport-card" data-code="EGKK">
+                            <div class="airport-info">
+                                <h3>London Gatwick</h3>
+                                <div class="airport-meta">
+                                    <span><i class="fas fa-road"></i> 45 km</span>
+                                    <span class="flight-count"><i class="fas fa-plane-departure"></i> 28 vols aujourd'hui</span>
+                                </div>
+                            </div>
+                            <a href="flight-tracker.html?airport=EGKK" class="track-flights-btn">
+                                <span>Suivre les vols</span>
+                                <i class="fas fa-chevron-right"></i>
+                            </a>
+                        </div>
+                        
+                        <div class="airport-card" data-code="EGLC">
+                            <div class="airport-info">
+                                <h3>London City Airport</h3>
+                                <div class="airport-meta">
+                                    <span><i class="fas fa-road"></i> 12 km</span>
+                                    <span class="flight-count"><i class="fas fa-plane-departure"></i> 16 vols aujourd'hui</span>
+                                </div>
+                            </div>
+                            <a href="flight-tracker.html?airport=EGLC" class="track-flights-btn">
+                                <span>Suivre les vols</span>
+                                <i class="fas fa-chevron-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section weather-summary">
+                    <h2>
+                        <i class="fas fa-cloud-sun"></i>
+                        Météo à Londres
+                    </h2>
+                    
+                    <div class="weather-container">
+                        <div class="current-weather">
+                            <div class="weather-icon">
+                                <i class="fas fa-cloud-rain"></i>
+                            </div>
+                            <div class="weather-info">
+                                <div class="temperature">
+                                    <span class="temp-value">12</span>
+                                    <span class="temp-unit">°C</span>
+                                </div>
+                                <div class="weather-description">Averses légères</div>
+                            </div>
+                        </div>
+                        
+                        <div class="weather-details">
+                            <div class="weather-detail">
+                                <i class="fas fa-tint"></i>
+                                <span>Humidité: 76%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hotel-map">
+                    <h3>Emplacement</h3>
+                    <div class="map-container">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2483.680508907124!2d-0.12209492342158377!3d51.50058087181143!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487604c40d8a4c3d%3A0xc661e70cff71a399!2sWestminster%20Bridge%20Rd%2C%20London%2C%20UK!5e0!3m2!1sen!2sfr!4v1711481286772!5m2!1sen!2sfr" width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                    <p class="map-info"><i class="fas fa-map-marker-alt"></i> 28 Westminster Bridge Road, London SE1 7RW, Royaume-Uni</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="modern-footer">
+        <div class="footer-content">
+            <div class="footer-main">
+                <div class="footer-section footer-about">
+                    <h3>Trip'ISEN</h3>
+                    <p>Votre partenaire pour des séjours inoubliables partout dans le monde. Nous vous aidons à trouver l'hébergement parfait depuis plus de 10 ans.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section footer-links">
+                    <h3>Liens utiles</h3>
+                    <ul>
+                        <li><a href="hotels.html">Hôtels</a></li>
+                        <li><a href="reservations.html">Réservations</a></li>
+                        <li><a href="promotions.html">Promotions</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section footer-contact">
+                    <h3>Contactez-nous</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Rue de Paris, 75000 Paris</p>
+                    <p><i class="fas fa-phone"></i> +33 1 23 45 67 89</p>
+                    <p><i class="fas fa-envelope"></i> contact@tripisen.fr</p>
+                </div>
+                <div class="footer-section footer-newsletter">
+                    <h3>Newsletter</h3>
+                    <p>Inscrivez-vous pour recevoir nos offres exclusives</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Votre email">
+                        <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Trip'ISEN. Tous droits réservés.</p>
+                <div class="footer-bottom-links">
+                    <a href="#">Mentions légales</a>
+                    <a href="#">Politique de confidentialité</a>
+                    <a href="#">CGU</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/hotel-detail.js"></script>
+    <script src="js/lightbox.js"></script>
+    <!-- Scripts pour les fonctionnalités de vols et météo -->
+    <script src="js/opensky-api.js"></script>
+    <script src="js/hotel-flights.js"></script>
+    <script src="js/hotel-weather.js"></script>
+</body>
+</html>
