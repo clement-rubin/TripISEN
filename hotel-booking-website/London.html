@@ -4,10 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="assets/images/logo.png">
-    <title>Resort Méditerranée | Trip'ISEN</title>
+    <title>Royal Westminster | Trip'ISEN</title>
     <link rel="stylesheet" href="css/variables.css">
     <link rel="stylesheet" href="css/common.css">
     <link rel="stylesheet" href="css/hotel-detail.css">
+    <link rel="stylesheet" href="css/lightbox.css">
+    <link rel="stylesheet" href="css/hotel-weather.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/hotel-flights.css">
@@ -39,7 +41,7 @@
                         </button>
                         <div class="user-dropdown-content">
                             <a href="profile.html"><i class="fas fa-id-card"></i> Mon profil</a>
-                            <a href="reservations.html"><i class="fas fa-list"></i> Mes réservations</a>
+                            <a href="my-reservations.html"><i class="fas fa-list"></i> Mes réservations</a>
                             <a href="#" id="logout-btn"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
                         </div>
                     </div>
@@ -56,7 +58,7 @@
     <div class="hero-detail">
         <div class="hero-images">
             <div class="main-image">
-                <img src="assets/images/nice/nice_ext.jpg" alt="Resort Méditerranée" id="main-gallery-image">
+                <img src="assets/images/london/london_exterior.jpg" alt="Royal Westminster" id="main-gallery-image">
                 <div class="zoom-icon" id="zoom-image">
                     <i class="fas fa-search-plus"></i>
                 </div>
@@ -72,18 +74,19 @@
             </div>
             <div class="thumbnail-container">
                 <div class="thumbnail-images">
-                    <img src="assets/images/nice/nice_ext.jpg" alt="Resort Méditerranée - Vue extérieure" class="thumb active" data-src="assets/images/nice/nice_ext.jpg" data-caption="Vue extérieure du Resort Méditerranée">
-                    <img src="assets/images/nice/chambre_nice.avif" alt="Chambre du Resort Méditerranée" class="thumb" data-src="assets/images/nice/chambre_nice.avif" data-caption="Chambre Deluxe avec vue sur mer">
-                    <img src="assets/images/nice/piscine_nice.jpg" alt="Piscine du Resort Méditerranée" class="thumb" data-src="assets/images/nice/piscine_nice.jpg" data-caption="Piscine">
-                    <img src="assets/images/nice/plage_nice.jpg" alt="Plage privée du Resort Méditerranée" class="thumb" data-src="assets/images/nice/plage_nice.jpg" data-caption="Plage privée avec transats" style="object-fit: cover; object-position: center;">
-                    <img src="assets/images/nice/resto_nice.webp" alt="Restaurant du Resort Méditerranée" class="thumb" data-src="assets/images/nice/resto_nice.webp" data-caption="Restaurant 'La Terrasse' face à la mer" style="object-fit: cover; object-position: center;">
-                    <img src="assets/images/nice/hall_nice.jpg" alt="Hall du Resort Méditerranée" class="thumb" data-src="assets/images/nice/hall_nice.jpg" data-caption="Hall" style="object-fit: cover; object-position: center;">
-                    <img src="assets/images/nice/spa_nice.jpg" alt="Spa du Resort Méditerranée" class="thumb" data-src="assets/images/nice/spa_nice.jpg" data-caption="Spa" style="object-fit: cover; object-position: center;">
+                    <img src="assets/images/london/london_exterior.jpg" alt="Royal Westminster - Vue extérieure" class="thumb active" data-src="assets/images/london/london_exterior.jpg" data-caption="Vue extérieure du Royal Westminster">
+                    <img src="assets/images/london/london_room.jpg" alt="Chambre du Royal Westminster" class="thumb" data-src="assets/images/london/london_room.jpg" data-caption="Chambre Premium avec vue sur la Tamise">
+                    <img src="assets/images/london/london_restaurant.jpg" alt="Restaurant du Royal Westminster" class="thumb" data-src="assets/images/london/london_restaurant.jpg" data-caption="Restaurant gastronomique 'The Royal Dining'">
+                    <img src="assets/images/london/london_spa.jpg" alt="Spa du Royal Westminster" class="thumb" data-src="assets/images/london/london_spa.jpg" data-caption="Espace bien-être et spa">
+                    <img src="assets/images/london/london_lounge.jpg" alt="Salon du Royal Westminster" class="thumb" data-src="assets/images/london/london_lounge.jpg" data-caption="Le salon anglais avec vue panoramique">
                 </div>
             </div>
         </div>
     </div>
     
+    <!-- Pour London.html -->
+    <div id="hotel-info" data-hotel-id="london" data-hotel-coordinates='{"lat": 51.5074, "lon": -0.1278, "name": "Londres"}' style="display:none;"></div>
+
     <!-- Lightbox pour les images en plein écran -->
     <div class="lightbox" id="image-lightbox">
         <div class="lightbox-content">
@@ -108,32 +111,34 @@
             <div class="hotel-main">
                 <div class="hotel-header">
                     <div>
-                        <h1>Resort Méditerranée</h1>
+                        <h1>Royal Westminster</h1>
                         <div class="hotel-location">
-                            <i class="fas fa-map-marker-alt"></i> 23 Promenade des Anglais, 06000 Nice, France
+                            <i class="fas fa-map-marker-alt"></i> 28 Westminster Bridge Road, London SE1 7RW, Royaume-Uni
                         </div>
                         <div class="hotel-rating">
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
-                            <i class="far fa-star"></i>
-                            <span>(87 avis)</span>
+                            <i class="fas fa-star"></i>
+                            <span>(96 avis)</span>
                         </div>
                     </div>
                     <div class="hotel-price-badge">
-                        <span class="current-price">210€</span>
+                        <span class="current-price">260€</span>
+                        <span class="original-price">325€</span>
+                        <span class="discount-badge">-20%</span>
                         <div class="price-per-night">par nuit</div>
                     </div>
                 </div>
 
                 <div class="section description">
-                    <h2>À propos du resort</h2>
-                    <p>Niché sur la magnifique Promenade des Anglais à Nice, le Resort Méditerranée vous offre une expérience balnéaire de luxe sur la Côte d'Azur. Notre établissement 4 étoiles combine à merveille l'élégance méditerranéenne et le confort moderne pour vous garantir un séjour inoubliable face à la mer.</p>
+                    <h2>À propos de l'hôtel</h2>
+                    <p>Situé au cœur de Londres, en face du célèbre Big Ben et du Palais de Westminster, le Royal Westminster offre une expérience britannique authentique dans un cadre luxueux et raffiné. Notre établissement 5 étoiles combine l'élégance anglaise traditionnelle avec des services modernes haut de gamme.</p>
                     
-                    <p>Le resort dispose de 95 chambres et suites lumineuses, toutes aménagées dans un style contemporain aux accents méditerranéens. La plupart offrent une vue imprenable sur la baie des Anges, et certaines sont dotées de terrasses privatives où vous pourrez savourer le lever du soleil sur la mer.</p>
+                    <p>L'hôtel dispose de 140 chambres et suites somptueuses, décorées dans un style britannique classique rehaussé de touches contemporaines. Chaque espace est conçu pour vous offrir un confort exceptionnel durant votre séjour dans la capitale anglaise.</p>
                     
-                    <p>Profitez de notre plage privée, de notre piscine à débordement, de notre spa avec soins à base de produits marins, et de notre restaurant "La Terrasse" qui propose une cuisine méditerranéenne raffinée à base de produits locaux et de poissons fraîchement pêchés. Notre emplacement privilégié vous permet d'accéder facilement au Vieux-Nice, au marché aux fleurs et à toutes les attractions de la région.</p>
+                    <p>Profitez de notre restaurant étoilé "The Royal Dining", de notre salon de thé traditionnel anglais, de notre bar à cocktails créatifs et d'un spa d'inspiration romaine avec piscine intérieure. Notre emplacement privilégié vous permet d'accéder facilement à toutes les attractions londoniennes majeures comme Westminster Abbey, le London Eye et Buckingham Palace.</p>
                 </div>
 
                 <div class="section amenities">
@@ -145,47 +150,47 @@
                         </div>
                         <div class="amenity-item">
                             <i class="fas fa-swimming-pool"></i>
-                            <span>Piscine</span>
-                        </div>
-                        <div class="amenity-item">
-                            <i class="fas fa-umbrella-beach"></i>
-                            <span>Plage privée</span>
-                        </div>
-                        <div class="amenity-item">
-                            <i class="fas fa-utensils"></i>
-                            <span>Restaurant en bord de mer</span>
-                        </div>
-                        <div class="amenity-item">
-                            <i class="fas fa-cocktail"></i>
-                            <span>Bar de plage</span>
+                            <span>Piscine intérieure</span>
                         </div>
                         <div class="amenity-item">
                             <i class="fas fa-spa"></i>
-                            <span>Spa & Thalassothérapie</span>
+                            <span>Spa & Bien-être</span>
+                        </div>
+                        <div class="amenity-item">
+                            <i class="fas fa-utensils"></i>
+                            <span>Restaurant étoilé</span>
+                        </div>
+                        <div class="amenity-item">
+                            <i class="fas fa-coffee"></i>
+                            <span>Salon de thé anglais</span>
+                        </div>
+                        <div class="amenity-item">
+                            <i class="fas fa-glass-martini-alt"></i>
+                            <span>Bar à cocktails</span>
                         </div>
                         <div class="amenity-item">
                             <i class="fas fa-concierge-bell"></i>
-                            <span>Service en chambre</span>
+                            <span>Service de concierge</span>
                         </div>
                         <div class="amenity-item">
                             <i class="fas fa-parking"></i>
                             <span>Parking privé</span>
                         </div>
                         <div class="amenity-item">
-                            <i class="fas fa-water"></i>
-                            <span>Sports nautiques</span>
+                            <i class="fas fa-dumbbell"></i>
+                            <span>Salle de fitness</span>
                         </div>
                         <div class="amenity-item">
-                            <i class="fas fa-sun"></i>
-                            <span>Terrasse solarium</span>
+                            <i class="fas fa-business-time"></i>
+                            <span>Centre d'affaires</span>
                         </div>
                         <div class="amenity-item">
-                            <i class="fas fa-bicycle"></i>
-                            <span>Location de vélos</span>
+                            <i class="fas fa-umbrella"></i>
+                            <span>Prêt de parapluies</span>
                         </div>
                         <div class="amenity-item">
-                            <i class="fas fa-shuttle-van"></i>
-                            <span>Navette aéroport</span>
+                            <i class="fas fa-baby"></i>
+                            <span>Service de garde d'enfants</span>
                         </div>
                     </div>
                 </div>
@@ -194,54 +199,54 @@
                     <h2>Types de chambres</h2>
                     <div class="rooms-grid">
                         <div class="room-card">
-                            <img src="assets/images/nice/chambre_vue_ville.jpg" alt="Chambre Vue Ville">
+                            <img src="assets/images/london/london_classic.jpg" alt="Chambre Classic">
                             <div class="room-info">
-                                <h3>Chambre Vue Ville</h3>
-                                <p>Chambre confortable de 25m² avec lit queen-size, balcon privé et vue sur la ville de Nice.</p>
+                                <h3>Chambre Classic</h3>
+                                <p>Chambre élégante de 25m² avec lit queen-size, décoration traditionnelle anglaise et vue sur la ville.</p>
                                 <div class="room-features">
                                     <span><i class="fas fa-user"></i> 2 personnes</span>
                                     <span><i class="fas fa-bed"></i> 1 lit queen-size</span>
                                     <span><i class="fas fa-arrows-alt-h"></i> 25m²</span>
                                 </div>
                                 <div class="room-price">
-                                    <span class="price">210€</span>
+                                    <span class="price">260€</span>
                                     <span class="per-night">/ nuit</span>
                                 </div>
-                                <a href="reservation.html?hotel=mediterranee&room=ville" class="btn btn-primary">Réserver</a>
+                                <a href="reservation.html?hotel=london&room=classic" class="btn btn-primary">Réserver</a>
                             </div>
                         </div>
                         <div class="room-card">
-                            <img src="assets/images/nice/chambre_vue_mer.webp" alt="Chambre Vue Mer">
+                            <img src="assets/images/london/london_premium.jpg" alt="Chambre Premium">
                             <div class="room-info">
-                                <h3>Chambre Vue Mer</h3>
-                                <p>Chambre spacieuse de 30m² avec lit king-size et balcon offrant une vue imprenable sur la Méditerranée.</p>
+                                <h3>Chambre Premium</h3>
+                                <p>Chambre spacieuse de 35m² avec lit king-size, salon séparé et vue imprenable sur la Tamise et le Big Ben.</p>
                                 <div class="room-features">
                                     <span><i class="fas fa-user"></i> 2 personnes</span>
                                     <span><i class="fas fa-bed"></i> 1 lit king-size</span>
-                                    <span><i class="fas fa-arrows-alt-h"></i> 30m²</span>
+                                    <span><i class="fas fa-arrows-alt-h"></i> 35m²</span>
                                 </div>
                                 <div class="room-price">
-                                    <span class="price">280€</span>
+                                    <span class="price">320€</span>
                                     <span class="per-night">/ nuit</span>
                                 </div>
-                                <a href="reservation.html?hotel=mediterranee&room=mer" class="btn btn-primary">Réserver</a>
+                                <a href="reservation.html?hotel=london&room=premium" class="btn btn-primary">Réserver</a>
                             </div>
                         </div>
                         <div class="room-card">
-                            <img src="assets/images/nice/suite_nice.webp" alt="Suite Méditerranée">
+                            <img src="assets/images/london/london_royal_suite.jpg" alt="Suite Royale">
                             <div class="room-info">
-                                <h3>Suite Méditerranée</h3>
-                                <p>Suite luxueuse de 60m² avec salon séparé, grande terrasse privative et jacuzzi extérieur face à la mer.</p>
+                                <h3>Suite Royale</h3>
+                                <p>Suite luxueuse de 60m² avec chambre séparée, salon élégant, salle à manger privée et balcon avec vue panoramique sur Londres.</p>
                                 <div class="room-features">
                                     <span><i class="fas fa-user"></i> 4 personnes</span>
                                     <span><i class="fas fa-bed"></i> 1 lit king-size + 1 canapé-lit</span>
                                     <span><i class="fas fa-arrows-alt-h"></i> 60m²</span>
                                 </div>
                                 <div class="room-price">
-                                    <span class="price">450€</span>
+                                    <span class="price">480€</span>
                                     <span class="per-night">/ nuit</span>
                                 </div>
-                                <a href="reservation.html?hotel=mediterranee&room=suite" class="btn btn-primary">Réserver</a>
+                                <a href="reservation.html?hotel=london&room=royal" class="btn btn-primary">Réserver</a>
                             </div>
                         </div>
                     </div>
@@ -251,53 +256,53 @@
                     <h2>Avis des clients</h2>
                     <div class="review-summary">
                         <div class="review-score">
-                            <span class="score">4.0</span>
+                            <span class="score">4.7</span>
                             <div class="score-text">
                                 <div class="score-stars">
                                     <i class="fas fa-star"></i>
                                     <i class="fas fa-star"></i>
                                     <i class="fas fa-star"></i>
                                     <i class="fas fa-star"></i>
-                                    <i class="far fa-star"></i>
+                                    <i class="fas fa-star"></i>
                                 </div>
-                                <p>Basé sur 87 avis</p>
+                                <p>Basé sur 96 avis</p>
                             </div>
                         </div>
                         <div class="review-categories">
                             <div class="review-category">
                                 <span class="category-name">Propreté</span>
                                 <div class="progress-bar">
-                                    <div class="progress" style="width: 90%"></div>
+                                    <div class="progress" style="width: 96%"></div>
                                 </div>
-                                <span class="category-score">4.5</span>
+                                <span class="category-score">4.8</span>
                             </div>
                             <div class="review-category">
                                 <span class="category-name">Confort</span>
                                 <div class="progress-bar">
-                                    <div class="progress" style="width: 80%"></div>
+                                    <div class="progress" style="width: 94%"></div>
                                 </div>
-                                <span class="category-score">4.0</span>
+                                <span class="category-score">4.7</span>
                             </div>
                             <div class="review-category">
                                 <span class="category-name">Emplacement</span>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 98%"></div>
+                                </div>
+                                <span class="category-score">4.9</span>
+                            </div>
+                            <div class="review-category">
+                                <span class="category-name">Service</span>
                                 <div class="progress-bar">
                                     <div class="progress" style="width: 96%"></div>
                                 </div>
                                 <span class="category-score">4.8</span>
                             </div>
                             <div class="review-category">
-                                <span class="category-name">Service</span>
-                                <div class="progress-bar">
-                                    <div class="progress" style="width: 78%"></div>
-                                </div>
-                                <span class="category-score">3.9</span>
-                            </div>
-                            <div class="review-category">
                                 <span class="category-name">Rapport qualité-prix</span>
                                 <div class="progress-bar">
-                                    <div class="progress" style="width: 76%"></div>
+                                    <div class="progress" style="width: 88%"></div>
                                 </div>
-                                <span class="category-score">3.8</span>
+                                <span class="category-score">4.4</span>
                             </div>
                         </div>
                     </div>
@@ -305,10 +310,10 @@
                     <div class="review-list">
                         <div class="review-item">
                             <div class="reviewer">
-                                <img src="https://randomuser.me/api/portraits/men/54.jpg" alt="Pierre M.">
+                                <img src="https://randomuser.me/api/portraits/women/22.jpg" alt="Clara M.">
                                 <div>
-                                    <h4>Pierre M.</h4>
-                                    <span class="review-date">Séjour en juillet 2023</span>
+                                    <h4>Clara M.</h4>
+                                    <span class="review-date">Séjour en février 2023</span>
                                 </div>
                             </div>
                             <div class="review-content">
@@ -319,15 +324,15 @@
                                     <i class="fas fa-star"></i>
                                     <i class="fas fa-star"></i>
                                 </div>
-                                <p class="review-text">"Séjour exceptionnel ! La vue sur la mer depuis notre chambre était à couper le souffle. La plage privée est un vrai plus et le restaurant propose des plats délicieux. Le personnel est aux petits soins. Nous reviendrons sans hésiter pour nos prochaines vacances."</p>
+                                <p class="review-text">"Un hôtel exceptionnel avec un emplacement parfait ! Notre chambre Premium offrait une vue spectaculaire sur la Tamise et le Big Ben. Le service était impeccable et le petit-déjeuner anglais était délicieux. Le salon de thé de l'après-midi est une expérience à ne pas manquer. Je recommande vivement cet établissement pour un séjour à Londres."</p>
                             </div>
                         </div>
                         <div class="review-item">
                             <div class="reviewer">
-                                <img src="https://randomuser.me/api/portraits/women/28.jpg" alt="Léa S.">
+                                <img src="https://randomuser.me/api/portraits/men/56.jpg" alt="Alexandre D.">
                                 <div>
-                                    <h4>Léa S.</h4>
-                                    <span class="review-date">Séjour en juin 2023</span>
+                                    <h4>Alexandre D.</h4>
+                                    <span class="review-date">Séjour en janvier 2023</span>
                                 </div>
                             </div>
                             <div class="review-content">
@@ -335,18 +340,18 @@
                                     <i class="fas fa-star"></i>
                                     <i class="fas fa-star"></i>
                                     <i class="fas fa-star"></i>
-                                    <i class="fas fa-star-half-alt"></i>
-                                    <i class="far fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
                                 </div>
-                                <p class="review-text">"Bel établissement idéalement situé sur la Promenade des Anglais. Les chambres sont confortables mais un peu petites pour le prix. Le petit-déjeuner face à la mer est un moment magique et la piscine à débordement est splendide. Points négatifs : les prix élevés au bar et le spa souvent complet."</p>
+                                <p class="review-text">"Séjour business parfait au Royal Westminster. La chambre était spacieuse et bien équipée, le WiFi rapide et le centre d'affaires très pratique pour mes réunions. J'ai particulièrement apprécié le bar à cocktails en fin de journée et le service de conciergerie qui a su répondre à toutes mes demandes. Le seul bémol est le prix du parking, un peu élevé même pour Londres."</p>
                             </div>
                         </div>
                         <div class="review-item">
                             <div class="reviewer">
-                                <img src="https://randomuser.me/api/portraits/men/22.jpg" alt="Marc D.">
+                                <img src="https://randomuser.me/api/portraits/women/89.jpg" alt="Isabelle L.">
                                 <div>
-                                    <h4>Marc D.</h4>
-                                    <span class="review-date">Séjour en mai 2023</span>
+                                    <h4>Isabelle L.</h4>
+                                    <span class="review-date">Séjour en décembre 2022</span>
                                 </div>
                             </div>
                             <div class="review-content">
@@ -357,7 +362,7 @@
                                     <i class="fas fa-star"></i>
                                     <i class="far fa-star"></i>
                                 </div>
-                                <p class="review-text">"Un resort de qualité avec un personnel attentionné. Notre suite avec jacuzzi privé était parfaite pour notre lune de miel. La plage privée est bien entretenue et les activités nautiques sont un vrai plus. Le restaurant propose une cuisine raffinée mais les portions sont un peu justes. Dans l'ensemble, une très belle expérience."</p>
+                                <p class="review-text">"Notre séjour au Royal Westminster pour les fêtes de fin d'année était presque parfait. Les décorations de Noël étaient magnifiques et l'ambiance très chaleureuse. La Suite Royale était somptueuse avec une vue imprenable sur le feu d'artifice du Nouvel An. Le restaurant étoilé propose une cuisine excellente, mais les prix sont très élevés, même pour ce niveau de qualité. Le spa est un vrai havre de paix après une journée de shopping."</p>
                             </div>
                         </div>
                     </div>
@@ -393,19 +398,23 @@
                         <div class="form-group">
                             <label for="room-type">Type de chambre</label>
                             <select id="room-type">
-                                <option value="ville">Chambre Vue Ville</option>
-                                <option value="mer">Chambre Vue Mer</option>
-                                <option value="suite">Suite Méditerranée</option>
+                                <option value="classic">Chambre Classic</option>
+                                <option value="premium">Chambre Premium</option>
+                                <option value="royal">Suite Royale</option>
                             </select>
                         </div>
                         <div class="price-summary">
                             <div class="price-row">
-                                <span>210€ x 4 nuits</span>
-                                <span>840€</span>
+                                <span>260€ x 3 nuits</span>
+                                <span>780€</span>
+                            </div>
+                            <div class="price-row">
+                                <span>Réduction</span>
+                                <span>-156€</span>
                             </div>
                             <div class="price-row total">
                                 <span>Total</span>
-                                <span>840€</span>
+                                <span>624€</span>
                             </div>
                         </div>
                         <button type="submit" class="btn btn-primary btn-block">Réserver maintenant</button>
@@ -413,139 +422,96 @@
                     </form>
                 </div>
                 
-                <div class="section nearby-flights">
-                    <h2>Vols à proximité</h2>
-                    <div class="flights-info">
-                        <div class="airport-selection">
-                            <div class="airport-header">
-                                <i class="fas fa-plane-departure"></i>
-                                <h3>Aéroport à proximité</h3>
-                            </div>
-                            <div class="airports-list">
-                                <div class="airport-item" data-code="LFMN">
-                                    <div class="airport-item-header">
-                                        <div class="airport-name">Nice Côte d'Azur</div>
-                                        <div class="airport-distance"><i class="fas fa-road"></i> 6 km</div>
-                                    </div>
-                                    <button class="btn btn-outline view-flights-btn" data-airport="LFMN">
-                                        <i class="fas fa-eye"></i> Voir les vols
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                        <div id="flights-preview" class="flights-preview">
-                            <!-- Même contenu que pour hotel-detail.html -->
-                        </div>
-                    </div>
-                </div>
-
                 <div class="section flight-summary">
                     <h2>
                         <i class="fas fa-plane"></i>
                         Aéroports à proximité
                     </h2>
                     
-                    <div class="airport-cards">
-                        <!-- Aéroport principal -->
-                        <div class="airport-card main-airport">
-                            <div class="airport-header">
-                                <h3>Nice Côte d'Azur (LFMN)</h3>
-                                <span class="distance">7 km de l'hôtel</span>
-                            </div>
+                    <div class="airports-cards">
+                        <div class="airport-card" data-code="EGLL">
                             <div class="airport-info">
-                                <div class="info-item">
-                                    <i class="fas fa-plane-arrival"></i>
-                                    <span>Aéroport international</span>
-                                </div>
-                                <div class="info-item">
-                                    <i class="fas fa-car"></i>
-                                    <span>15 min en voiture</span>
-                                </div>
-                                <div class="info-item">
-                                    <i class="fas fa-bus"></i>
-                                    <span>Navette disponible</span>
+                                <h3>London Heathrow</h3>
+                                <div class="airport-meta">
+                                    <span><i class="fas fa-road"></i> 28 km</span>
+                                    <span class="flight-count"><i class="fas fa-plane-departure"></i> 32 vols aujourd'hui</span>
                                 </div>
                             </div>
-                            <div class="airport-actions">
-                                <a href="flight-tracker.html?airport=LFMN" class="btn btn-primary">
-                                    <i class="fas fa-plane"></i> Voir les vols
-                                </a>
-                            </div>
+                            <a href="flight-tracker.html?airport=EGLL" class="track-flights-btn">
+                                <span>Suivre les vols</span>
+                                <i class="fas fa-chevron-right"></i>
+                            </a>
                         </div>
                         
-                        <!-- Aéroports secondaires -->
-                        <div class="airport-card">
-                            <div class="airport-header">
-                                <h3>Cannes Mandelieu (LFMD)</h3>
-                                <span class="distance">30 km de l'hôtel</span>
-                            </div>
+                        <div class="airport-card" data-code="EGKK">
                             <div class="airport-info">
-                                <div class="info-item">
-                                    <i class="fas fa-plane"></i>
-                                    <span>Aéroport d'affaires</span>
-                                </div>
-                                <div class="info-item">
-                                    <i class="fas fa-car"></i>
-                                    <span>35 min en voiture</span>
+                                <h3>London Gatwick</h3>
+                                <div class="airport-meta">
+                                    <span><i class="fas fa-road"></i> 45 km</span>
+                                    <span class="flight-count"><i class="fas fa-plane-departure"></i> 28 vols aujourd'hui</span>
                                 </div>
                             </div>
-                            <div class="airport-actions">
-                                <a href="flight-tracker.html?airport=LFMD" class="btn btn-outline-primary">
-                                    <i class="fas fa-plane"></i> Voir les vols
-                                </a>
-                            </div>
+                            <a href="flight-tracker.html?airport=EGKK" class="track-flights-btn">
+                                <span>Suivre les vols</span>
+                                <i class="fas fa-chevron-right"></i>
+                            </a>
                         </div>
                         
-                        <div class="airport-card">
-                            <div class="airport-header">
-                                <h3>Marseille Provence (LFML)</h3>
-                                <span class="distance">180 km de l'hôtel</span>
-                            </div>
+                        <div class="airport-card" data-code="EGLC">
                             <div class="airport-info">
-                                <div class="info-item">
-                                    <i class="fas fa-plane-arrival"></i>
-                                    <span>Aéroport international</span>
-                                </div>
-                                <div class="info-item">
-                                    <i class="fas fa-car"></i>
-                                    <span>2h en voiture</span>
-                                </div>
-                                <div class="info-item">
-                                    <i class="fas fa-train"></i>
-                                    <span>TGV disponible</span>
+                                <h3>London City Airport</h3>
+                                <div class="airport-meta">
+                                    <span><i class="fas fa-road"></i> 12 km</span>
+                                    <span class="flight-count"><i class="fas fa-plane-departure"></i> 16 vols aujourd'hui</span>
                                 </div>
                             </div>
-                            <div class="airport-actions">
-                                <a href="flight-tracker.html?airport=LFML" class="btn btn-outline-primary">
-                                    <i class="fas fa-plane"></i> Voir les vols
-                                </a>
-                            </div>
+                            <a href="flight-tracker.html?airport=EGLC" class="track-flights-btn">
+                                <span>Suivre les vols</span>
+                                <i class="fas fa-chevron-right"></i>
+                            </a>
                         </div>
                     </div>
+                </div>
+
+                <div class="section weather-summary">
+                    <h2>
+                        <i class="fas fa-cloud-sun"></i>
+                        Météo à Londres
+                    </h2>
                     
-                    <div class="flight-tracker-info">
-                        <p>
-                            <i class="fas fa-info-circle"></i> Notre outil de suivi des vols vous permet de consulter les horaires en temps réel.
-                        </p>
-                        <a href="flight-tracker.html" class="btn btn-secondary btn-sm">
-                            <i class="fas fa-external-link-alt"></i> Suivi des vols complet
-                        </a>
+                    <div class="weather-container">
+                        <div class="current-weather">
+                            <div class="weather-icon">
+                                <i class="fas fa-cloud-rain"></i>
+                            </div>
+                            <div class="weather-info">
+                                <div class="temperature">
+                                    <span class="temp-value">12</span>
+                                    <span class="temp-unit">°C</span>
+                                </div>
+                                <div class="weather-description">Averses légères</div>
+                            </div>
+                        </div>
+                        
+                        <div class="weather-details">
+                            <div class="weather-detail">
+                                <i class="fas fa-tint"></i>
+                                <span>Humidité: 76%</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
                 <div class="hotel-map">
                     <h3>Emplacement</h3>
                     <div class="map-container">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2885.2330555656504!2d7.2412729!3d43.6949513!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12cdd0106a852d31%3A0x40819a5fd979a70!2sPromenade%20des%20Anglais%2C%20Nice!5e0!3m2!1sfr!2sfr!4v1649249357859!5m2!1sfr!2sfr" width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2483.680508907124!2d-0.12209492342158377!3d51.50058087181143!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487604c40d8a4c3d%3A0xc661e70cff71a399!2sWestminster%20Bridge%20Rd%2C%20London%2C%20UK!5e0!3m2!1sen!2sfr!4v1711481286772!5m2!1sen!2sfr" width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
-                    <p class="map-info"><i class="fas fa-map-marker-alt"></i> 23 Promenade des Anglais, 06000 Nice, France</p>
+                    <p class="map-info"><i class="fas fa-map-marker-alt"></i> 28 Westminster Bridge Road, London SE1 7RW, Royaume-Uni</p>
                 </div>
             </div>
         </div>
     </div>
-
-    <!-- Pour hotel-detail-mediterranee.html -->
-    <div id="hotel-info" data-hotel-id="mediterranee" data-hotel-coordinates='{"lat": 43.7102, "lon": 7.2620, "name": "Nice"}' style="display:none;"></div>
 
     <footer class="modern-footer">
         <div class="footer-content">
@@ -598,13 +564,10 @@
     <script src="js/script.js"></script>
     <script src="js/auth.js"></script>
     <script src="js/hotel-detail.js"></script>
-    <!-- Ajouter à la fin de chaque page de détail d'hôtel, avant </body> -->
-<script src="js/opensky-api.js"></script>
-<script src="js/hotel-flights.js"></script>
-<link rel="stylesheet" href="css/hotel-weather.css">
-<script src="js/hotel-weather.js"></script>
-<link rel="stylesheet" href="css/hotel-flights.css">
-<script src="js/opensky-api.js"></script>
-<script src="js/hotel-flights.js"></script>
+    <script src="js/lightbox.js"></script>
+    <!-- Scripts pour les fonctionnalités de vols et météo -->
+    <script src="js/opensky-api.js"></script>
+    <script src="js/hotel-flights.js"></script>
+    <script src="js/hotel-weather.js"></script>
 </body>
 </html>

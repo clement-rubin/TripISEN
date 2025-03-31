@@ -1,0 +1,40 @@
+[2025-03-28 15:08:36] [INFO] Nouvelle requête météo pour lat=48.8566, lon=2.3522
+[2025-03-28 15:08:36] [INFO] Utilisation des données en cache pour lat=48.8566, lon=2.3522 (cache créé le 2025-03-28 14:53:49)
+[2025-03-28 15:08:36] [INFO] Nouvelle requête météo pour lat=48.8566, lon=2.3522
+[2025-03-28 15:08:36] [INFO] Utilisation des données en cache pour lat=48.8566, lon=2.3522 (cache créé le 2025-03-28 14:53:49)
+[2025-03-28 15:11:02] [INFO] Nouvelle requête météo pour lat=48.8566, lon=2.3522
+[2025-03-28 15:11:02] [INFO] Cache ignoré ou expiré, appel à l'API requis
+[2025-03-28 15:11:02] [INFO] Appel à l'API Meteoblue pour lat=48.8566, lon=2.3522
+[2025-03-28 15:11:02] [INFO] URL de requête API : https://my.meteoblue.com/packages/basic-1h_basic-day?apikey=***&lat=48.8566&lon=2.3522&asl=0&format=json&temperature=C&windspeed=kmh&winddirection=degree&precipitationamount=mm&timeformat=iso8601&timezone=Europe%2FParis
+[2025-03-28 15:11:02] [INFO] API a répondu en 251 ms
+[2025-03-28 15:11:02] [INFO] Réponse API reçue avec succès. Ville: 
+[2025-03-28 15:11:02] [INFO] Formatage des données terminé. Température actuelle: 10°C
+[2025-03-28 15:11:02] [INFO] Nouvelles données météo mises en cache
+[2025-03-28 15:11:29] [INFO] Nouvelle requête météo pour lat=48.8566, lon=2.3522
+[2025-03-28 15:11:29] [INFO] Utilisation des données en cache pour lat=48.8566, lon=2.3522 (cache créé le 2025-03-28 15:11:02)
+[2025-03-28 15:11:29] [INFO] Nouvelle requête météo pour lat=48.8566, lon=2.3522
+[2025-03-28 15:11:29] [INFO] Utilisation des données en cache pour lat=48.8566, lon=2.3522 (cache créé le 2025-03-28 15:11:02)
+[2025-03-28 15:11:56] [INFO] Nouvelle requête météo pour lat=43.7102, lon=7.262
+[2025-03-28 15:11:56] [INFO] Utilisation des données en cache pour lat=43.7102, lon=7.262 (cache créé le 2025-03-28 14:54:02)
+[2025-03-28 15:12:02] [INFO] Nouvelle requête météo pour lat=43.7102, lon=7.262
+[2025-03-28 15:12:02] [INFO] Utilisation des données en cache pour lat=43.7102, lon=7.262 (cache créé le 2025-03-28 14:54:02)
+[2025-03-28 15:12:22] [INFO] Nouvelle requête météo pour lat=43.7102, lon=7.262
+[2025-03-28 15:12:22] [INFO] Cache ignoré ou expiré, appel à l'API requis
+[2025-03-28 15:12:22] [INFO] Appel à l'API Meteoblue pour lat=43.7102, lon=7.262
+[2025-03-28 15:12:22] [INFO] URL de requête API : https://my.meteoblue.com/packages/basic-1h_basic-day?apikey=***&lat=43.7102&lon=7.262&asl=0&format=json&temperature=C&windspeed=kmh&winddirection=degree&precipitationamount=mm&timeformat=iso8601&timezone=Europe%2FParis
+[2025-03-28 15:12:22] [INFO] API a répondu en 217 ms
+[2025-03-28 15:12:22] [INFO] Réponse API reçue avec succès. Ville: 
+[2025-03-28 15:12:22] [INFO] Formatage des données terminé. Température actuelle: 15°C
+[2025-03-28 15:12:22] [INFO] Nouvelles données météo mises en cache
+[2025-03-28 15:12:24] [INFO] Nouvelle requête météo pour lat=43.7102, lon=7.262
+[2025-03-28 15:12:24] [INFO] Utilisation des données en cache pour lat=43.7102, lon=7.262 (cache créé le 2025-03-28 15:12:22)
+[2025-03-28 15:12:29] [INFO] Nouvelle requête météo pour lat=48.8566, lon=2.3522
+[2025-03-28 15:12:29] [INFO] Cache ignoré ou expiré, appel à l'API requis
+[2025-03-28 15:12:29] [INFO] Appel à l'API Meteoblue pour lat=48.8566, lon=2.3522
+[2025-03-28 15:12:29] [INFO] URL de requête API : https://my.meteoblue.com/packages/basic-1h_basic-day?apikey=***&lat=48.8566&lon=2.3522&asl=0&format=json&temperature=C&windspeed=kmh&winddirection=degree&precipitationamount=mm&timeformat=iso8601&timezone=Europe%2FParis
+[2025-03-28 15:12:29] [INFO] API a répondu en 186 ms
+[2025-03-28 15:12:29] [INFO] Réponse API reçue avec succès. Ville: 
+[2025-03-28 15:12:29] [INFO] Formatage des données terminé. Température actuelle: 10°C
+[2025-03-28 15:12:29] [INFO] Nouvelles données météo mises en cache
+[2025-03-28 15:12:29] [INFO] Nouvelle requête météo pour lat=48.8566, lon=2.3522
+[2025-03-28 15:12:29] [INFO] Utilisation des données en cache pour lat=48.8566, lon=2.3522 (cache créé le 2025-03-28 15:12:29)
