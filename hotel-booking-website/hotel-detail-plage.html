@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="assets/images/tripisenlogo.png">
+    <title>Résidence La Plage - Trip'ISEN</title>
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/hotel-detail.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="index.html">
+                    <span class="logo-text">Trip'<span class="logo-highlight">ISEN</span></span>
+                </a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html"><i class="fas fa-home"></i> Accueil</a></li>
+                <li class="active"><a href="hotels.html"><i class="fas fa-hotel"></i> Hôtels</a></li>
+                <li><a href="reservations.html"><i class="fas fa-calendar-check"></i> Réservations</a></li>
+                <li><a href="promotions.html"><i class="fas fa-percent"></i> Promotions</a></li>
+                <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+            </ul>
+            <div class="nav-actions">
+                <!-- Cette partie sera modifiée dynamiquement par JavaScript -->
+                <div id="guest-actions">
+                    <a href="login.html" class="login-btn"><i class="fas fa-user"></i> Connexion</a>
+                </div>
+                <div id="user-actions" style="display: none;">
+                    <div class="user-dropdown">
+                        <button class="user-dropdown-btn">
+                            <i class="fas fa-user-circle"></i> <span id="username">Utilisateur</span> <i class="fas fa-caret-down"></i>
+                        </button>
+                        <div class="user-dropdown-content">
+                            <a href="profile.html"><i class="fas fa-id-card"></i> Mon profil</a>
+                            <a href="reservations.html"><i class="fas fa-list"></i> Mes réservations</a>
+                            <a href="#" id="logout-btn"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="hero-detail">
+        <div class="hero-images">
+            <div class="main-image">
+                <img src="assets/images/nice/nice_ext.jpg" alt="Résidence La Plage" id="main-gallery-image">
+                <div class="zoom-icon" id="zoom-image">
+                    <i class="fas fa-search-plus"></i>
+                </div>
+                <div class="image-counter"><span id="current-image">1</span>/<span id="total-images">3</span></div>
+                <div class="navigation-arrows">
+                    <div class="nav-arrow prev" id="prev-image">
+                        <i class="fas fa-chevron-left"></i>
+                    </div>
+                    <div class="nav-arrow next" id="next-image">
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="thumbnail-container">
+                <div class="thumbnail-images">
+                    <img src="assets/images/nice/nice_ext.jpg" alt="Résidence La Plage - Vue extérieure" class="thumb active" data-src="assets/images/nice/nice_ext.jpg" data-caption="Vue extérieure de la Résidence La Plage">
+                    <img src="assets/images/nice/chambre_nice.avif" alt="Chambre de la Résidence La Plage" class="thumb" data-src="assets/images/nice/chambre_nice.avif" data-caption="Chambre vue mer">
+                    <img src="assets/images/nice/piscine_nice.jpg" alt="Piscine de la Résidence La Plage" class="thumb" data-src="assets/images/nice/piscine_nice.jpg" data-caption="Piscine">
+                </div>
+            </div>
+        </div>
+        <div class="hotel-info-header">
+            <div>
+                <h1>Résidence La Plage</h1>
+                <div class="hotel-meta">
+                    <span class="hotel-location"><i class="fas fa-map-marker-alt"></i> Biarritz, France</span>
+                    <div class="hotel-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                        <span class="rating-count">(65 avis)</span>
+                    </div>
+                </div>
+                <div class="hotel-tags">
+                    <span class="hotel-tag">Plage privée</span>
+                    <span class="hotel-tag">Piscine</span>
+                    <span class="hotel-tag">Vue mer</span>
+                    <span class="hotel-tag">Bord de mer</span>
+                </div>
+            </div>
+            <div class="hotel-price-overview">
+                <div class="price-display">
+                    <div class="current-price">195€</div>
+                </div>
+                <div class="price-unit">par nuit</div>
+                <a href="reservation.html?hotel=plage" class="btn btn-primary btn-reserve">Réserver</a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox">
+        <div class="lightbox-content">
+            <div class="lightbox-img-container">
+                <img src="" alt="Résidence La Plage" id="lightbox-image">
+            </div>
+            <div class="lightbox-caption" id="lightbox-caption"></div>
+            <div class="lightbox-nav">
+                <div class="lightbox-arrow" id="lightbox-prev">
+                    <i class="fas fa-chevron-left"></i>
+                </div>
+                <div class="lightbox-arrow" id="lightbox-next">
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+            </div>
+        </div>
+        <div class="lightbox-close" id="lightbox-close">
+            <i class="fas fa-times"></i>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="hotel-detail-wrapper">
+            <div class="hotel-main">
+                <div class="hotel-description section">
+                    <h2>À propos de la résidence</h2>
+                    <div class="description-content">
+                        <p>Bienvenue à la Résidence La Plage, un havre de paix situé directement sur la plage de Biarritz, vous offrant une expérience balnéaire de premier choix sur la côte basque.</p>
+                        
+                        <p>Notre résidence 4 étoiles vous propose des appartements et suites spacieux avec vue sur l'océan, une piscine à débordement face à la mer et un accès direct à une plage privée.</p>
+                    </div>
+                </div>
+
+                <div class="section amenities">
+                    <h2>Équipements et services</h2>
+                    <div class="amenities-grid">
+                        <div class="amenity-item">
+                            <i class="fas fa-wifi"></i>
+                            <span>WiFi gratuit</span>
+                        </div>
+                        <div class="amenity-item">
+                            <i class="fas fa-umbrella-beach"></i>
+                            <span>Plage privée</span>
+                        </div>
+                        <div class="amenity-item">
+                            <i class="fas fa-swimming-pool"></i>
+                            <span>Piscine à débordement</span>
+                        </div>
+                        <div class="amenity-item">
+                            <i class="fas fa-utensils"></i>
+                            <span>Restaurant en bord de mer</span>
+                        </div>
+                        <div class="amenity-item">
+                            <i class="fas fa-concierge-bell"></i>
+                            <span>Service de concierge</span>
+                        </div>
+                        <div class="amenity-item">
+                            <i class="fas fa-parking"></i>
+                            <span>Parking gratuit</span>
+                        </div>
+                        <div class="amenity-item">
+                            <i class="fas fa-water"></i>
+                            <span>Sports nautiques</span>
+                        </div>
+                        <div class="amenity-item">
+                            <i class="fas fa-spa"></i>
+                            <span>Centre de bien-être</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hotel-sidebar">
+                <div class="booking-form">
+                    <h3>Réserver votre séjour</h3>
+                    <form>
+                        <div class="form-group">
+                            <label for="check-in">Arrivée</label>
+                            <input type="date" id="check-in" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="check-out">Départ</label>
+                            <input type="date" id="check-out" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="guests">Voyageurs</label>
+                            <div class="guests-select">
+                                <select id="guests">
+                                    <option value="1">1 adulte</option>
+                                    <option value="2" selected>2 adultes</option>
+                                    <option value="3">3 adultes</option>
+                                    <option value="4">4 adultes</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="room-type">Type d'appartement</label>
+                            <div class="room-type-select">
+                                <select id="room-type">
+                                    <option value="studio">Studio Vue Mer - 195€/nuit</option>
+                                    <option value="appartement">Appartement 1 chambre - 250€/nuit</option>
+                                    <option value="suite">Suite Panoramique - 320€/nuit</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="price-summary">
+                            <div class="price-row">
+                                <span>195€ x 4 nuits</span>
+                                <span>780€</span>
+                            </div>
+                            <div class="price-row">
+                                <span>Taxes et frais</span>
+                                <span>78€</span>
+                            </div>
+                            <div class="price-row total">
+                                <span>Total</span>
+                                <span>858€</span>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Réserver maintenant</button>
+                        <p class="booking-note">Vous ne serez pas débité aujourd'hui</p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="modern-footer">
+        <div class="footer-content">
+            <div class="footer-main">
+                <div class="footer-section footer-about">
+                    <h3>Trip'ISEN</h3>
+                    <p>Votre partenaire pour des séjours inoubliables partout dans le monde.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section footer-links">
+                    <h3>Liens utiles</h3>
+                    <ul>
+                        <li><a href="hotels.html">Hôtels</a></li>
+                        <li><a href="reservations.html">Réservations</a></li>
+                        <li><a href="promotions.html">Promotions</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section footer-contact">
+                    <h3>Contactez-nous</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Rue de Paris, 75000 Paris</p>
+                    <p><i class="fas fa-phone"></i> +33 1 23 45 67 89</p>
+                    <p><i class="fas fa-envelope"></i> contact@tripisen.fr</p>
+                </div>
+                <div class="footer-section footer-newsletter">
+                    <h3>Newsletter</h3>
+                    <p>Inscrivez-vous pour recevoir nos offres exclusives</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Votre email">
+                        <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Trip'ISEN. Tous droits réservés.</p>
+                <div class="footer-bottom-links">
+                    <a href="#">Mentions légales</a>
+                    <a href="#">Politique de confidentialité</a>
+                    <a href="#">CGU</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/hotel-detail.js"></script>
+</body>
+</html>

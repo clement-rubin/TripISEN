@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="assets/images/logo.png">
+    <link rel="icon" href="assets/images/tripisenlogo.png">
     <title>Hôtels - Trip'ISEN</title>
     <link rel="stylesheet" href="css/common.css">
     <link rel="stylesheet" href="css/hotels.css">
@@ -169,10 +169,10 @@
             </div>
             
             <div class="pagination">
-                <a href="#" class="page-link active">1</a>
-                <a href="#" class="page-link">2</a>
-                <a href="#" class="page-link">3</a>
-                <a href="#" class="page-link next"><i class="fas fa-angle-right"></i></a>
+                <button id="page1Button" class="page-link active" onclick="window.changePage(1); return false;">1</button>
+                <button id="page2Button" class="page-link" onclick="window.changePage(2); return false;">2</button>
+                <button id="page3Button" class="page-link" onclick="window.changePage(3); return false;">3</button>
+                <button id="nextButton" class="page-link next" onclick="window.nextPage(); return false;"><i class="fas fa-angle-right"></i></button>
             </div>
         </section>
     </div>
@@ -227,6 +227,7 @@
 
     <script src="js/main.js"></script>
     <script src="js/auth.js"></script>
+    <!-- Script de pagination hôtels - doit être le TOUT DERNIER script -->
     <script src="js/hotels.js"></script>
 </body>
 </html>
