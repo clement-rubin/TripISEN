@@ -47,7 +47,7 @@ const hotels = [
     {
         name: 'Grand Hôtel du Palais',
         location: 'Lyon, France',
-        image: 'assets/images/hotels/hotelparis.jpeg', // Réutilisation d'une image existante
+        image: 'assets/images/lyon/ext.jpg', // Modifiez ce chemin pour une nouvelle image
         rating: 4,
         reviews: 89,
         amenities: ['WiFi', 'Spa', 'Bar'],
@@ -60,7 +60,7 @@ const hotels = [
     {
         name: 'Résidence La Plage',
         location: 'Biarritz, France',
-        image: 'assets/images/nice/nice_ext.jpg', // Réutilisation d'une image existante
+        image: 'assets/images/biarritz/ext.jpg', // Modifiez ce chemin pour une nouvelle image
         rating: 4.5,
         reviews: 65,
         amenities: ['WiFi', 'Plage privée', 'Piscine'],
@@ -71,7 +71,7 @@ const hotels = [
     {
         name: 'Auberge du Vieux Port',
         location: 'Marseille, France',
-        image: 'assets/images/chalet/chalet_ext.jpg', // Réutilisation d'une image existante
+        image: 'assets/images/marseille/ext.jpeg', // Modifiez ce chemin pour une nouvelle image
         rating: 3.5,
         reviews: 52,
         amenities: ['WiFi', 'Vue mer', 'Restaurant'],
@@ -84,7 +84,7 @@ const hotels = [
     {
         name: 'Château des Vignes',
         location: 'Bordeaux, France',
-        image: 'assets/images/hotels/hotelparis.jpeg', // Réutilisation d'une image existante
+        image: 'assets/images/bordeaux/ext.jpg', // Modifiez ce chemin pour une nouvelle image
         rating: 4.5,
         reviews: 38,
         amenities: ['WiFi', 'Vignoble', 'Spa'],
@@ -95,9 +95,9 @@ const hotels = [
         detailUrl: 'hotel-detail-chateau.html' // URL CORRIGÉE
     },
     {
-        name: 'Hôtel de la Cathédrale',
+        name: 'Hôtel de L’Ill',
         location: 'Strasbourg, France',
-        image: 'assets/images/nice/nice_ext.jpg', // Réutilisation d'une image existante
+        image: 'assets/images/strasbourg/ext.jpg', // Modifiez ce chemin pour une nouvelle image
         rating: 4,
         reviews: 72,
         amenities: ['WiFi', 'Centre-ville', 'Restaurant'],
@@ -106,13 +106,13 @@ const hotels = [
         detailUrl: 'hotel-detail-cathedrale.html' // URL CORRIGÉE
     },
     {
-        name: 'Les Lodges Montagnards',
+        name: 'Les Trésoms Lake and Spa Resort',
         location: 'Annecy, France',
-        image: 'assets/images/chalet/chalet_ext.jpg', // Réutilisation d'une image existante
+        image: 'assets/images/annecy/ext.jpg', // Modifiez ce chemin pour une nouvelle image
         rating: 4.5,
         reviews: 28,
-        amenities: ['WiFi', 'Vue lac', 'Terrasse'],
-        amenitiesIcons: ['fas fa-wifi', 'fas fa-water', 'fas fa-umbrella'],
+        amenities: ['WiFi', 'Vue lac', 'Terrasse', 'Spa'],
+        amenitiesIcons: ['fas fa-wifi', 'fas fa-water', 'fas fa-umbrella', 'fas fa-spa'],
         price: 220,
         badge: 'Nouveau',
         badgeClass: 'new',

@@ -54,7 +54,7 @@
     <div class="hero-detail">
         <div class="hero-images">
             <div class="main-image">
-                <img src="assets/images/hotels/hotelparis.jpeg" alt="Grand Hôtel du Palais" id="main-gallery-image">
+                <img src="assets/images/lyon/ext.jpg" alt="Grand Hôtel du Palais" id="main-gallery-image">
                 <div class="zoom-icon" id="zoom-image">
                     <i class="fas fa-search-plus"></i>
                 </div>
@@ -70,41 +70,11 @@
             </div>
             <div class="thumbnail-container">
                 <div class="thumbnail-images">
-                    <img src="assets/images/hotels/hotelparis.jpeg" alt="Grand Hôtel du Palais - Vue extérieure" class="thumb active" data-src="assets/images/hotels/hotelparis.jpeg" data-caption="Vue extérieure du Grand Hôtel du Palais">
-                    <img src="assets/images/hotels/chambreparis.jpg" alt="Chambre du Grand Hôtel du Palais" class="thumb" data-src="assets/images/hotels/chambreparis.jpg" data-caption="Chambre Deluxe">
-                    <img src="assets/images/hotels/restoparis.png" alt="Restaurant du Grand Hôtel du Palais" class="thumb" data-src="assets/images/hotels/restoparis.png" data-caption="Restaurant gastronomique">
+                    <img src="assets/images/lyon/ext.jpg" alt="Grand Hôtel du Palais - Vue extérieure" class="thumb active" data-src="assets/images/lyon/ext.jpg" data-caption="Vue extérieure du Grand Hôtel du Palais">
+                    <img src="assets/images/lyon/chambre.webp" alt="Chambre du Grand Hôtel du Palais" class="thumb" data-src="assets/images/lyon/chambre.webp" data-caption="Chambre Deluxe">
+                    <img src="assets/images/lyon/resto.jpg" alt="Restaurant du Grand Hôtel du Palais" class="thumb" data-src="assets/images/lyon/resto.jpg" data-caption="Restaurant gastronomique">
+                    <img src="assets/images/lyon/spa.jpg" alt="Spa du Grand Hôtel du Palais" class="thumb" data-src="assets/images/lyon/spa.jpg" data-caption="Spa ">
                 </div>
-            </div>
-        </div>
-        <div class="hotel-info-header">
-            <div>
-                <h1>Grand Hôtel du Palais</h1>
-                <div class="hotel-meta">
-                    <span class="hotel-location"><i class="fas fa-map-marker-alt"></i> Lyon, France</span>
-                    <div class="hotel-rating">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="far fa-star"></i>
-                        <span class="rating-count">(89 avis)</span>
-                    </div>
-                </div>
-                <div class="hotel-tags">
-                    <span class="hotel-tag">Spa</span>
-                    <span class="hotel-tag">Restaurant</span>
-                    <span class="hotel-tag">Bar</span>
-                    <span class="hotel-tag">Familial</span>
-                </div>
-            </div>
-            <div class="hotel-price-overview">
-                <div class="discount-badge">-12%</div>
-                <div class="price-display">
-                    <div class="current-price">175€</div>
-                    <div class="original-price">200€</div>
-                </div>
-                <div class="price-unit">par nuit</div>
-                <a href="reservation.html?hotel=palais" class="btn btn-primary btn-reserve">Réserver</a>
             </div>
         </div>
     </div>
@@ -133,7 +103,30 @@
     <div class="container">
         <div class="hotel-detail-wrapper">
             <div class="hotel-main">
-                <div class="hotel-description section">
+                <div class="hotel-header">
+                    <div>
+                        <h1>Grand Hôtel du Palais</h1>
+                        <div class="hotel-location">
+                            <i class="fas fa-map-marker-alt"></i> Lyon, France
+                        </div>
+                        <div class="hotel-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <span>(89 avis)</span>
+                        </div>
+                    </div>
+                    <div class="hotel-price-badge">
+                        <span class="current-price">175€</span>
+                        <span class="original-price">200€</span>
+                        <span class="discount-badge">-12%</span>
+                        <div class="price-per-night">par nuit</div>
+                    </div>
+                </div>
+
+                <div class="section description">
                     <h2>À propos de l'hôtel</h2>
                     <div class="description-content">
                         <p>Bienvenue au Grand Hôtel du Palais, un établissement élégant situé au cœur de Lyon, alliant le charme historique à un confort moderne exceptionnel.</p>
@@ -176,6 +169,63 @@
                         <div class="amenity-item">
                             <i class="fas fa-business-time"></i>
                             <span>Centre d'affaires</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section rooms">
+                    <h2>Types de chambres</h2>
+                    <div class="rooms-grid">
+                        <div class="room-card">
+                            <img src="assets/images/lyon/chambre_.jpg" alt="Chambre Standard">
+                            <div class="room-info">
+                                <h3>Chambre Standard</h3>
+                                <p>Chambre confortable de 20m² avec lit double, parfaite pour un court séjour au cœur de Lyon.</p>
+                                <div class="room-features">
+                                    <span><i class="fas fa-user"></i> 2 personnes</span>
+                                    <span><i class="fas fa-bed"></i> 1 lit double</span>
+                                    <span><i class="fas fa-arrows-alt-h"></i> 20m²</span>
+                                </div>
+                                <div class="room-price">
+                                    <span class="price">175€</span>
+                                    <span class="per-night">/ nuit</span>
+                                </div>
+                                <a href="reservation.html?hotel=palais&room=standard" class="btn btn-primary">Réserver</a>
+                            </div>
+                        </div>
+                        <div class="room-card">
+                            <img src="assets/images/lyon/chambre__.webp" alt="Chambre Deluxe">
+                            <div class="room-info">
+                                <h3>Chambre Deluxe</h3>
+                                <p>Chambre spacieuse de 30m² avec lit king-size et vue sur la ville, parfaite pour un séjour confortable.</p>
+                                <div class="room-features">
+                                    <span><i class="fas fa-user"></i> 2 personnes</span>
+                                    <span><i class="fas fa-bed"></i> 1 lit king-size</span>
+                                    <span><i class="fas fa-arrows-alt-h"></i> 30m²</span>
+                                </div>
+                                <div class="room-price">
+                                    <span class="price">220€</span>
+                                    <span class="per-night">/ nuit</span>
+                                </div>
+                                <a href="reservation.html?hotel=palais&room=deluxe" class="btn btn-primary">Réserver</a>
+                            </div>
+                        </div>
+                        <div class="room-card">
+                            <img src="assets/images/lyon/suite.webp" alt="Suite Junior">
+                            <div class="room-info">
+                                <h3>Suite Junior</h3>
+                                <p>Suite luxueuse de 45m² avec salon séparé et vue panoramique sur Lyon, idéale pour un séjour d'exception.</p>
+                                <div class="room-features">
+                                    <span><i class="fas fa-user"></i> 2-3 personnes</span>
+                                    <span><i class="fas fa-bed"></i> 1 lit king-size + canapé-lit</span>
+                                    <span><i class="fas fa-arrows-alt-h"></i> 45m²</span>
+                                </div>
+                                <div class="room-price">
+                                    <span class="price">290€</span>
+                                    <span class="per-night">/ nuit</span>
+                                </div>
+                                <a href="reservation.html?hotel=palais&room=suite" class="btn btn-primary">Réserver</a>
+                            </div>
                         </div>
                     </div>
                 </div>

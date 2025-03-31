@@ -1,0 +1,78 @@
+[2025-03-31 14:29:49] [INFO] Nouvelle requête météo pour lat=48.8566, lon=2.3522
+[2025-03-31 14:29:49] [INFO] Utilisation des données en cache pour lat=48.8566, lon=2.3522 (cache créé le 2025-03-31 14:10:14)
+[2025-03-31 14:29:49] [INFO] Nouvelle requête météo pour lat=48.8566, lon=2.3522
+[2025-03-31 14:29:49] [INFO] Utilisation des données en cache pour lat=48.8566, lon=2.3522 (cache créé le 2025-03-31 14:10:14)
+[2025-03-31 14:29:56] [INFO] Nouvelle requête météo pour lat=43.7102, lon=7.262
+[2025-03-31 14:29:56] [INFO] Utilisation des données en cache pour lat=43.7102, lon=7.262 (cache créé le 2025-03-31 14:10:14)
+[2025-03-31 15:12:42] [INFO] Nouvelle requête météo pour lat=48.8566, lon=2.3522
+[2025-03-31 15:12:42] [INFO] Cache ignoré ou expiré, appel à l'API requis
+[2025-03-31 15:12:42] [INFO] Appel à l'API Meteoblue pour lat=48.8566, lon=2.3522
+[2025-03-31 15:12:42] [INFO] URL de requête API : https://my.meteoblue.com/packages/basic-1h_basic-day?apikey=***&lat=48.8566&lon=2.3522&asl=0&format=json&temperature=C&windspeed=kmh&winddirection=degree&precipitationamount=mm&timeformat=iso8601&timezone=Europe%2FParis
+[2025-03-31 15:12:42] [INFO] API a répondu en 511 ms
+[2025-03-31 15:12:42] [INFO] Réponse API reçue avec succès. Ville: 
+[2025-03-31 15:12:42] [INFO] Formatage des données terminé. Température actuelle: 10°C
+[2025-03-31 15:12:42] [INFO] Nouvelles données météo mises en cache
+[2025-03-31 15:12:42] [INFO] Nouvelle requête météo pour lat=48.8566, lon=2.3522
+[2025-03-31 15:12:42] [INFO] Utilisation des données en cache pour lat=48.8566, lon=2.3522 (cache créé le 2025-03-31 15:12:42)
+[2025-03-31 15:12:51] [INFO] Nouvelle requête météo pour lat=48.8566, lon=2.3522
+[2025-03-31 15:12:51] [INFO] Utilisation des données en cache pour lat=48.8566, lon=2.3522 (cache créé le 2025-03-31 15:12:42)
+[2025-03-31 15:12:51] [INFO] Nouvelle requête météo pour lat=48.8566, lon=2.3522
+[2025-03-31 15:12:51] [INFO] Utilisation des données en cache pour lat=48.8566, lon=2.3522 (cache créé le 2025-03-31 15:12:42)
+[2025-03-31 15:12:51] [INFO] Nouvelle requête météo pour lat=48.8566, lon=2.3522
+[2025-03-31 15:12:51] [INFO] Utilisation des données en cache pour lat=48.8566, lon=2.3522 (cache créé le 2025-03-31 15:12:42)
+[2025-03-31 15:12:51] [INFO] Nouvelle requête météo pour lat=48.8566, lon=2.3522
+[2025-03-31 15:12:51] [INFO] Utilisation des données en cache pour lat=48.8566, lon=2.3522 (cache créé le 2025-03-31 15:12:42)
+[2025-03-31 15:12:51] [INFO] Nouvelle requête météo pour lat=48.8566, lon=2.3522
+[2025-03-31 15:12:51] [INFO] Utilisation des données en cache pour lat=48.8566, lon=2.3522 (cache créé le 2025-03-31 15:12:42)
+[2025-03-31 15:12:51] [INFO] Nouvelle requête météo pour lat=48.8566, lon=2.3522
+[2025-03-31 15:12:51] [INFO] Utilisation des données en cache pour lat=48.8566, lon=2.3522 (cache créé le 2025-03-31 15:12:42)
+[2025-03-31 15:12:52] [INFO] Nouvelle requête météo pour lat=48.8566, lon=2.3522
+[2025-03-31 15:12:52] [INFO] Utilisation des données en cache pour lat=48.8566, lon=2.3522 (cache créé le 2025-03-31 15:12:42)
+[2025-03-31 15:12:52] [INFO] Nouvelle requête météo pour lat=48.8566, lon=2.3522
+[2025-03-31 15:12:52] [INFO] Utilisation des données en cache pour lat=48.8566, lon=2.3522 (cache créé le 2025-03-31 15:12:42)
+[2025-03-31 15:12:52] [INFO] Nouvelle requête météo pour lat=48.8566, lon=2.3522
+[2025-03-31 15:12:52] [INFO] Utilisation des données en cache pour lat=48.8566, lon=2.3522 (cache créé le 2025-03-31 15:12:42)
+[2025-03-31 15:12:52] [INFO] Nouvelle requête météo pour lat=48.8566, lon=2.3522
+[2025-03-31 15:12:52] [INFO] Utilisation des données en cache pour lat=48.8566, lon=2.3522 (cache créé le 2025-03-31 15:12:42)
+[2025-03-31 15:12:54] [INFO] Nouvelle requête météo pour lat=48.8566, lon=2.3522
+[2025-03-31 15:12:54] [INFO] Utilisation des données en cache pour lat=48.8566, lon=2.3522 (cache créé le 2025-03-31 15:12:42)
+[2025-03-31 15:12:54] [INFO] Nouvelle requête météo pour lat=48.8566, lon=2.3522
+[2025-03-31 15:12:54] [INFO] Utilisation des données en cache pour lat=48.8566, lon=2.3522 (cache créé le 2025-03-31 15:12:42)
+[2025-03-31 15:12:55] [INFO] Nouvelle requête météo pour lat=48.8566, lon=2.3522
+[2025-03-31 15:12:55] [INFO] Utilisation des données en cache pour lat=48.8566, lon=2.3522 (cache créé le 2025-03-31 15:12:42)
+[2025-03-31 15:12:55] [INFO] Nouvelle requête météo pour lat=48.8566, lon=2.3522
+[2025-03-31 15:12:55] [INFO] Utilisation des données en cache pour lat=48.8566, lon=2.3522 (cache créé le 2025-03-31 15:12:42)
+[2025-03-31 15:12:55] [INFO] Nouvelle requête météo pour lat=48.8566, lon=2.3522
+[2025-03-31 15:12:55] [INFO] Utilisation des données en cache pour lat=48.8566, lon=2.3522 (cache créé le 2025-03-31 15:12:42)
+[2025-03-31 15:12:55] [INFO] Nouvelle requête météo pour lat=48.8566, lon=2.3522
+[2025-03-31 15:12:55] [INFO] Utilisation des données en cache pour lat=48.8566, lon=2.3522 (cache créé le 2025-03-31 15:12:42)
+[2025-03-31 15:12:55] [INFO] Nouvelle requête météo pour lat=48.8566, lon=2.3522
+[2025-03-31 15:12:55] [INFO] Utilisation des données en cache pour lat=48.8566, lon=2.3522 (cache créé le 2025-03-31 15:12:42)
+[2025-03-31 15:12:55] [INFO] Nouvelle requête météo pour lat=48.8566, lon=2.3522
+[2025-03-31 15:12:55] [INFO] Utilisation des données en cache pour lat=48.8566, lon=2.3522 (cache créé le 2025-03-31 15:12:42)
+[2025-03-31 15:12:55] [INFO] Nouvelle requête météo pour lat=48.8566, lon=2.3522
+[2025-03-31 15:12:55] [INFO] Utilisation des données en cache pour lat=48.8566, lon=2.3522 (cache créé le 2025-03-31 15:12:42)
+[2025-03-31 15:12:55] [INFO] Nouvelle requête météo pour lat=48.8566, lon=2.3522
+[2025-03-31 15:12:55] [INFO] Utilisation des données en cache pour lat=48.8566, lon=2.3522 (cache créé le 2025-03-31 15:12:42)
+[2025-03-31 15:13:04] [INFO] Nouvelle requête météo pour lat=43.7102, lon=7.262
+[2025-03-31 15:13:04] [INFO] Cache ignoré ou expiré, appel à l'API requis
+[2025-03-31 15:13:04] [INFO] Appel à l'API Meteoblue pour lat=43.7102, lon=7.262
+[2025-03-31 15:13:04] [INFO] URL de requête API : https://my.meteoblue.com/packages/basic-1h_basic-day?apikey=***&lat=43.7102&lon=7.262&asl=0&format=json&temperature=C&windspeed=kmh&winddirection=degree&precipitationamount=mm&timeformat=iso8601&timezone=Europe%2FParis
+[2025-03-31 15:13:04] [INFO] API a répondu en 201 ms
+[2025-03-31 15:13:04] [INFO] Réponse API reçue avec succès. Ville: 
+[2025-03-31 15:13:04] [INFO] Formatage des données terminé. Température actuelle: 15°C
+[2025-03-31 15:13:04] [INFO] Nouvelles données météo mises en cache
+[2025-03-31 15:13:07] [INFO] Nouvelle requête météo pour lat=43.7102, lon=7.262
+[2025-03-31 15:13:07] [INFO] Utilisation des données en cache pour lat=43.7102, lon=7.262 (cache créé le 2025-03-31 15:13:04)
+[2025-03-31 15:13:29] [INFO] Nouvelle requête météo pour lat=48.8566, lon=2.3522
+[2025-03-31 15:13:29] [INFO] Utilisation des données en cache pour lat=48.8566, lon=2.3522 (cache créé le 2025-03-31 15:12:42)
+[2025-03-31 15:13:29] [INFO] Nouvelle requête météo pour lat=48.8566, lon=2.3522
+[2025-03-31 15:13:29] [INFO] Utilisation des données en cache pour lat=48.8566, lon=2.3522 (cache créé le 2025-03-31 15:12:42)
+[2025-03-31 15:22:11] [INFO] Nouvelle requête météo pour lat=48.8566, lon=2.3522
+[2025-03-31 15:22:11] [INFO] Utilisation des données en cache pour lat=48.8566, lon=2.3522 (cache créé le 2025-03-31 15:12:42)
+[2025-03-31 15:22:11] [INFO] Nouvelle requête météo pour lat=48.8566, lon=2.3522
+[2025-03-31 15:22:11] [INFO] Utilisation des données en cache pour lat=48.8566, lon=2.3522 (cache créé le 2025-03-31 15:12:42)
+[2025-03-31 15:29:57] [INFO] Nouvelle requête météo pour lat=48.8566, lon=2.3522
+[2025-03-31 15:29:57] [INFO] Utilisation des données en cache pour lat=48.8566, lon=2.3522 (cache créé le 2025-03-31 15:12:42)
+[2025-03-31 15:29:57] [INFO] Nouvelle requête météo pour lat=48.8566, lon=2.3522
+[2025-03-31 15:29:57] [INFO] Utilisation des données en cache pour lat=48.8566, lon=2.3522 (cache créé le 2025-03-31 15:12:42)
