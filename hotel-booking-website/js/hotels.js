@@ -58,14 +58,14 @@ const hotels = [
         detailUrl: 'hotel-detail-palais.html' // URL CORRIGÉE
     },
     {
-        name: 'Résidence La Plage',
+        name: 'Résidence De La Plage',
         location: 'Biarritz, France',
         image: 'assets/images/biarritz/ext.jpg', // Modifiez ce chemin pour une nouvelle image
         rating: 4.5,
         reviews: 65,
         amenities: ['WiFi', 'Plage privée', 'Piscine'],
         amenitiesIcons: ['fas fa-wifi', 'fas fa-umbrella-beach', 'fas fa-swimming-pool'],
-        price: 195,
+        price: 49,
         detailUrl: 'hotel-detail-plage.html' // URL CORRIGÉE
     },
     {
@@ -122,7 +122,6 @@ const hotels = [
 
 // Fonction pour générer les étoiles de notation
 function generateRatingStars(rating) {
-    // Garder votre fonction existante
     let starsHTML = '';
     const fullStars = Math.floor(rating);
     const hasHalfStar = rating % 1 >= 0.5;
@@ -141,10 +140,12 @@ function generateRatingStars(rating) {
 }
 
 // Fonction pour générer le HTML d'un hôtel
-function generateHotelHTML(hotel) {
-    // Garder votre fonction existante
+function generateHotelHTML(hotel, index) {
+    const pageNumber = Math.floor(index / hotelsPerPage) + 1;
+    const displayStyle = pageNumber === 1 ? 'block' : 'none';
+    
     return `
-        <div class="hotel-card">
+        <div class="hotel-card" data-page="${pageNumber}" style="display: ${displayStyle};">
             <div class="hotel-image">
                 <img src="${hotel.image}" alt="${hotel.name}">
                 ${hotel.discount ? `<div class="hotel-badge">${hotel.discount}</div>` : ''}
@@ -173,13 +174,24 @@ function generateHotelHTML(hotel) {
     `;
 }
 
+// Fonction pour générer tout le HTML des hôtels
+function generateAllHotelsHTML() {
+    let hotelsHTML = '';
+    hotels.forEach((hotel, index) => {
+        hotelsHTML += generateHotelHTML(hotel, index);
+    });
+    
+    // Mettre à jour le contenu de la liste des hôtels
+    document.getElementById('hotels-list').innerHTML = hotelsHTML;
+}
+
 // Code simplifié pour la pagination
 document.addEventListener('DOMContentLoaded', function() {
     // Initialisation de la page courante
     currentPage = 1;
 
-    // Afficher la première page au chargement
-    changePage(1);
+    // Afficher tous les hôtels au chargement, mais seuls ceux de la page 1 sont visibles
+    generateAllHotelsHTML();
 
     // Configurer les écouteurs d'événements pour les boutons de pagination
     document.getElementById('page1Button').addEventListener('click', function(e) {
@@ -205,25 +217,19 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// Fonction simplifiée pour changer de page
+// Fonction pour changer de page en affichant/masquant les hôtels
 function changePage(pageNumber) {
     console.log("Changement vers la page " + pageNumber);
     
-    // Calculer les indices de début et de fin pour les hôtels à afficher
-    const startIndex = (pageNumber - 1) * hotelsPerPage;
-    const endIndex = startIndex + hotelsPerPage;
-    
-    // Filtrer les hôtels pour la page actuelle
-    const hotelsToDisplay = hotels.slice(startIndex, endIndex);
-    
-    // Générer le HTML pour les hôtels filtrés
-    let hotelsHTML = '';
-    hotelsToDisplay.forEach(hotel => {
-        hotelsHTML += generateHotelHTML(hotel);
+    // Afficher/masquer les hôtels en fonction du numéro de page
+    const hotelCards = document.querySelectorAll('.hotel-card');
+    hotelCards.forEach(card => {
+        if (parseInt(card.dataset.page) === pageNumber) {
+            card.style.display = 'block';
+        } else {
+            card.style.display = 'none';
+        }
     });
-    
-    // Mettre à jour le contenu de la liste des hôtels
-    document.getElementById('hotels-list').innerHTML = hotelsHTML;
     
     // Mettre à jour l'état actif des boutons de pagination
     document.getElementById('page1Button').classList.remove('active');
