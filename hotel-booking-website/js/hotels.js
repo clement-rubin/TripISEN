@@ -60,7 +60,7 @@ const hotels = [
     {
         name: 'Hôtel De La Plage',
         location: 'Biarritz, France',
-        image: 'assets/images/biarritz/ext.jpg', // Modifiez ce chemin pour une nouvelle image
+        image: 'assets/images/biarritz/exte.jpg', // Modifiez ce chemin pour une nouvelle image
         rating: 4.5,
         reviews: 65,
         amenities: ['WiFi', 'Plage privée', 'Piscine'],
@@ -69,9 +69,9 @@ const hotels = [
         detailUrl: 'hotel-detail-plage.html' // URL CORRIGÉE
     },
     {
-        name: 'Auberge du Vieux Port',
+        name: 'Hôtel du Vieux Port',
         location: 'Marseille, France',
-        image: 'assets/images/marseille/ext.jpeg', // Modifiez ce chemin pour une nouvelle image
+        image: 'assets/images/marseille/ext.jpg', // Modifiez ce chemin pour une nouvelle image
         rating: 3.5,
         reviews: 52,
         amenities: ['WiFi', 'Vue mer', 'Restaurant'],

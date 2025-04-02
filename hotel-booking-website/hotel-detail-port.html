@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="assets/images/tripisenlogo.png">
+    <title>Hôtel du Vieux Port - Trip'ISEN</title>
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/hotel-detail.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="index.html">
+                    <span class="logo-text">Trip'<span class="logo-highlight">ISEN</span></span>
+                </a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html"><i class="fas fa-home"></i> Accueil</a></li>
+                <li class="active"><a href="hotels.html"><i class="fas fa-hotel"></i> Hôtels</a></li>
+                <li><a href="reservations.html"><i class="fas fa-calendar-check"></i> Réservations</a></li>
+                <li><a href="promotions.html"><i class="fas fa-percent"></i> Promotions</a></li>
+                <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+            </ul>
+            <div class="nav-actions">
+                <!-- Cette partie sera modifiée dynamiquement par JavaScript -->
+                <div id="guest-actions">
+                    <a href="login.html" class="login-btn"><i class="fas fa-user"></i> Connexion</a>
+                </div>
+                <div id="user-actions" style="display: none;">
+                    <div class="user-dropdown">
+                        <button class="user-dropdown-btn">
+                            <i class="fas fa-user-circle"></i> <span id="username">Utilisateur</span> <i class="fas fa-caret-down"></i>
+                        </button>
+                        <div class="user-dropdown-content">
+                            <a href="profile.html"><i class="fas fa-id-card"></i> Mon profil</a>
+                            <a href="reservations.html"><i class="fas fa-list"></i> Mes réservations</a>
+                            <a href="#" id="logout-btn"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="hero-detail">
+        <div class="hero-images">
+            <div class="main-image">
+                <img src="assets/images/marseille/ext.jpg" alt="Hôtel du Vieux Port" id="main-gallery-image">
+                <div class="zoom-icon" id="zoom-image">
+                    <i class="fas fa-search-plus"></i>
+                </div>
+                <div class="image-counter"><span id="current-image">1</span>/<span id="total-images">4</span></div>
+                <div class="navigation-arrows">
+                    <div class="nav-arrow prev" id="prev-image">
+                        <i class="fas fa-chevron-left"></i>
+                    </div>
+                    <div class="nav-arrow next" id="next-image">
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="thumbnail-container">
+                <div class="thumbnail-images">
+                    <img src="assets/images/marseille/ext.jpg" alt="Extérieur de l'Hôtel du Vieux Port" class="thumb active" data-src="assets/images/marseille/ext.jpg" data-caption="Vue extérieure">
+                    <img src="assets/images/marseille/resto.jpg" alt="Restaurant de l'Hôtel du Vieux Port" class="thumb" data-src="assets/images/marseille/resto.jpg" data-caption="Restaurant traditionnel">
+                    <img src="assets/images/marseille/spa.jpg" alt="Spa de l'Hôtel du Vieux Port" class="thumb" data-src="assets/images/marseille/spa.jpg" data-caption="Terrasse panoramique">
+                    <img src="assets/images/marseille/vueport.jpg" alt="Vieux Port" class="thumb" data-src="assets/images/marseille/vueport.jpg" data-caption="Vue Du Port">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox">
+        <div class="lightbox-content">
+            <div class="lightbox-img-container">
+                <img src="" alt="Hôtel du Vieux Port" id="lightbox-image">
+            </div>
+            <div class="lightbox-caption" id="lightbox-caption"></div>
+            <div class="lightbox-nav">
+                <div class="lightbox-arrow" id="lightbox-prev">
+                    <i class="fas fa-chevron-left"></i>
+                </div>
+                <div class="lightbox-arrow" id="lightbox-next">
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+            </div>
+        </div>
+        <div class="lightbox-close" id="lightbox-close">
+            <i class="fas fa-times"></i>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="hotel-detail-wrapper">
+            <div class="hotel-main">
+                <div class="hotel-header">
+                    <div>
+                        <h1>Hôtel du Vieux Port</h1>
+                        <div class="hotel-location">
+                            <i class="fas fa-map-marker-alt"></i> Marseille, France
+                        </div>
+                        <div class="hotel-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <i class="far fa-star"></i>
+                            <span>(52 avis)</span>
+                        </div>
+                    </div>
+                    <div class="hotel-price-badge">
+                        <span class="current-price">135€</span>
+                        <span class="price-per-night">par nuit</span>
+                    </div>
+                </div>
+
+                <div class="section description">
+                    <h2>À propos de l'hôtel</h2>
+                    <div class="description-content">
+                        <p>Bienvenue à l'Hôtel du Vieux Port, un établissement authentique et chaleureux situé au cœur du quartier historique de Marseille, offrant une expérience unique entre tradition provençale et confort moderne.</p>
+                        
+                        <p>Notre hôtel de charme 4 étoiles vous accueille dans un bâtiment du XVIIIe siècle entièrement rénové, où les poutres apparentes et les murs en pierre se marient harmonieusement avec des équipements contemporains, à deux pas du célèbre Vieux Port et de ses nombreuses attractions.</p>
+                    </div>
+                </div>
+
+                <div class="section amenities">
+                    <h2>Équipements et services</h2>
+                    <div class="amenities-grid">
+                        <div class="amenity-item">
+                            <i class="fas fa-wifi"></i>
+                            <span>WiFi gratuit</span>
+                        </div>
+                        <div class="amenity-item">
+                            <i class="fas fa-water"></i>
+                            <span>Vue sur la mer</span>
+                        </div>
+                        <div class="amenity-item">
+                            <i class="fas fa-utensils"></i>
+                            <span>Restaurant provençal</span>
+                        </div>
+                        <div class="amenity-item">
+                            <i class="fas fa-glass-martini-alt"></i>
+                            <span>Bar à vins</span>
+                        </div>
+                        <div class="amenity-item">
+                            <i class="fas fa-umbrella-beach"></i>
+                            <span>Accès plage à 5min</span>
+                        </div>
+                        <div class="amenity-item">
+                            <i class="fas fa-parking"></i>
+                            <span>Parking à proximité</span>
+                        </div>
+                        <div class="amenity-item">
+                            <i class="fas fa-coffee"></i>
+                            <span>Petit-déjeuner buffet</span>
+                        </div>
+                        <div class="amenity-item">
+                            <i class="fas fa-bicycle"></i>
+                            <span>Location de vélos</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section rooms">
+                    <h2>Types de chambres</h2>
+                    <div class="rooms-grid">
+                        <div class="room-card">
+                            <img src="assets/images/marseille/chambre.avif" alt="Chambre Simple">
+                            <div class="room-info">
+                                <h3>Chambre Simple</h3>
+                                <p>Chambre de 22m², parfaite pour profiter du panorama marseillais.</p>
+                                <div class="room-features">
+                                    <span><i class="fas fa-user"></i> 2 personnes</span>
+                                    <span><i class="fas fa-bed"></i> 2 lits simple</span>
+                                    <span><i class="fas fa-arrows-alt-h"></i> 22m²</span>
+                                </div>
+                                <div class="room-price">
+                                    <span class="price">135€</span>
+                                    <span class="per-night">/ nuit</span>
+                                </div>
+                                <a href="reservation.html?hotel=port&room=vue_port" class="btn btn-primary">Réserver</a>
+                            </div>
+                        </div>
+                        <div class="room-card">
+                            <img src="assets/images/marseille/chambre.jpeg" alt="Chambre Tradition">
+                            <div class="room-info">
+                                <h3>Chambre Tradition</h3>
+                                <p>Chambre confortable de 28m² avec lit double, décorée dans un style provençal authentique.</p>
+                                <div class="room-features">
+                                    <span><i class="fas fa-user"></i> 2 personnes</span>
+                                    <span><i class="fas fa-bed"></i> 1 lit double</span>
+                                    <span><i class="fas fa-arrows-alt-h"></i> 28m²</span>
+                                </div>
+                                <div class="room-price">
+                                    <span class="price">165€</span>
+                                    <span class="per-night">/ nuit</span>
+                                </div>
+                                <a href="reservation.html?hotel=port&room=tradition" class="btn btn-primary">Réserver</a>
+                            </div>
+                        </div>
+                        <div class="room-card">
+                            <img src="assets/images/marseille/suite.jpg" alt="Suite Marseillaise">
+                            <div class="room-info">
+                                <h3>Suite Marseillaise</h3>
+                                <p>Suite de 35m² avec salon séparé et grande terrasse donnant sur Notre-Dame de la Garde et le port.</p>
+                                <div class="room-features">
+                                    <span><i class="fas fa-user"></i> 3 personnes</span>
+                                    <span><i class="fas fa-bed"></i> 1 lit queen + 1 canapé-lit</span>
+                                    <span><i class="fas fa-arrows-alt-h"></i> 35m²</span>
+                                </div>
+                                <div class="room-price">
+                                    <span class="price">210€</span>
+                                    <span class="per-night">/ nuit</span>
+                                </div>
+                                <a href="reservation.html?hotel=port&room=suite" class="btn btn-primary">Réserver</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section reviews">
+                    <h2>Avis des clients</h2>
+                    <div class="review-summary">
+                        <div class="review-score">
+                            <span class="score">3.5</span>
+                            <div class="score-text">
+                                <div class="score-stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                    <i class="far fa-star"></i>
+                                </div>
+                                <p>Basé sur 52 avis</p>
+                            </div>
+                        </div>
+                        <div class="review-categories">
+                            <div class="review-category">
+                                <span class="category-name">Propreté</span>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 74%"></div>
+                                </div>
+                                <span class="category-score">3.7</span>
+                            </div>
+                            <div class="review-category">
+                                <span class="category-name">Confort</span>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 64%"></div>
+                                </div>
+                                <span class="category-score">3.2</span>
+                            </div>
+                            <div class="review-category">
+                                <span class="category-name">Emplacement</span>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 92%"></div>
+                                </div>
+                                <span class="category-score">4.6</span>
+                            </div>
+                            <div class="review-category">
+                                <span class="category-name">Service</span>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 78%"></div>
+                                </div>
+                                <span class="category-score">3.9</span>
+                            </div>
+                            <div class="review-category">
+                                <span class="category-name">Rapport qualité-prix</span>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 84%"></div>
+                                </div>
+                                <span class="category-score">4.2</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="review-list">
+                        <div class="review-item">
+                            <div class="reviewer">
+                                <img src="https://randomuser.me/api/portraits/women/23.jpg" alt="Claire D.">
+                                <div>
+                                    <h4>Claire D.</h4>
+                                    <span class="review-date">Séjour en juillet 2023</span>
+                                </div>
+                            </div>
+                            <div class="review-content">
+                                <div class="review-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </div>
+                                <p class="review-text">"L'emplacement est tout simplement parfait, en plein cœur du Vieux Port avec une vue magnifique depuis notre chambre. Le personnel est chaleureux et le petit déjeuner avec des produits locaux est délicieux. Les chambres sont plutôt petites mais pleines de charme avec leurs pierres apparentes. Un excellent rapport qualité-prix pour profiter pleinement de Marseille."</p>
+                            </div>
+                        </div>
+                        <div class="review-item">
+                            <div class="reviewer">
+                                <img src="https://randomuser.me/api/portraits/men/41.jpg" alt="Michel L.">
+                                <div>
+                                    <h4>Michel L.</h4>
+                                    <span class="review-date">Séjour en mai 2023</span>
+                                </div>
+                            </div>
+                            <div class="review-content">
+                                <div class="review-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </div>
+                                <p class="review-text">"Hôtel plein de charme mais qui mériterait quelques rénovations. La salle de bain était assez vétuste et le bruit de la rue peut être dérangeant. Cependant, le restaurant est excellent et propose de très bons plats provençaux. L'emplacement est idéal pour explorer le Vieux Port à pied."</p>
+                            </div>
+                        </div>
+                        <div class="review-item">
+                            <div class="reviewer">
+                                <img src="https://randomuser.me/api/portraits/women/52.jpg" alt="Sophie M.">
+                                <div>
+                                    <h4>Sophie M.</h4>
+                                    <span class="review-date">Séjour en avril 2023</span>
+                                </div>
+                            </div>
+                            <div class="review-content">
+                                <div class="review-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                    <i class="far fa-star"></i>
+                                </div>
+                                <p class="review-text">"Une adresse authentique qui nous plonge dans l'ambiance marseillaise ! La terrasse avec vue sur Notre-Dame de la Garde est parfaite pour prendre un verre au coucher du soleil. Le personnel est très disponible pour donner des conseils sur les visites. Un bon compromis entre le charme d'un Hôtel traditionnel et le confort nécessaire."</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="view-more-reviews">
+                        <a href="#" class="btn btn-secondary">Voir tous les avis</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hotel-sidebar">
+                <div class="booking-form">
+                    <h3>Réserver votre séjour</h3>
+                    <form>
+                        <div class="form-group">
+                            <label for="check-in">Arrivée</label>
+                            <input type="date" id="check-in" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="check-out">Départ</label>
+                            <input type="date" id="check-out" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="guests">Voyageurs</label>
+                            <div class="guests-select">
+                                <select id="guests">
+                                    <option value="1">1 adulte</option>
+                                    <option value="2" selected>2 adultes</option>
+                                    <option value="3">3 adultes</option>
+                                    <option value="4">4 adultes</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="room-type">Type de chambre</label>
+                            <div class="room-type-select">
+                                <select id="room-type">
+                                    <option value="tradition">Chambre Simple - 135€/nuit</option>
+                                    <option value="vue_port">Chambre Tradition - 165€/nuit</option>
+                                    <option value="suite">Suite Marseillaise - 210€/nuit</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="price-summary">
+                            <div class="price-row">
+                                <span>135€ x 3 nuits</span>
+                                <span>405€</span>
+                            </div>
+                            <div class="price-row">
+                                <span>Taxes et frais</span>
+                                <span>40€</span>
+                            </div>
+                            <div class="price-row total">
+                                <span>Total</span>
+                                <span>445€</span>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Réserver maintenant</button>
+                        <p class="booking-note">Vous ne serez pas débité aujourd'hui</p>
+                    </form>
+                </div>
+
+                <div class="hotel-map">
+                    <h3>Emplacement</h3>
+                    <div class="map-container">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2903.6981210767516!2d5.3606783!3d43.2949166!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12c9c0c6a1843729%3A0x7d3f3acf189dc3b1!2sVieux%20Port%20de%20Marseille!5e0!3m2!1sfr!2sfr!4v1651234567890!5m2!1sfr!2sfr" width="100%" height="200" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                    <p class="map-info"><i class="fas fa-map-marker-alt"></i> 12 Quai du Port, 13002 Marseille, France</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="modern-footer">
+        <div class="footer-content">
+            <div class="footer-main">
+                <div class="footer-section footer-about">
+                    <h3>Trip'ISEN</h3>
+                    <p>Votre partenaire pour des séjours inoubliables partout dans le monde.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section footer-links">
+                    <h3>Liens utiles</h3>
+                    <ul>
+                        <li><a href="hotels.html">Hôtels</a></li>
+                        <li><a href="reservations.html">Réservations</a></li>
+                        <li><a href="promotions.html">Promotions</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section footer-contact">
+                    <h3>Contactez-nous</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Rue de Paris, 75000 Paris</p>
+                    <p><i class="fas fa-phone"></i> +33 1 23 45 67 89</p>
+                    <p><i class="fas fa-envelope"></i> contact@tripisen.fr</p>
+                </div>
+                <div class="footer-section footer-newsletter">
+                    <h3>Newsletter</h3>
+                    <p>Inscrivez-vous pour recevoir nos offres exclusives</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Votre email">
+                        <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Trip'ISEN. Tous droits réservés.</p>
+                <div class="footer-bottom-links">
+                    <a href="#">Mentions légales</a>
+                    <a href="#">Politique de confidentialité</a>
+                    <a href="#">CGU</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/hotel-detail.js"></script>
+</body>
+</html>
