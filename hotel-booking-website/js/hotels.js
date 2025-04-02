@@ -58,14 +58,14 @@ const hotels = [
         detailUrl: 'hotel-detail-palais.html' // URL CORRIGÉE
     },
     {
-        name: 'Résidence De La Plage',
+        name: 'Hôtel De La Plage',
         location: 'Biarritz, France',
         image: 'assets/images/biarritz/ext.jpg', // Modifiez ce chemin pour une nouvelle image
         rating: 4.5,
         reviews: 65,
         amenities: ['WiFi', 'Plage privée', 'Piscine'],
         amenitiesIcons: ['fas fa-wifi', 'fas fa-umbrella-beach', 'fas fa-swimming-pool'],
-        price: 49,
+        price: 195,
         detailUrl: 'hotel-detail-plage.html' // URL CORRIGÉE
     },
     {
