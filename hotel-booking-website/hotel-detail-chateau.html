@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="assets/images/tripisenlogo.png">
+    <title>Château des Vignes - Trip'ISEN</title>
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/hotel-detail.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="index.html">
+                    <span class="logo-text">Trip'<span class="logo-highlight">ISEN</span></span>
+                </a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html"><i class="fas fa-home"></i> Accueil</a></li>
+                <li class="active"><a href="hotels.html"><i class="fas fa-hotel"></i> Hôtels</a></li>
+                <li><a href="reservations.html"><i class="fas fa-calendar-check"></i> Réservations</a></li>
+                <li><a href="promotions.html"><i class="fas fa-percent"></i> Promotions</a></li>
+                <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+            </ul>
+            <div class="nav-actions">
+                <!-- Cette partie sera modifiée dynamiquement par JavaScript -->
+                <div id="guest-actions">
+                    <a href="login.html" class="login-btn"><i class="fas fa-user"></i> Connexion</a>
+                </div>
+                <div id="user-actions" style="display: none;">
+                    <div class="user-dropdown">
+                        <button class="user-dropdown-btn">
+                            <i class="fas fa-user-circle"></i> <span id="username">Utilisateur</span> <i class="fas fa-caret-down"></i>
+                        </button>
+                        <div class="user-dropdown-content">
+                            <a href="profile.html"><i class="fas fa-id-card"></i> Mon profil</a>
+                            <a href="reservations.html"><i class="fas fa-list"></i> Mes réservations</a>
+                            <a href="#" id="logout-btn"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="hero-detail">
+        <div class="hero-images">
+            <div class="main-image">
+                <img src="assets/images/bordeaux/ext.png" alt="Château des Vignes" id="main-gallery-image">
+                <div class="zoom-icon" id="zoom-image">
+                    <i class="fas fa-search-plus"></i>
+                </div>
+                <div class="image-counter"><span id="current-image">1</span>/<span id="total-images">5</span></div>
+                <div class="navigation-arrows">
+                    <div class="nav-arrow prev" id="prev-image">
+                        <i class="fas fa-chevron-left"></i>
+                    </div>
+                    <div class="nav-arrow next" id="next-image">
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="thumbnail-container">
+                <div class="thumbnail-images">
+                    <img src="assets/images/bordeaux/ext.png" alt="Vue extérieure du Château des Vignes" class="thumb active" data-src="assets/images/bordeaux/ext.png" data-caption="Vue extérieure du Château des Vignes">
+                    <img src="assets/images/bordeaux/ext2.jpg" alt="Château des Vignes" class="thumb" data-src="assets/images/bordeaux/ext2.jpg" data-caption="Chambre Élégance">
+                    <img src="assets/images/bordeaux/vignes.jpg" alt="Vignoble du Château des Vignes" class="thumb" data-src="assets/images/bordeaux/vignes.jpg" data-caption="Notre vignoble privé">
+                    <img src="assets/images/bordeaux/cave.jpg" alt="Cave du Château des Vignes" class="thumb" data-src="assets/images/bordeaux/cave.jpg" data-caption="Cave à vin historique">
+                    <img src="assets/images/bordeaux/resto.jpg" alt="Restaurant du Château des Vignes" class="thumb" data-src="assets/images/bordeaux/resto.jpg" data-caption="Restaurant gastronomique">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox">
+        <div class="lightbox-content">
+            <div class="lightbox-img-container">
+                <img src="" alt="Château des Vignes" id="lightbox-image">
+            </div>
+            <div class="lightbox-caption" id="lightbox-caption"></div>
+            <div class="lightbox-nav">
+                <div class="lightbox-arrow" id="lightbox-prev">
+                    <i class="fas fa-chevron-left"></i>
+                </div>
+                <div class="lightbox-arrow" id="lightbox-next">
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+            </div>
+        </div>
+        <div class="lightbox-close" id="lightbox-close">
+            <i class="fas fa-times"></i>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="hotel-detail-wrapper">
+            <div class="hotel-main">
+                <div class="hotel-header">
+                    <div>
+                        <h1>Château des Vignes</h1>
+                        <div class="hotel-location">
+                            <i class="fas fa-map-marker-alt"></i> Bordeaux, France
+                        </div>
+                        <div class="hotel-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <span>(38 avis)</span>
+                        </div>
+                    </div>
+                    <div class="hotel-price-badge">
+                        <span class="current-price">290€</span>
+                        <span class="original-price">320€</span>
+                        <span class="discount-badge">-9%</span>
+                        <div class="price-per-night">par nuit</div>
+                    </div>
+                </div>
+
+                <div class="section description">
+                    <h2>À propos du Château</h2>
+                    <div class="description-content">
+                        <p>Bienvenue au Château des Vignes, une propriété viticole historique datant du XVIIIe siècle nichée au cœur des vignobles bordelais, où luxe et tradition vinicole se rencontrent pour une expérience unique.</p>
+                        
+                        <p>Notre établissement 5 étoiles propose un hébergement raffiné dans un cadre exceptionnel, alliant le charme d'un château authentique à des prestations contemporaines haut de gamme. Entouré de 25 hectares de vignes produisant des vins primés, le Château des Vignes vous invite à une immersion complète dans l'art de vivre bordelais.</p>
+                    </div>
+                </div>
+
+                <div class="section amenities">
+                    <h2>Équipements et services</h2>
+                    <div class="amenities-grid">
+                        <div class="amenity-item">
+                            <i class="fas fa-wifi"></i>
+                            <span>WiFi gratuit</span>
+                        </div>
+                        <div class="amenity-item">
+                            <i class="fas fa-wine-bottle"></i>
+                            <span>Vignoble privé</span>
+                        </div>
+                        <div class="amenity-item">
+                            <i class="fas fa-spa"></i>
+                            <span>Spa & Bien-être</span>
+                        </div>
+                        <div class="amenity-item">
+                            <i class="fas fa-utensils"></i>
+                            <span>Restaurant gastronomique</span>
+                        </div>
+                        <div class="amenity-item">
+                            <i class="fas fa-glass-cheers"></i>
+                            <span>Dégustation de vins</span>
+                        </div>
+                        <div class="amenity-item">
+                            <i class="fas fa-swimming-pool"></i>
+                            <span>Piscine extérieure</span>
+                        </div>
+                        <div class="amenity-item">
+                            <i class="fas fa-hiking"></i>
+                            <span>Randonnée dans les vignes</span>
+                        </div>
+                        <div class="amenity-item">
+                            <i class="fas fa-concierge-bell"></i>
+                            <span>Service de conciergerie</span>
+                        </div>
+                        <div class="amenity-item">
+                            <i class="fas fa-parking"></i>
+                            <span>Parking gratuit</span>
+                        </div>
+                        <div class="amenity-item">
+                            <i class="fas fa-bicycle"></i>
+                            <span>Location de vélos</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section rooms">
+                    <h2>Types de chambres</h2>
+                    <div class="rooms-grid">
+                        <div class="room-card">
+                            <img src="assets/images/bordeaux/chambreclassique.jpeg" alt="Chambre Classique">
+                            <div class="room-info">
+                                <h3>Chambre Classique</h3>
+                                <p>Chambre élégante de 30m² avec vue sur le parc du château, décorée dans un style traditionnel bordelais.</p>
+                                <div class="room-features">
+                                    <span><i class="fas fa-user"></i> 2 personnes</span>
+                                    <span><i class="fas fa-bed"></i> 1 lit queen-size</span>
+                                    <span><i class="fas fa-arrows-alt-h"></i> 30m²</span>
+                                </div>
+                                <div class="room-price">
+                                    <span class="price">290€</span>
+                                    <span class="per-night">/ nuit</span>
+                                </div>
+                                <a href="reservation.html?hotel=chateau&room=classique" class="btn btn-primary">Réserver</a>
+                            </div>
+                        </div>
+                        <div class="room-card">
+                            <img src="assets/images/bordeaux/chambre.jpg" alt="Chambre Prestige">
+                            <div class="room-info">
+                                <h3>Chambre Prestige</h3>
+                                <p>Chambre spacieuse de 45m² avec balcon privé offrant une vue imprenable sur les vignobles bordelais.</p>
+                                <div class="room-features">
+                                    <span><i class="fas fa-user"></i> 2 personnes</span>
+                                    <span><i class="fas fa-bed"></i> 1 lit king-size</span>
+                                    <span><i class="fas fa-arrows-alt-h"></i> 45m²</span>
+                                </div>
+                                <div class="room-price">
+                                    <span class="price">390€</span>
+                                    <span class="per-night">/ nuit</span>
+                                </div>
+                                <a href="reservation.html?hotel=chateau&room=prestige" class="btn btn-primary">Réserver</a>
+                            </div>
+                        </div>
+                        <div class="room-card">
+                            <img src="assets/images/bordeaux/suite.jpg" alt="Suite du Château">
+                            <div class="room-info">
+                                <h3>Suite du Château</h3>
+                                <p>Suite luxueuse de 70m² avec salon séparé, cheminée et terrasse privative surplombant les vignes et la vallée.</p>
+                                <div class="room-features">
+                                    <span><i class="fas fa-user"></i> 4 personnes</span>
+                                    <span><i class="fas fa-bed"></i> 1 lit king-size + 1 canapé-lit</span>
+                                    <span><i class="fas fa-arrows-alt-h"></i> 70m²</span>
+                                </div>
+                                <div class="room-price">
+                                    <span class="price">520€</span>
+                                    <span class="per-night">/ nuit</span>
+                                </div>
+                                <a href="reservation.html?hotel=chateau&room=suite" class="btn btn-primary">Réserver</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section reviews">
+                    <h2>Avis des clients</h2>
+                    <div class="review-summary">
+                        <div class="review-score">
+                            <span class="score">4.5</span>
+                            <div class="score-text">
+                                <div class="score-stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                                <p>Basé sur 38 avis</p>
+                            </div>
+                        </div>
+                        <div class="review-categories">
+                            <div class="review-category">
+                                <span class="category-name">Propreté</span>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 94%"></div>
+                                </div>
+                                <span class="category-score">4.7</span>
+                            </div>
+                            <div class="review-category">
+                                <span class="category-name">Confort</span>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 90%"></div>
+                                </div>
+                                <span class="category-score">4.5</span>
+                            </div>
+                            <div class="review-category">
+                                <span class="category-name">Emplacement</span>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 96%"></div>
+                                </div>
+                                <span class="category-score">4.8</span>
+                            </div>
+                            <div class="review-category">
+                                <span class="category-name">Service</span>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 88%"></div>
+                                </div>
+                                <span class="category-score">4.4</span>
+                            </div>
+                            <div class="review-category">
+                                <span class="category-name">Rapport qualité-prix</span>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 84%"></div>
+                                </div>
+                                <span class="category-score">4.2</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="review-list">
+                        <div class="review-item">
+                            <div class="reviewer">
+                                <img src="https://randomuser.me/api/portraits/men/33.jpg" alt="Philippe D.">
+                                <div>
+                                    <h4>Philippe D.</h4>
+                                    <span class="review-date">Séjour en juin 2023</span>
+                                </div>
+                            </div>
+                            <div class="review-content">
+                                <div class="review-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <p class="review-text">"Un séjour exceptionnel dans un cadre somptueux. La chambre prestige était spacieuse et décorée avec goût, offrant une vue magnifique sur les vignobles. Le point fort reste la dégustation privée organisée par le sommelier du domaine qui nous a fait découvrir des vins remarquables. Le dîner au restaurant gastronomique était un véritable voyage culinaire. Une expérience inoubliable pour notre anniversaire de mariage."</p>
+                            </div>
+                        </div>
+                        <div class="review-item">
+                            <div class="reviewer">
+                                <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Camille L.">
+                                <div>
+                                    <h4>Camille L.</h4>
+                                    <span class="review-date">Séjour en mai 2023</span>
+                                </div>
+                            </div>
+                            <div class="review-content">
+                                <div class="review-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </div>
+                                <p class="review-text">"Un lieu plein de charme et d'histoire, parfait pour se déconnecter. La visite du vignoble et de la cave était passionnante, et le spa très reposant avec sa vue sur les vignes. Les chambres sont élégantes et confortables. Seul bémol, le prix élevé du restaurant, bien que la qualité soit au rendez-vous. Je recommande tout de même sans hésiter pour une escapade romantique dans le bordelais."</p>
+                            </div>
+                        </div>
+                        <div class="review-item">
+                            <div class="reviewer">
+                                <img src="https://randomuser.me/api/portraits/men/57.jpg" alt="Jean-Pierre M.">
+                                <div>
+                                    <h4>Jean-Pierre M.</h4>
+                                    <span class="review-date">Séjour en avril 2023</span>
+                                </div>
+                            </div>
+                            <div class="review-content">
+                                <div class="review-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                                <p class="review-text">"En tant qu'amateur de vins, ce séjour était parfait. La masterclass œnologique proposée par le château est une expérience à ne pas manquer. L'atelier d'assemblage a été un moment fort, nous permettant de créer notre propre vin sous les conseils du maître de chai. Le personnel est attentionné et passionné. Les chambres sont spacieuses et le calme environnant est propice à la détente. Un vrai coup de cœur!"</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="view-more-reviews">
+                        <a href="#" class="btn btn-secondary">Voir tous les avis</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hotel-sidebar">
+                <div class="booking-form">
+                    <h3>Réserver votre séjour</h3>
+                    <form>
+                        <div class="form-group">
+                            <label for="check-in">Arrivée</label>
+                            <input type="date" id="check-in" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="check-out">Départ</label>
+                            <input type="date" id="check-out" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="guests">Voyageurs</label>
+                            <div class="guests-select">
+                                <select id="guests">
+                                    <option value="1">1 adulte</option>
+                                    <option value="2" selected>2 adultes</option>
+                                    <option value="3">3 adultes</option>
+                                    <option value="4">4 adultes</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="room-type">Type de chambre</label>
+                            <div class="room-type-select">
+                                <select id="room-type">
+                                    <option value="classique">Chambre Classique - 290€/nuit</option>
+                                    <option value="prestige">Chambre Prestige - 390€/nuit</option>
+                                    <option value="suite">Suite du Château - 520€/nuit</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="price-summary">
+                            <div class="price-row">
+                                <span>290€ x 3 nuits</span>
+                                <span>870€</span>
+                            </div>
+                            <div class="price-row">
+                                <span>Taxes et frais</span>
+                                <span>87€</span>
+                            </div>
+                            <div class="price-row total">
+                                <span>Total</span>
+                                <span>957€</span>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Réserver maintenant</button>
+                        <p class="booking-note">Vous ne serez pas débité aujourd'hui</p>
+                    </form>
+                </div>
+
+                <div class="hotel-map">
+                    <h3>Emplacement</h3>
+                    <div class="map-container">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d92456.6674442898!2d-0.6435543705078126!3d44.837336899999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd5527e8f751ca81%3A0x796386037b397a89!2sBordeaux!5e0!3m2!1sfr!2sfr!4v1651234567890!5m2!1sfr!2sfr" width="100%" height="200" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                    <p class="map-info"><i class="fas fa-map-marker-alt"></i> Route des Châteaux, 33250 Pauillac, France</p>
+                </div>
+
+                <div class="section special-offer">
+                    <h3>Offre spéciale</h3>
+                    <div class="special-offer-content">
+                        <p><strong>Forfait Découverte Œnologique</strong></p>
+                        <ul>
+                            <li>2 nuits en chambre Prestige</li>
+                            <li>Petit-déjeuner gourmand</li>
+                            <li>Visite privée du vignoble et de la cave</li>
+                            <li>Dégustation de 5 vins du domaine</li>
+                            <li>1 dîner gastronomique accord mets et vins</li>
+                        </ul>
+                        <p class="special-price">À partir de <span>850€</span> pour 2 personnes</p>
+                        <a href="reservation.html?hotel=chateau&package=oenologie" class="btn btn-primary btn-block">Réserver cette offre</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="modern-footer">
+        <div class="footer-content">
+            <div class="footer-main">
+                <div class="footer-section footer-about">
+                    <h3>Trip'ISEN</h3>
+                    <p>Votre partenaire pour des séjours inoubliables partout dans le monde.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section footer-links">
+                    <h3>Liens utiles</h3>
+                    <ul>
+                        <li><a href="hotels.html">Hôtels</a></li>
+                        <li><a href="reservations.html">Réservations</a></li>
+                        <li><a href="promotions.html">Promotions</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section footer-contact">
+                    <h3>Contactez-nous</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Rue de Paris, 75000 Paris</p>
+                    <p><i class="fas fa-phone"></i> +33 1 23 45 67 89</p>
+                    <p><i class="fas fa-envelope"></i> contact@tripisen.fr</p>
+                </div>
+                <div class="footer-section footer-newsletter">
+                    <h3>Newsletter</h3>
+                    <p>Inscrivez-vous pour recevoir nos offres exclusives</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Votre email">
+                        <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Trip'ISEN. Tous droits réservés.</p>
+                <div class="footer-bottom-links">
+                    <a href="#">Mentions légales</a>
+                    <a href="#">Politique de confidentialité</a>
+                    <a href="#">CGU</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/hotel-detail.js"></script>
+</body>
+</html>

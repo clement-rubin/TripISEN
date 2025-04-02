@@ -84,7 +84,7 @@ const hotels = [
     {
         name: 'Château des Vignes',
         location: 'Bordeaux, France',
-        image: 'assets/images/bordeaux/ext.jpg', // Modifiez ce chemin pour une nouvelle image
+        image: 'assets/images/bordeaux/ext.png', // Modifiez ce chemin pour une nouvelle image
         rating: 4.5,
         reviews: 38,
         amenities: ['WiFi', 'Vignoble', 'Spa'],
@@ -111,8 +111,8 @@ const hotels = [
         image: 'assets/images/annecy/ext.jpg', // Modifiez ce chemin pour une nouvelle image
         rating: 4.5,
         reviews: 28,
-        amenities: ['WiFi', 'Vue lac', 'Terrasse', 'Spa'],
-        amenitiesIcons: ['fas fa-wifi', 'fas fa-water', 'fas fa-umbrella', 'fas fa-spa'],
+        amenities: ['WiFi', 'Vue lac', 'Spa'],
+        amenitiesIcons: ['fas fa-wifi', 'fas fa-water', 'fas fa-spa'],
         price: 220,
         badge: 'Nouveau',
         badgeClass: 'new',
