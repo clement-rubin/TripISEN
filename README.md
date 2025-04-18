@@ -251,32 +251,7 @@ Le projet est optimisé pour offrir des performances optimales :
 5. **Démarrer le serveur local**
    - Avec MAMP/XAMPP, placer le dossier dans le répertoire `htdocs`
    - Accéder au site via `http://localhost/TripISEN/hotel-booking-website/`
-
-### Déploiement en production
-
-1. **Transfert des fichiers**
-   - Utiliser FTP ou SSH pour transférer les fichiers vers votre hébergeur
-   - S'assurer que les permissions sont correctement configurées (755 pour les dossiers, 644 pour les fichiers)
-
-2. **Configuration du serveur**
-   - Configurer le document root vers le dossier `hotel-booking-website`
-   - Activer les modules PHP requis (mysqli, curl, json)
-
-3. **Configuration de la base de données**
-   - Créer une base de données sur votre hébergeur
-   - Importer le schéma SQL
-   - Mettre à jour le fichier `config.php` avec les nouvelles informations de connexion
-
-4. **Sécurité**
-   - Configurer HTTPS avec Let's Encrypt
-   - Limiter l'accès au dossier `/php/` via le fichier `.htaccess`
-   - Protéger les fichiers de configuration sensibles
-
-5. **Test final**
-   - Vérifier toutes les fonctionnalités du site
-   - S'assurer que les API externes fonctionnent correctement
-   - Tester sur différents navigateurs et appareils
-
+   
 ## 📄 License
 
 Ce projet est distribué sous licence MIT. Voir le fichier `LICENSE` pour plus d'informations.
