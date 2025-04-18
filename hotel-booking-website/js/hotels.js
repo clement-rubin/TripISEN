@@ -102,8 +102,8 @@ const hotels = [
         reviews: 72,
         amenities: ['WiFi', 'Centre-ville', 'Restaurant'],
         amenitiesIcons: ['fas fa-wifi', 'fas fa-city', 'fas fa-utensils'],
-        price: 165,
-        detailUrl: 'hotel-detail-cathedrale.html' // URL CORRIGÉE
+        price: 79,
+        detailUrl: 'hotel-detail-strasbourg.html'
     },
     {
         name: 'Les Trésoms Lake and Spa Resort',
