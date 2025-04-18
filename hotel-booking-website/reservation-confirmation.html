@@ -1,0 +1,131 @@
+ -->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmation de réservation - TripISEN</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <!-- Header inclus via JavaScript -->
+    <div id="header-placeholder"></div>
+    
+    <main class="container confirmation-page">
+        <div class="confirmation-content" id="confirmation-content">
+            <!-- Le contenu de confirmation sera chargé ici via JavaScript -->
+            <div class="loading"><i class="fas fa-spinner fa-spin"></i> Chargement...</div>
+        </div>
+    </main>
+    
+    <!-- Footer inclus via JavaScript -->
+    <div id="footer-placeholder"></div>
+    
+    <script src="js/main.js"></script>
+    <script src="js/auth.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const reservationId = urlParams.get('id');
+            
+            if (reservationId) {
+                fetch(`php/get_reservation_details.php?id=${reservationId}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            const reservation = data.reservation;
+                            displayConfirmation(reservation);
+                        } else {
+                            // Erreur (probablement non connecté ou réservation non trouvée)
+                            if (data.redirect) {
+                                window.location.href = data.redirect;
+                            } else {
+                                showErrorMessage(data.message);
+                            }
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Erreur:', error);
+                        showErrorMessage('Une erreur s\'est produite lors du chargement de la confirmation');
+                    });
+            } else {
+                showErrorMessage('ID de réservation manquant');
+            }
+        });
+        
+        function displayConfirmation(reservation) {
+            const confirmationContent = document.getElementById('confirmation-content');
+            
+            confirmationContent.innerHTML = `
+                <div class="confirmation-header">
+                    <div class="icon-success">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h1>Réservation confirmée !</h1>
+                    <p>Votre réserv<!-- filepath: c:\MAMP\htdocs\Nouveau dossier (6)\TripISEN\hotel-booking-website\reservation-confirmation.html -->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmation de réservation - TripISEN</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <!-- Header inclus via JavaScript -->
+    <div id="header-placeholder"></div>
+    
+    <main class="container confirmation-page">
+        <div class="confirmation-content" id="confirmation-content">
+            <!-- Le contenu de confirmation sera chargé ici via JavaScript -->
+            <div class="loading"><i class="fas fa-spinner fa-spin"></i> Chargement...</div>
+        </div>
+    </main>
+    
+    <!-- Footer inclus via JavaScript -->
+    <div id="footer-placeholder"></div>
+    
+    <script src="js/main.js"></script>
+    <script src="js/auth.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const reservationId = urlParams.get('id');
+            
+            if (reservationId) {
+                fetch(`php/get_reservation_details.php?id=${reservationId}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            const reservation = data.reservation;
+                            displayConfirmation(reservation);
+                        } else {
+                            // Erreur (probablement non connecté ou réservation non trouvée)
+                            if (data.redirect) {
+                                window.location.href = data.redirect;
+                            } else {
+                                showErrorMessage(data.message);
+                            }
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Erreur:', error);
+                        showErrorMessage('Une erreur s\'est produite lors du chargement de la confirmation');
+                    });
+            } else {
+                showErrorMessage('ID de réservation manquant');
+            }
+        });
+        
+        function displayConfirmation(reservation) {
+            const confirmationContent = document.getElementById('confirmation-content');
+            
+            confirmationContent.innerHTML = `
+                <div class="confirmation-header">
+                    <div class="icon-success">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h1>Réservation confirmée !</h1>
+                    <p>Votre réserv

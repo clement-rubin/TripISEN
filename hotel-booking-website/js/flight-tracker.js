@@ -2,19 +2,6 @@
 import OpenSkyAPI from './opensky-api.js';
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Vérifier les paramètres d'URL
-    const urlParams = new URLSearchParams(window.location.search);
-    const airportParam = urlParams.get('airport');
-    
-    if (airportParam) {
-        // Pré-remplir le champ de recherche
-        searchInput.value = airportParam;
-        // Déclencher la recherche
-        fetchFlightData(airportParam);
-        // Mettre à jour l'aéroport actuel
-        currentAirport = airportParam;
-    }
-    
     // Initialisation de la carte
     const map = L.map('map-container').setView([48.8566, 2.3522], 5); // Centré sur Paris par défaut
     
@@ -23,11 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
     
-    // Variables pour stocker les données et les marqueurs
-    let flightMarkers = [];
-    let currentAirport = 'LFPG'; // Paris Charles de Gaulle par défaut
-    
-    // Éléments du DOM
+    // Éléments du DOM - définis en premier pour éviter les erreurs d'accès
     const searchInput = document.getElementById('airport-search');
     const searchBtn = document.getElementById('search-btn');
     const showArrivalsCheckbox = document.getElementById('show-arrivals');
@@ -41,6 +24,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const startTimeInput = document.getElementById('start-time');
     const endTimeInput = document.getElementById('end-time');
     const presetButtons = document.querySelectorAll('.preset-btn');
+    
+    // Variables pour stocker les données et les marqueurs
+    let flightMarkers = [];
+    let currentAirport = 'LFPG'; // Paris Charles de Gaulle par défaut
     
     // Créer une instance de l'API OpenSky
     const openSkyApi = new OpenSkyAPI(config.opensky.username, config.opensky.password);
@@ -60,6 +47,21 @@ document.addEventListener('DOMContentLoaded', function() {
         'VHHH': 'Hong Kong',
         'RJTT': 'Tokyo Haneda'
     };
+
+    // Vérifier les paramètres d'URL - déplacé après la déclaration des éléments DOM
+    const urlParams = new URLSearchParams(window.location.search);
+    const airportParam = urlParams.get('airport');
+    
+    if (airportParam) {
+        // Pré-remplir le champ de recherche
+        if (searchInput) {
+            searchInput.value = airportParam;
+            // Mettre à jour l'aéroport actuel
+            currentAirport = airportParam;
+            // Déclencher la recherche après le chargement complet
+            setTimeout(() => fetchFlightData(airportParam), 100);
+        }
+    }
     
     // Configuration de l'autocomplétion des aéroports
     function setupAirportAutocomplete() {

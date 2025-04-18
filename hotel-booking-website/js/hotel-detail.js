@@ -433,7 +433,7 @@ class HotelFlights {
     updateArrivalsTable() {
         // Limiter à 5 vols pour l'aperçu
         const arrivals = this.arrivalsData.slice(0, 5);
-        
+
         if (arrivals.length === 0) {
             this.arrivalsTable.innerHTML = `
                 <tr>
@@ -442,17 +442,17 @@ class HotelFlights {
             `;
             return;
         }
-        
+
         let html = '';
         arrivals.forEach(flight => {
             const arrivalTime = flight.lastSeen ? new Date(flight.lastSeen * 1000).toLocaleTimeString('fr-FR', {
                 hour: '2-digit',
                 minute: '2-digit'
             }) : 'N/A';
-            
+
             const status = this.getFlightStatus(flight);
             const statusClass = this.getStatusClass(status);
-            
+
             html += `
                 <tr>
                     <td><strong>${flight.callsign || 'N/A'}</strong></td>
@@ -462,7 +462,7 @@ class HotelFlights {
                 </tr>
             `;
         });
-        
+
         this.arrivalsTable.innerHTML = html;
     }
     
